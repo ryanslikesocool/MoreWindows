@@ -5,27 +5,26 @@ import SwiftUI
 
 @available(macOS 14, *)
 public extension LauncherWindow {
-	struct Window: Scene {
+	struct Window<ActionArea: View>: Scene {
+		@Environment(\.launcherOptions) private var launcherOptions
 		@Environment(\.openWindow) private var openWindow
 
-		private let actions: [LauncherAction]
-		private let options: Options
+		private let actionArea: () -> ActionArea
 
-		public init(actions: [LauncherAction], options: Options = .default) {
-			self.actions = actions
-			self.options = options
+		public init(@ViewBuilder actionArea: @escaping () -> ActionArea) {
+			self.actionArea = actionArea
 		}
 
 		public var body: some Scene {
 			SwiftUI.Window("\(AppInformation.appName) Launcher", id: LauncherWindow.windowID) {
-				Content(actions: actions, options: options)
+				ContentView(actionArea: actionArea)
 					.accessWindow(onAppear: applyWindowStyle)
 			}
 			.defaultPosition(.center)
 			.windowResizability(.contentSize)
 			.windowStyle(.hiddenTitleBar)
 			.commands {
-				if options.contains(.menuItem) {
+				if launcherOptions.contains(.menuItem) {
 					CommandGroup(before: .windowList) {
 						Button("Show Launcher") {
 							openWindow(id: LauncherWindow.windowID)
