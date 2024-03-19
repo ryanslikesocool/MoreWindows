@@ -24,21 +24,28 @@ let package = Package(
 	],
 	targets: [
 		.target(
+			name: "MoreWindows_About",
+			dependencies: [
+				"MoreWindowsCommon",
+			]
+		),
+
+		.target(
 			name: "MoreWindows_Launcher",
 			dependencies: [
-				"MoreViews",
+				"MoreWindowsCommon",
 			]
 		),
 
 		.target(
 			name: "MoreWindows_Settings",
 			dependencies: [
-				"MoreViews",
+				"MoreWindowsCommon",
 			]
 		),
 
 		.target(
-			name: "MoreWindows_About",
+			name: "MoreWindowsCommon",
 			dependencies: [
 				"MoreViews",
 			]

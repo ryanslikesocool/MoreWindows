@@ -1,11 +1,10 @@
 #if canImport(AppKit)
-import LoveCore
 import SwiftUI
 
-@available(macOS 14, *)
 struct ContentView<ActionArea: View>: View {
-	@Environment(\.dismissWindow) private var dismissWindow
+	@Environment(\.dismissLauncher) private var dismissLauncher
 	@Environment(\.launcherOptions) private var launcherOptions
+	@Environment(\.recentItemsOptions) private var recentItemsOptions
 
 	let actionArea: () -> ActionArea
 
@@ -13,7 +12,7 @@ struct ContentView<ActionArea: View>: View {
 	private let rightSideSize: Double = 280
 
 	private var windowSize: SIMD2<Double> {
-		let width: Double = if launcherOptions.contains(.recentDocuments) {
+		let width: Double = if launcherOptions.contains(.showRecentDocuments) {
 			leftSideSize + rightSideSize
 		} else {
 			leftSideSize
@@ -23,13 +22,16 @@ struct ContentView<ActionArea: View>: View {
 	}
 
 	var body: some View {
-		leftSide
-			.overlay(alignment: .topLeading) { closeButton }
-			.ignoresSafeArea(.all)
-			.inspector(isPresented: .constant(launcherOptions.contains(.recentDocuments))) {
-				RecentItemList(searchable: launcherOptions.contains(.searchRecentDocuments))
+		HStack(spacing: 0) {
+			leftSide
+
+			if launcherOptions.contains(.showRecentDocuments) {
+				Divider()
+				RecentItemList(searchable: recentItemsOptions.contains(.searchable))
 			}
-			.frame(size: windowSize)
+		}
+		.ignoresSafeArea(.all)
+		.frame(size: windowSize)
 	}
 
 	@ViewBuilder private var leftSide: some View {
@@ -47,15 +49,16 @@ struct ContentView<ActionArea: View>: View {
 			Spacer()
 		}
 		.frame(width: leftSideSize)
+		.overlay(alignment: .topLeading) { closeButton }
 	}
 
 	private var closeButton: some View {
-		Button(action: { dismissWindow() }) {
+		Button(action: dismissLauncher.callAsFunction) {
 			Image(systemName: "xmark")
 				.font(.system(size: 6, weight: .bold))
 				.foregroundStyle(.background)
-				.frame(size: 12)
-				.background(.foreground.opacity(0.3), in: Circle())
+				.frame(width: 12, height: 12)
+				.background(.tertiary, in: Circle())
 		}
 		.buttonStyle(.plain)
 		.padding(12)

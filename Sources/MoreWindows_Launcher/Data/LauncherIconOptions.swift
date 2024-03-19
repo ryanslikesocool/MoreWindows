@@ -1,5 +1,4 @@
 #if canImport(AppKit)
-@available(macOS 14, *)
 public struct LauncherIconOptions: OptionSet {
 	public let rawValue: UInt8
 
@@ -10,7 +9,6 @@ public struct LauncherIconOptions: OptionSet {
 
 // MARK: - Constants
 
-@available(macOS 14, *)
 public extension LauncherIconOptions {
 	static let glowInTheDark: Self = Self(rawValue: 1 << 0)
 	static let hoverScale: Self = Self(rawValue: 1 << 1)
@@ -26,7 +24,6 @@ public extension LauncherIconOptions {
 
 // MARK: -
 
-@available(macOS 14, *)
 extension LauncherIconOptions {
 	var hasHoverInteraction: Bool { !intersection(Self.hoverInteration).isEmpty }
 }

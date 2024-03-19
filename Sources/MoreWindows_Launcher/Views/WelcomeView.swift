@@ -1,25 +1,24 @@
 #if canImport(AppKit)
-import LoveCore
+import MoreWindowsCommon
 import SwiftUI
 
-@available(macOS 14, *)
 struct WelcomeView: View {
 	@Environment(\.launcherOptions) private var launcherOptions
 	@State private var hoveringOnVersion: Bool = false
 
 	var body: some View {
 		VStack {
-			if launcherOptions.contains(.icon) {
+			if launcherOptions.contains(.showIcon) {
 				AppIconView()
 			}
 
-			if launcherOptions.contains(.name) {
+			if launcherOptions.contains(.showName) {
 				Text(AppInformation.appName)
 					.font(.largeTitle.bold())
 			}
 
-			if launcherOptions.contains(.version), let version = AppInformation.appVersion {
-				Button(action: { Pasteboard[String.self] = "\(AppInformation.appName) \(version)" }) {
+			if launcherOptions.contains(.showVersion), let version = AppInformation.appVersion {
+				Button(action: { copyVersionToPasteboard(version: version) }) {
 					Text(version)
 						.opacity(hoveringOnVersion ? 1 : 0.5)
 						.overlay(alignment: .trailing) {
@@ -38,6 +37,13 @@ struct WelcomeView: View {
 				.buttonStyle(.plain)
 			}
 		}
+	}
+}
+
+private extension WelcomeView {
+	func copyVersionToPasteboard(version: String) {
+		NSPasteboard.general.clearContents()
+		NSPasteboard.general.setString("\(AppInformation.appName) \(version)", forType: .string)
 	}
 }
 #endif

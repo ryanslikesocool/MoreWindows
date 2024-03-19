@@ -1,9 +1,7 @@
 #if canImport(AppKit)
-import LoveCore
 import simd
 import SwiftUI
 
-@available(macOS 14, *)
 struct AppIconView: View {
 	@Environment(\.colorScheme) private var colorScheme
 	@Environment(\.launcherOptions) private var launcherOptions
@@ -49,7 +47,6 @@ struct AppIconView: View {
 	}
 }
 
-@available(macOS 14, *)
 private extension AppIconView {
 	static let iconSize: Double = 128
 	static let glowRadius: Double = 32
@@ -59,16 +56,14 @@ private extension AppIconView {
 	static let animation: Animation = .interactiveSpring(duration: 0.2, extraBounce: 0.1, blendDuration: 1)
 }
 
-@available(macOS 14, *)
 private extension AppIconView {
 	var icon: some View {
-		Image(nativeImage: AppInformation.appIcon)
+		Image(nsImage: NSApp.applicationIconImage)
 			.resizable()
 			.frame(size: Self.iconSize)
 	}
 }
 
-@available(macOS 14, *)
 private extension AppIconView {
 	func updateInteractive(_ location: CGPoint) {
 		let centeredLocation: SIMD2<Double> = SIMD2<Double>(location - Self.iconSize * 0.5)

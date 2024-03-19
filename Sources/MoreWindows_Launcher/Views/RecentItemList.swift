@@ -1,7 +1,6 @@
 #if canImport(AppKit)
 import SwiftUI
 
-@available(macOS 14, *)
 struct RecentItemList: View {
 	@State private var searchQuery: String = ""
 
@@ -13,7 +12,7 @@ struct RecentItemList: View {
 		return recentDocumentURLs.filter { url in
 			url.lastPathComponent.localizedStandardContains(searchQuery)
 		}
-		// TODO: add extension filtering
+		// TODO: add extension filtering, tokens
 	}
 
 	let searchable: Bool
