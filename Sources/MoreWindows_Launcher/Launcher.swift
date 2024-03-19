@@ -1,9 +1,7 @@
 #if canImport(AppKit)
-import LoveCore
 import MoreViews
 import SwiftUI
 
-@available(macOS 14, *)
 public struct Launcher<ActionArea: View>: Scene {
 	@Environment(\.launcherOptions) private var launcherOptions
 	@Environment(\.openWindow) private var openWindow

@@ -1,5 +1,5 @@
 #if canImport(AppKit)
-import LoveCore
+import MoreWindowsCommon
 
 var launcherWindowID: String { "MoreWindows.Launcher" }
 var launcherWindowTitle: String { "\(AppInformation.appName) Launcher" }
