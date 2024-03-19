@@ -1,6 +1,5 @@
 #if canImport(AppKit)
-import LoveCore
-import MoreViews
+import MoreWindowsCommon
 import OSLog
 import SwiftUI
 
