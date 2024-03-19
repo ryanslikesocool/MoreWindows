@@ -2,18 +2,22 @@
 import simd
 import SwiftUI
 
-struct AppIconView: View {
+public struct AppIconView: View {
 	@Environment(\.colorScheme) private var colorScheme
-	@Environment(\.launcherOptions) private var launcherOptions
-	@Environment(\.launcherIconOptions) private var launcherIconOptions
+	@Environment(\.appIconOptions) private var appIconOptions
 	@State private var scale: CGFloat = Self.scaleRange.lowerBound
 	@State private var rotationAngle: Double = .zero
 	@State private var rotationAxis: SIMD2<Double> = .zero
 	@State private var shadowRadius: Double = Self.shadowRadiusRange.lowerBound
+	private let size: CGFloat
 
-	var body: some View {
+	public init(size: CGFloat) {
+		self.size = size
+	}
+
+	public var body: some View {
 		Group {
-			if launcherIconOptions.hasHoverInteraction {
+			if appIconOptions.hasHoverInteraction {
 				icon
 					.onContinuousHover(coordinateSpace: .local) { hoverPhase in
 						switch hoverPhase {
@@ -26,8 +30,8 @@ struct AppIconView: View {
 					.scaleEffect(scale)
 					.rotation3DEffect(.radians(rotationAngle), axis: (-rotationAxis.y, rotationAxis.x, 0), perspective: 0.5)
 					.shadow(
-						color: launcherIconOptions.contains(.hoverShadow) && (colorScheme == .light || !launcherIconOptions.contains(.glowInTheDark))
-							? .shadow.opacity(colorScheme == .light ? 0.333 : 0.5)
+						color: appIconOptions.contains(.hoverShadow) && (colorScheme == .light || !appIconOptions.contains(.glowInTheDark))
+							? .black.opacity(colorScheme == .light ? 0.333 : 0.5)
 							: .clear,
 						radius: shadowRadius,
 						y: shadowRadius * 0.333
@@ -37,7 +41,7 @@ struct AppIconView: View {
 			}
 		}
 		.background {
-			if launcherIconOptions.contains(.glowInTheDark), colorScheme == .dark {
+			if appIconOptions.contains(.glowInTheDark), colorScheme == .dark {
 				icon
 					.offset(y: Self.glowRadius * 0.666)
 					.blur(radius: Self.glowRadius)
@@ -48,7 +52,6 @@ struct AppIconView: View {
 }
 
 private extension AppIconView {
-	static let iconSize: Double = 128
 	static let glowRadius: Double = 32
 	static let scaleRange: ClosedRange<CGFloat> = 1.0 ... 1.05
 	static let rotationStrength: Double = 0.001
@@ -58,25 +61,28 @@ private extension AppIconView {
 
 private extension AppIconView {
 	var icon: some View {
-		Image(nsImage: NSApp.applicationIconImage)
+		Image(nsImage: AppInformation.appIcon)
 			.resizable()
-			.frame(size: Self.iconSize)
+			.frame(width: size, height: size)
 	}
 }
 
 private extension AppIconView {
 	func updateInteractive(_ location: CGPoint) {
-		let centeredLocation: SIMD2<Double> = SIMD2<Double>(location - Self.iconSize * 0.5)
+		let centeredLocation: SIMD2<Double> = SIMD2<Double>(
+			x: location.x - size * 0.5,
+			y: location.y - size * 0.5
+		)
 
 		withAnimation(Self.animation) {
-			if launcherIconOptions.contains(.hoverScale) {
+			if appIconOptions.contains(.hoverScale) {
 				scale = Self.scaleRange.upperBound
 			}
-			if launcherIconOptions.contains(.hoverRotation) {
+			if appIconOptions.contains(.hoverRotation) {
 				rotationAngle = simd.length(centeredLocation) * Self.rotationStrength
 				rotationAxis = simd.normalize(centeredLocation)
 			}
-			if launcherIconOptions.contains(.hoverShadow) {
+			if appIconOptions.contains(.hoverShadow) {
 				shadowRadius = Self.shadowRadiusRange.upperBound
 			}
 		}

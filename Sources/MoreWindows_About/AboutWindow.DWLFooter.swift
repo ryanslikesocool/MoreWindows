@@ -2,11 +2,11 @@
 import LoveCore
 import SwiftUI
 
-public extension AboutWindow {
-	struct DWLFooter: View {
-		public init() { }
+public struct DWLFooter: View {
+	public init() { }
 
-		public var body: some View {
+	public var body: some View {
+		VStack {
 			Group {
 				Text(AppInformation.copyright ?? "© Ryan Boyer")
 				Text("Developed With Love")
@@ -15,7 +15,7 @@ public extension AboutWindow {
 			.font(.system(.footnote, design: .monospaced))
 			.multilineTextAlignment(.center)
 			.opacity(0.5)
-
+			
 			Image("heart.pixel.fill", bundle: .loveCore)
 				.symbolRenderingMode(.multicolor)
 				.offset(y: 2)

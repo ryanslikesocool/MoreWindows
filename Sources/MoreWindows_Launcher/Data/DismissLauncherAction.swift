@@ -13,9 +13,7 @@ struct DismissLauncherAction {
 		if #available(macOS 14, *) {
 			environment.dismissWindow(id: launcherWindowID)
 		} else {
-			NSApplication.shared.windows
-				.first(where: { $0.identifier?.rawValue == launcherWindowID })?
-				.close()
+			launcherWindow?.close()
 		}
 	}
 }

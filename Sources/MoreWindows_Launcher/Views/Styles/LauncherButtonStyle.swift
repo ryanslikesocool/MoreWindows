@@ -1,6 +1,5 @@
 #if canImport(AppKit)
 import SwiftUI
-import MoreViews
 
 struct LauncherButtonStyle: PrimitiveButtonStyle {
 	@Environment(\.dismissLauncher) private var dismissLauncher
@@ -13,8 +12,8 @@ struct LauncherButtonStyle: PrimitiveButtonStyle {
 			configuration.label
 				.fontWeight(.semibold)
 				.padding(8)
-				.expand()
-				.background(.foreground.opacity(0.1), in: RoundedRectangle(cornerRadius: 8))
+				.frame(maxWidth: .infinity, maxHeight: .infinity)
+				.background(.quaternary, in: RoundedRectangle(cornerRadius: 8))
 		}
 		.buttonStyle(.plain)
 	}

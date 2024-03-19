@@ -1,5 +1,6 @@
 #if canImport(AppKit)
 import Foundation
+import LoveCore
 import SwiftUI
 
 struct RecentItem: View {
@@ -18,29 +19,13 @@ struct RecentItem: View {
 
 	public var body: some View {
 		Button(action: openFile) {
-			HStack(spacing: 0) {
-				if recentItemsOptions.contains(.showIcon) {
-					documentIcon
-				}
-
-				VStack(alignment: .leading) {
-					Text(title)
-						.font(.headline)
-
-					if recentItemsOptions.contains(.showURL) {
-						Text(url.compressingTildeInPath)
-							.font(.subheadline)
-							.foregroundStyle(.tertiary)
-							.help(url.path(percentEncoded: false))
+			if recentItemsOptions.contains(.draggable) {
+				label
+					.draggable(url) {
+						documentIcon
 					}
-				}
-				.padding(8)
-			}
-			.contentShape(Rectangle())
-			.condition(recentItemsOptions.contains(.draggable)) {
-				$0.draggable(url, preview: {
-					documentIcon
-				})
+			} else {
+				label
 			}
 		}
 		.buttonStyle(.plain)
@@ -51,18 +36,48 @@ struct RecentItem: View {
 			}
 		}
 	}
+}
 
-	@ViewBuilder private var documentIcon: some View {
+private extension RecentItem {
+	static let documentIconSize: CGFloat = 32
+}
+
+private extension RecentItem {
+	var label: some View {
+		HStack(spacing: 0) {
+			if recentItemsOptions.contains(.showIcon) {
+				documentIcon
+			}
+
+			VStack(alignment: .leading) {
+				Text(title)
+					.font(.headline)
+
+				if recentItemsOptions.contains(.showURL) {
+					Text(url.compressingTildeInPath)
+						.font(.subheadline)
+						.foregroundStyle(.tertiary)
+						.help(url.path(percentEncoded: false))
+				}
+			}
+			.padding(8)
+		}
+		.contentShape(Rectangle())
+	}
+
+	@ViewBuilder var documentIcon: some View {
 		if let image {
-			Image(nativeImage: image)
+			Image(nsImage: image)
 				.resizable()
-				.frame(size: 32)
+				.frame(width: Self.documentIconSize, height: Self.documentIconSize)
 		} else {
 			Image(systemName: "doc")
 		}
 	}
+}
 
-	private func openFile() {
+private extension RecentItem {
+	func openFile() {
 		Task {
 			do {
 				try await openDocument(at: url)

@@ -2,6 +2,7 @@
 import SwiftUI
 
 struct RecentItemList: View {
+	@Environment(\.recentItemsOptions) private var recentItemsOptions
 	@State private var searchQuery: String = ""
 
 	private var recentDocumentURLs: [URL] { URL.recentDocumentURLs }
@@ -15,15 +16,23 @@ struct RecentItemList: View {
 		// TODO: add extension filtering, tokens
 	}
 
-	let searchable: Bool
-
 	var body: some View {
+		if recentItemsOptions.contains(.searchable) {
+			list
+				.searchable(text: $searchQuery, placement: .sidebar)
+		} else {
+			list
+		}
+	}
+}
+
+private extension RecentItemList {
+	var list: some View {
 		List(filteredURLs, id: \.self) { url in
 			RecentItem(url: url)
 		}
 		.listStyle(.sidebar)
 		.ignoresSafeArea(.all)
-		.condition(searchable) { $0.searchable(text: $searchQuery, placement: .sidebar) }
 	}
 }
 #endif

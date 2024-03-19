@@ -1,5 +1,5 @@
 #if canImport(AppKit)
-import MoreViews
+import OSLog
 import SwiftUI
 
 public struct Launcher<ActionArea: View>: Scene {
@@ -15,7 +15,7 @@ public struct Launcher<ActionArea: View>: Scene {
 	public var body: some Scene {
 		SwiftUI.Window(launcherWindowTitle, id: launcherWindowID) {
 			ContentView(actionArea: actionArea)
-				.accessWindow(onAppear: applyWindowStyle)
+				.onAppear(perform: applyWindowStyle)
 		}
 		.defaultPosition(.center)
 		.windowResizability(.contentSize)
@@ -32,13 +32,22 @@ public struct Launcher<ActionArea: View>: Scene {
 			}
 		}
 	}
+}
 
-	private func applyWindowStyle(window: NSWindow) {
-		window.isMovableByWindowBackground = true
+private extension Launcher {
+	func applyWindowStyle() {
+		DispatchQueue.main.async {
+			guard let launcherWindow else {
+				Logger.launcherWindow.warning("Launcher window was missing.  The window style cannot be applied.")
+				return
+			}
 
-		window.standardWindowButton(.closeButton)?.isHidden = true
-		window.standardWindowButton(.miniaturizeButton)?.isHidden = true
-		window.standardWindowButton(.zoomButton)?.isHidden = true
+			launcherWindow.isMovableByWindowBackground = true
+
+			launcherWindow.standardWindowButton(.closeButton)?.isHidden = true
+			launcherWindow.standardWindowButton(.miniaturizeButton)?.isHidden = true
+			launcherWindow.standardWindowButton(.zoomButton)?.isHidden = true
+		}
 	}
 }
 #endif

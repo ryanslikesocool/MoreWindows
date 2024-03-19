@@ -4,7 +4,6 @@ import SwiftUI
 struct ContentView<ActionArea: View>: View {
 	@Environment(\.dismissLauncher) private var dismissLauncher
 	@Environment(\.launcherOptions) private var launcherOptions
-	@Environment(\.recentItemsOptions) private var recentItemsOptions
 
 	let actionArea: () -> ActionArea
 
@@ -27,11 +26,11 @@ struct ContentView<ActionArea: View>: View {
 
 			if launcherOptions.contains(.showRecentDocuments) {
 				Divider()
-				RecentItemList(searchable: recentItemsOptions.contains(.searchable))
+				RecentItemList()
 			}
 		}
 		.ignoresSafeArea(.all)
-		.frame(size: windowSize)
+		.frame(width: windowSize.x, height: windowSize.y)
 	}
 
 	@ViewBuilder private var leftSide: some View {
