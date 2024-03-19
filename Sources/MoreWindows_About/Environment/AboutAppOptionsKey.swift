@@ -1,18 +1,20 @@
 import SwiftUI
 
-private struct AboutAppOptionsKey: EnvironmentKey {
-	static let defaultValue: AboutAppOptions = .default
+private struct AboutWindowOptionsKey: EnvironmentKey {
+	static let defaultValue: AboutWindowOptions = .default
 }
 
 extension EnvironmentValues {
-	var aboutAppOptions: AboutAppOptions {
-		get { self[AboutAppOptionsKey.self] }
-		set { self[AboutAppOptionsKey.self] = newValue }
+	var aboutWindowOptions: AboutWindowOptions {
+		get { self[AboutWindowOptionsKey.self] }
+		set { self[AboutWindowOptionsKey.self] = newValue }
 	}
 }
 
 public extension Scene {
-	func aboutApp(_ options: AboutAppOptions) -> some Scene {
-		environment(\.aboutAppOptions, options)
+	/// Set options pertaining to the About window.
+	/// - Parameter options: The option flags to enable.
+	func aboutWindowOptions(_ options: AboutWindowOptions) -> some Scene {
+		environment(\.aboutWindowOptions, options)
 	}
 }

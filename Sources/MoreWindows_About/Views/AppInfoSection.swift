@@ -2,7 +2,7 @@ import _MoreWindowsCommon
 import SwiftUI
 
 struct AppInfoSection: View {
-	@Environment(\.aboutAppOptions) private var options: AboutAppOptions
+	@Environment(\.aboutWindowOptions) private var aboutWindowOptions
 
 	public var body: some View {
 		VStack {
@@ -11,7 +11,7 @@ struct AppInfoSection: View {
 			Text(AppInformation.appName)
 				.font(.title.bold())
 
-			if options.contains(.showVersion) {
+			if aboutWindowOptions.contains(.showVersion) {
 				AppVersionView()
 			}
 		}

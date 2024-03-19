@@ -2,6 +2,9 @@ import _MoreWindowsCommon
 import OSLog
 import SwiftUI
 
+/// An "About" window, accessible from the app's main menu.
+///
+/// By default, the About window includes the app icon, name, and version.
 public struct About<Content: View>: Scene {
 	@Environment(\.openWindow) var openWindow
 

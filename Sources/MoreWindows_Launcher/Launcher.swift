@@ -1,6 +1,7 @@
 import OSLog
 import SwiftUI
 
+/// A launcher window that can be shown when an app launches.
 public struct Launcher<ActionArea: View>: Scene {
 	@Environment(\.launcherOptions) private var launcherOptions
 	@Environment(\.openWindow) private var openWindow
