@@ -1,5 +1,4 @@
-#if canImport(AppKit)
-import MoreWindowsCommon
+import _MoreWindowsCommon
 import SwiftUI
 
 struct AppInfoSection: View {
@@ -18,4 +17,3 @@ struct AppInfoSection: View {
 		}
 	}
 }
-#endif

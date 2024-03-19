@@ -1,4 +1,3 @@
-#if canImport(AppKit)
 import SwiftUI
 
 private struct LauncherActionOptionsKey: EnvironmentKey {
@@ -17,4 +16,3 @@ public extension View {
 		environment(\.launcherActionOptions, options)
 	}
 }
-#endif

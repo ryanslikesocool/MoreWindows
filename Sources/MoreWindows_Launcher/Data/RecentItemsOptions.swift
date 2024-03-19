@@ -1,4 +1,3 @@
-#if canImport(AppKit)
 public struct RecentItemsOptions: OptionSet {
 	public let rawValue: UInt8
 
@@ -29,4 +28,3 @@ public extension RecentItemsOptions {
 
 	static let all: Self = [.searchable, .showIcon, .showURL, .draggable, .closeWindow]
 }
-#endif

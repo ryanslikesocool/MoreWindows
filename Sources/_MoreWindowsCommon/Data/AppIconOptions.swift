@@ -1,4 +1,3 @@
-#if canImport(AppKit)
 public struct AppIconOptions: OptionSet {
 	public let rawValue: UInt8
 
@@ -36,4 +35,3 @@ public extension AppIconOptions {
 extension AppIconOptions {
 	var hasHoverInteraction: Bool { !intersection(Self.hoverInteraction).isEmpty }
 }
-#endif

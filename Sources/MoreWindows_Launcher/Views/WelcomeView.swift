@@ -1,5 +1,4 @@
-#if canImport(AppKit)
-import MoreWindowsCommon
+import _MoreWindowsCommon
 import SwiftUI
 
 struct WelcomeView: View {
@@ -22,4 +21,3 @@ struct WelcomeView: View {
 		}
 	}
 }
-#endif

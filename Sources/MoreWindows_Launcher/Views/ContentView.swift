@@ -1,4 +1,3 @@
-#if canImport(AppKit)
 import SwiftUI
 
 struct ContentView<ActionArea: View>: View {
@@ -63,4 +62,3 @@ struct ContentView<ActionArea: View>: View {
 		.padding(12)
 	}
 }
-#endif

@@ -1,5 +1,5 @@
-#if canImport(AppKit)
 import SwiftUI
+import _MoreWindowsCommon
 
 struct ContentView<Content: View>: View {
 	let content: () -> Content
@@ -18,4 +18,3 @@ struct ContentView<Content: View>: View {
 		.ignoresSafeArea(.container)
 	}
 }
-#endif

@@ -1,9 +1,5 @@
-import Foundation
-#if canImport(AppKit)
 import AppKit
-#elseif canImport(UIKit)
-import UIKit
-#endif
+import Foundation
 
 public enum AppInformation {
 	static var info: [String: Any]? { Bundle.main.infoDictionary }
@@ -32,29 +28,7 @@ public enum AppInformation {
 		info?["NSHumanReadableCopyright"] as? String
 	}
 
-#if canImport(AppKit)
 	public static var appIcon: NSImage {
 		NSApp.applicationIconImage
 	}
-
-#elseif canImport(UIKit)
-	public static var appIconName: String? {
-		guard
-			let icons = info?["CFBundleIcons"] as? [String: Any],
-			let primaryIcon = icons["CFBundlePrimaryIcon"] as? [String: Any],
-			let iconFiles = primaryIcon["CFBundleIconFiles"] as? [String],
-			let lastIcon = iconFiles.last
-		else {
-			return nil
-		}
-		return lastIcon
-	}
-
-	public static var appIcon: UIImage? {
-		guard let appIconName else {
-			return nil
-		}
-		return UIImage(named: appIconName)
-	}
-#endif
 }

@@ -1,4 +1,3 @@
-#if canImport(AppKit)
 public struct LauncherOptions: OptionSet {
 	public let rawValue: UInt8
 
@@ -34,4 +33,3 @@ public extension LauncherOptions {
 	static let none: Self = []
 	static let all: Self = [.showIcon, .showName, .showVersion, .showRecentDocuments, .addMenuItem]
 }
-#endif

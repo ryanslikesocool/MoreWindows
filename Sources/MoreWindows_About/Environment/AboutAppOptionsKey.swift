@@ -1,4 +1,3 @@
-#if canImport(AppKit)
 import SwiftUI
 
 private struct AboutAppOptionsKey: EnvironmentKey {
@@ -17,4 +16,3 @@ public extension Scene {
 		environment(\.aboutAppOptions, options)
 	}
 }
-#endif

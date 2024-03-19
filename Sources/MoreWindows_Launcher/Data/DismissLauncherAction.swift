@@ -1,4 +1,3 @@
-#if canImport(AppKit)
 import AppKit
 import SwiftUI
 
@@ -23,4 +22,3 @@ extension EnvironmentValues {
 		DismissLauncherAction(environment: self)
 	}
 }
-#endif

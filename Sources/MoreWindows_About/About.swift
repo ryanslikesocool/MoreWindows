@@ -1,5 +1,4 @@
-#if canImport(AppKit)
-import MoreWindowsCommon
+import _MoreWindowsCommon
 import OSLog
 import SwiftUI
 
@@ -50,4 +49,3 @@ private extension About {
 		}
 	}
 }
-#endif

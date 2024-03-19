@@ -1,4 +1,3 @@
-#if canImport(AppKit)
 public struct AboutAppOptions: OptionSet {
 	public let rawValue: UInt8
 
@@ -18,4 +17,3 @@ public extension AboutAppOptions {
 	static let none: Self = []
 	static let all: Self = [.showVersion]
 }
-#endif

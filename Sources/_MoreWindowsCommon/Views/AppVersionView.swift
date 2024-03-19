@@ -13,13 +13,11 @@ public struct AppVersionView: View {
 					label(appVersion)
 				}
 				.buttonStyle(.plain)
-#if canImport(AppKit)
-					.onHover { state in
-						withAnimation(.easeOut(duration: 0.15)) {
-							isHovering = state
-						}
+				.onHover { state in
+					withAnimation(.easeOut(duration: 0.15)) {
+						isHovering = state
 					}
-#endif
+				}
 
 			} else {
 				label(appVersion)
@@ -38,9 +36,7 @@ private extension AppVersionView {
 
 	private var clipboardIcon: some View {
 		Image(systemName: "doc.on.clipboard")
-#if canImport(AppKit)
 			.opacity(isHovering ? 1 : 0)
-#endif
 			.offset(x: 20)
 	}
 }
@@ -49,11 +45,7 @@ private extension AppVersionView {
 	func copyVersionToPasteboard(version: String) {
 		let copyString: String = "\(AppInformation.appName) \(version)"
 
-#if canImport(AppKit)
 		NSPasteboard.general.clearContents()
 		NSPasteboard.general.setString(copyString, forType: .string)
-#elseif canImport(UIKit)
-		UIPasteboard.general.string = copyString
-#endif
 	}
 }

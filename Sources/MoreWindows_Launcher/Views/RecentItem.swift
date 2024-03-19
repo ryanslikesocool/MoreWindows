@@ -1,6 +1,4 @@
-#if canImport(AppKit)
 import Foundation
-import LoveCore
 import SwiftUI
 
 struct RecentItem: View {
@@ -32,7 +30,7 @@ struct RecentItem: View {
 		.frame(height: 44)
 		.contextMenu {
 			Button("Show in Finder") {
-				url.showInFinder()
+				NSWorkspace.shared.activateFileViewerSelecting([url])
 			}
 		}
 	}
@@ -93,4 +91,3 @@ private extension RecentItem {
 		}
 	}
 }
-#endif

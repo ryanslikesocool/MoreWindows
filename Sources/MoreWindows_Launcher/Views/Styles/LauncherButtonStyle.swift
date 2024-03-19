@@ -1,4 +1,3 @@
-#if canImport(AppKit)
 import SwiftUI
 
 struct LauncherButtonStyle: PrimitiveButtonStyle {
@@ -33,4 +32,3 @@ private extension LauncherButtonStyle {
 extension PrimitiveButtonStyle where Self == LauncherButtonStyle {
 	static var launcher: Self { Self() }
 }
-#endif

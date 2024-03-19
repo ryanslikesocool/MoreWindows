@@ -1,4 +1,3 @@
-#if canImport(AppKit)
 import simd
 import SwiftUI
 
@@ -97,4 +96,3 @@ private extension AppIconView {
 		}
 	}
 }
-#endif

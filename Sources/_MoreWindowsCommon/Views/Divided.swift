@@ -1,4 +1,3 @@
-#if canImport(AppKit)
 import SwiftUI
 
 // From https://movingparts.io/variadic-views-in-swiftui#writing-our-own-container-view
@@ -28,4 +27,3 @@ private struct DividedLayout: _VariadicView_MultiViewRoot {
 		}
 	}
 }
-#endif

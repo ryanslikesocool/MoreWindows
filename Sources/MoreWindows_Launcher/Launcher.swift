@@ -1,4 +1,3 @@
-#if canImport(AppKit)
 import OSLog
 import SwiftUI
 
@@ -50,4 +49,3 @@ private extension Launcher {
 		}
 	}
 }
-#endif

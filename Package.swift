@@ -7,7 +7,6 @@ let package = Package(
 	defaultLocalization: "en",
 	platforms: [
 		.macOS(.v13),
-		.iOS(.v16),
 	],
 	products: [
 		.library(
@@ -15,40 +14,24 @@ let package = Package(
 			targets: [
 				"MoreWindows_About",
 				"MoreWindows_Launcher",
-				"MoreWindows_Settings",
 			]
 		),
-	],
-	dependencies: [
-		.package(url: "https://github.com/ryanslikesocool/MoreViews.git", branch: "main"),
 	],
 	targets: [
 		.target(
 			name: "MoreWindows_About",
 			dependencies: [
-				"MoreWindowsCommon",
+				"_MoreWindowsCommon",
 			]
 		),
 
 		.target(
 			name: "MoreWindows_Launcher",
 			dependencies: [
-				"MoreWindowsCommon",
+				"_MoreWindowsCommon",
 			]
 		),
 
-		.target(
-			name: "MoreWindows_Settings",
-			dependencies: [
-				"MoreWindowsCommon",
-			]
-		),
-
-		.target(
-			name: "MoreWindowsCommon",
-			dependencies: [
-				"MoreViews",
-			]
-		),
+		.target(name: "_MoreWindowsCommon"),
 	]
 )

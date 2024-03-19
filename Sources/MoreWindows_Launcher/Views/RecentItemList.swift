@@ -1,11 +1,10 @@
-#if canImport(AppKit)
 import SwiftUI
 
 struct RecentItemList: View {
 	@Environment(\.recentItemsOptions) private var recentItemsOptions
 	@State private var searchQuery: String = ""
 
-	private var recentDocumentURLs: [URL] { URL.recentDocumentURLs }
+	private var recentDocumentURLs: [URL] { NSDocumentController.shared.recentDocumentURLs }
 	private var filteredURLs: [URL] {
 		guard !searchQuery.isEmpty else {
 			return recentDocumentURLs
@@ -35,4 +34,3 @@ private extension RecentItemList {
 		.ignoresSafeArea(.all)
 	}
 }
-#endif
