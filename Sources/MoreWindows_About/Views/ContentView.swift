@@ -13,7 +13,7 @@ struct ContentView<Content: View>: View {
 
 				content()
 
-				if aboutWindowOptions.contains(.copyright) {
+				if aboutWindowOptions.contains(.showDefaultCopyright) {
 					CopyrightText()
 						.font(.caption)
 				}
