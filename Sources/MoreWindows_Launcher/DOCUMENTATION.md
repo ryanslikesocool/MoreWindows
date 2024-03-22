@@ -58,5 +58,7 @@ Launcher {
 | - | - |
 | `.closeWindow` | Close the launcher window once the button action is executed. |
 
-## Extra
-The About window also supports the [App Icon Options](Sources/_MoreWindowsCommon/DOCUMENTATION.md#app-icon-options) and [App Version Options](Sources/_MoreWindowsCommon/DOCUMENTATION.md#app-version-options).
+## Miscellaneous
+The Launcher window also supports the following options
+- [App Icon Options](Sources/_MoreWindowsCommon/DOCUMENTATION.md#app-icon-options)
+- [App Version Options](Sources/_MoreWindowsCommon/DOCUMENTATION.md#app-version-options)
