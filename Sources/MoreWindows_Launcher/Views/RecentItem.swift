@@ -52,7 +52,7 @@ private extension RecentItem {
 					.font(.headline)
 
 				if recentItemsOptions.contains(.showURL) {
-					Text(url.compressingTildeInPath)
+					documentURL
 						.font(.subheadline)
 						.foregroundStyle(.tertiary)
 						.help(url.path(percentEncoded: false))
@@ -61,6 +61,21 @@ private extension RecentItem {
 			.padding(8)
 		}
 		.contentShape(Rectangle())
+	}
+
+	@ViewBuilder var documentURL: some View {
+		if url.isInCloud {
+			let path: String = url.path(options: [
+				.cloud(mode: .remove, removeAppName: true),
+				.home(mode: .remove),
+			])
+			Text("\(Image(systemName: "icloud"))\(path)")
+		} else {
+			let path: String = url.path(options: [
+				.home(mode: .abbreviate),
+			])
+			Text(path)
+		}
 	}
 
 	@ViewBuilder var documentIcon: some View {
