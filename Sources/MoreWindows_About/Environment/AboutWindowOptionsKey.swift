@@ -12,8 +12,8 @@ extension EnvironmentValues {
 }
 
 public extension Scene {
-	/// Set options pertaining to the About window.
-	/// - Parameter options: The option flags to enable.
+	/// Set options pertaining to ``About``.
+	/// - Parameter options: The options to set in the environment.
 	func aboutWindowOptions(_ options: AboutWindowOptions) -> some Scene {
 		environment(\.aboutWindowOptions, options)
 	}

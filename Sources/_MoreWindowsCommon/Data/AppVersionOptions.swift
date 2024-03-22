@@ -13,6 +13,8 @@ public extension AppVersionOptions {
 	static let copyable: Self = Self(rawValue: 1 << 0)
 
 	/// Show the app build number alongside the semantic version.
+	///
+	/// This option also applies to the string produced by ``copyable``.
 	static let showBuildNumber: Self = Self(rawValue: 1 << 1)
 
 	static let `default`: Self = .all

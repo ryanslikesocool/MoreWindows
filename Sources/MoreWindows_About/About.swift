@@ -4,7 +4,7 @@ import SwiftUI
 
 /// An "About" window, accessible from the app's main menu.
 ///
-/// By default, the About window includes the app icon, name, and version.
+/// By default, the About window includes the app icon, name, version, and copyright.
 public struct About<Content: View>: Scene {
 	@Environment(\.openWindow) var openWindow
 
@@ -32,7 +32,6 @@ public struct About<Content: View>: Scene {
 					openWindow(id: aboutWindowID)
 				}
 			}
-			CommandGroup(replacing: .singleWindowList) { }
 		}
 	}
 }

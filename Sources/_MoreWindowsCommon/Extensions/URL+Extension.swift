@@ -34,15 +34,10 @@ public extension URL {
 		return result
 	}
 
-//	func reducePath(useTilde: Bool = true, useAppNameInCloud: Bool, useCloud: Bool = true) -> String {
-//		path(percentEncoded: false)
-//			.replacing(URL.cloudPath, with: useCloud ? "iCloud/" : "")
-//			.replacing(URL.homePath, with: useTilde ? "~" : "")
-//	}
-
+	/// Is the URL in iCloud?
 	var isInCloud: Bool { path(percentEncoded: false).contains(Self.cloudPath) }
 
-	/// Reduces the home directory from within the sandbox into a usable format.
+	/// Converts the home directory from within the sandbox into a usable format.
 	static var homePath: String {
 		"/\(URL.homeDirectory.pathComponents[1 ..< 3].joined(separator: "/"))"
 	}
@@ -51,19 +46,4 @@ public extension URL {
 	static var cloudPath: String {
 		"Library/Mobile Documents/com~apple~CloudDocs"
 	}
-}
-
-public enum PathReductionOption {
-	/// The user's home directory.
-	case home(mode: PathReductionMode)
-
-	/// The user's iCloud directory.
-	case cloud(mode: PathReductionMode, removeAppName: Bool)
-}
-
-public enum PathReductionMode {
-	/// Abbreviate the pattern
-	case abbreviate
-	/// Remove the pattern.
-	case remove
 }

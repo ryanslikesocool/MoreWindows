@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ContentView<ActionArea: View>: View {
 	@Environment(\.dismissLauncher) private var dismissLauncher
-	@Environment(\.launcherOptions) private var launcherOptions
+	@Environment(\.launcherWindowOptions) private var launcherWindowOptions
 
 	let actionArea: () -> ActionArea
 
@@ -10,7 +10,7 @@ struct ContentView<ActionArea: View>: View {
 	private let rightSideSize: Double = 280
 
 	private var windowSize: SIMD2<Double> {
-		let width: Double = if launcherOptions.contains(.showRecentDocuments) {
+		let width: Double = if launcherWindowOptions.contains(.showRecentDocuments) {
 			leftSideSize + rightSideSize
 		} else {
 			leftSideSize
@@ -23,7 +23,7 @@ struct ContentView<ActionArea: View>: View {
 		HStack(spacing: 0) {
 			leftSide
 
-			if launcherOptions.contains(.showRecentDocuments) {
+			if launcherWindowOptions.contains(.showRecentDocuments) {
 				Divider()
 				RecentItemList()
 			}

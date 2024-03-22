@@ -2,20 +2,20 @@ import _MoreWindowsCommon
 import SwiftUI
 
 struct WelcomeView: View {
-	@Environment(\.launcherOptions) private var launcherOptions
+	@Environment(\.launcherWindowOptions) private var launcherWindowOptions
 
 	var body: some View {
 		VStack {
-			if launcherOptions.contains(.showIcon) {
+			if launcherWindowOptions.contains(.showIcon) {
 				AppIconView(size: 160)
 			}
 
-			if launcherOptions.contains(.showName) {
+			if launcherWindowOptions.contains(.showName) {
 				Text(AppInformation.appName)
 					.font(.largeTitle.bold())
 			}
 
-			if launcherOptions.contains(.showVersion) {
+			if launcherWindowOptions.contains(.showVersion) {
 				AppVersionView()
 			}
 		}

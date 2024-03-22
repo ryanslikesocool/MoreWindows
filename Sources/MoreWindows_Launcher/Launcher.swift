@@ -2,12 +2,16 @@ import OSLog
 import SwiftUI
 
 /// A launcher window that can be shown when an app launches.
+///
+/// To make the launcher the initial window, it must be the first item in ``SwiftUI.App.body``.
 public struct Launcher<ActionArea: View>: Scene {
-	@Environment(\.launcherOptions) private var launcherOptions
+	@Environment(\.launcherWindowOptions) private var launcherWindowOptions
 	@Environment(\.openWindow) private var openWindow
 
 	private let actionArea: () -> ActionArea
 
+	/// Create a launcher scene.
+	/// - Parameter actionArea: The primary action area.
 	public init(@ViewBuilder actionArea: @escaping () -> ActionArea) {
 		self.actionArea = actionArea
 	}
@@ -21,14 +25,13 @@ public struct Launcher<ActionArea: View>: Scene {
 		.windowResizability(.contentSize)
 		.windowStyle(.hiddenTitleBar)
 		.commands {
-			if launcherOptions.contains(.addMenuItem) {
+			if launcherWindowOptions.contains(.addMenuItem) {
 				CommandGroup(before: .windowList) {
 					Button("Show Launcher") {
 						openWindow(id: launcherWindowID)
 					}
 					.keyboardShortcut("l", modifiers: [.command, .shift])
 				}
-				CommandGroup(replacing: .singleWindowList) { }
 			}
 		}
 	}

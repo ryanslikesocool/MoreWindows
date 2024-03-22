@@ -15,8 +15,8 @@ struct ContentView<Content: View>: View {
 
 				content()
 
-				if aboutWindowOptions.contains(.showDefaultCopyright) {
-					CopyrightText()
+				if aboutWindowOptions.contains(.showDefaultCopyright), let copyright = AppInformation.copyright {
+					Text(copyright)
 						.font(.caption)
 				}
 			}

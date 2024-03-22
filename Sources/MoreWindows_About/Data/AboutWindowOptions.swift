@@ -11,7 +11,7 @@ public struct AboutWindowOptions: OptionSet {
 public extension AboutWindowOptions {
 	/// Show the default app information view.
 	///
-	/// This includes the app icon, name, and optionally the app version.
+	/// This includes the app icon, name, and version.
 	static let showDefaultInformation: Self = Self(rawValue: 1 << 0)
 
 	/// Show the app copyright at the bottom of the window.
@@ -21,6 +21,5 @@ public extension AboutWindowOptions {
 	
 	static let `default`: Self = .all
 
-	static let none: Self = []
 	static let all: Self = [.showDefaultInformation, .showDefaultCopyright]
 }

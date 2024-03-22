@@ -1,4 +1,4 @@
-public struct LauncherOptions: OptionSet {
+public struct LauncherWindowOptions: OptionSet {
 	public let rawValue: UInt8
 
 	public init(rawValue: UInt8) {
@@ -8,7 +8,7 @@ public struct LauncherOptions: OptionSet {
 
 // MARK: - Constants
 
-public extension LauncherOptions {
+public extension LauncherWindowOptions {
 	/// Displays the app icon.
 	static let showIcon: Self = Self(rawValue: 1 << 0)
 
@@ -24,12 +24,10 @@ public extension LauncherOptions {
 	/// Adds a menu item to open the launcher.
 	static let addMenuItem: Self = Self(rawValue: 1 << 4)
 
-	/// The default options.
+	/// Only options pertaining to the "welcome" area of the launcher.
+	static let welcome: Self = [.showIcon, .showName, .showVersion]
+
 	static let `default`: Self = .all
 
-	/// Only options pertaining to the "welcome" area of the launcher.
-	static let welcomeOnly: Self = [.showIcon, .showName, .showVersion]
-
-	static let none: Self = []
 	static let all: Self = [.showIcon, .showName, .showVersion, .showRecentDocuments, .addMenuItem]
 }

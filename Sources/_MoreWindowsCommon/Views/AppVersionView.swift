@@ -1,5 +1,8 @@
 import SwiftUI
 
+/// A view displaying the app's version number.
+///
+/// Change the appearance by setting environment values using ``View.appVersionOptions(_:)`` and ``Scene.appVersionOptions(_:)``
 public struct AppVersionView: View {
 	@Environment(\.appVersionOptions) private var appVersionOptions: AppVersionOptions
 	@State private var isHovering: Bool = false
@@ -27,7 +30,7 @@ public struct AppVersionView: View {
 }
 
 private extension AppVersionView {
-	@ViewBuilder private func label(_ appVersion: String) -> some View {
+	private func label(_ appVersion: String) -> some View {
 		Text(appVersion)
 			.overlay(alignment: .trailing) { clipboardIcon }
 			.foregroundStyle(isHovering ? .secondary : .tertiary)

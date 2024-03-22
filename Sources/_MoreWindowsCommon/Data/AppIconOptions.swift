@@ -12,13 +12,13 @@ public extension AppIconOptions {
 	/// Show a faint glow behind the app icon when the app is in dark mode.
 	static let glowInTheDark: Self = Self(rawValue: 1 << 0)
 
-	/// Scale the icon when the user hovers over it.
+	/// Scale the icon with a hover interaction.
 	static let hoverScale: Self = Self(rawValue: 1 << 1)
 
-	/// Rotate the icon when the user hovers over it.
+	/// Rotate the icon with a hover interaction.
 	static let hoverRotation: Self = Self(rawValue: 1 << 2)
 
-	/// Apply a shadow behind the icon when the user hovers over it.
+	/// Apply a shadow behind the icon with a hover interaction.
 	static let hoverShadow: Self = Self(rawValue: 1 << 3)
 
 	/// Options relating to a hover interaction.
@@ -26,12 +26,12 @@ public extension AppIconOptions {
 
 	static let `default`: Self = [.glowInTheDark]
 
-	static let none: Self = []
 	static let all: Self = [.glowInTheDark, .hoverScale, .hoverRotation, .hoverShadow]
 }
 
 // MARK: -
 
 extension AppIconOptions {
+	/// Does the current option set contain any hover-related options?
 	var hasHoverInteraction: Bool { !intersection(Self.hoverInteraction).isEmpty }
 }

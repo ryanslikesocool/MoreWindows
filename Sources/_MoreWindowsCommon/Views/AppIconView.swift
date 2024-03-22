@@ -1,6 +1,9 @@
 import simd
 import SwiftUI
 
+/// A view displaying the app's icon.
+///
+/// Change the appearance by setting environment values using ``View.appIconOptions(_:)`` and ``Scene.appIconOptions(_:)``.
 public struct AppIconView: View {
 	@Environment(\.colorScheme) private var colorScheme
 	@Environment(\.appIconOptions) private var appIconOptions
@@ -10,6 +13,8 @@ public struct AppIconView: View {
 	@State private var shadowRadius: Double = Self.shadowRadiusRange.lowerBound
 	private let size: CGFloat
 
+	/// Initialize the view.
+	/// - Parameter size: The app icon size, in points.
 	public init(size: CGFloat) {
 		self.size = size
 	}
