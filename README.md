@@ -1,6 +1,8 @@
 # MoreWindows
 Additional `Scene` types for SwiftUI apps on macOS.
 
+![A screenshot of two windows.  The one on the left is a "launcher" style window, similar to what you'd see when opening Xcode.  The window on the right is an "about" style window, displaying app information like the version and copyright.](images~/preview.png)
+
 ## Requirements
 MoreWindows requires a SwiftUI lifecycle app on macOS 13.0 or later.
 
