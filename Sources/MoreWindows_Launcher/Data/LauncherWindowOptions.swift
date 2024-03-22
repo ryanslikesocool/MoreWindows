@@ -1,3 +1,23 @@
+/// Options pertaining to ``Launcher``.
+/// 
+/// ## Usage
+/// ```swift
+/// Launcher {
+/// 	/* ... */
+/// }
+/// .launcherWindowOptions(/* ... */)  // <-- here!
+/// ```
+///
+/// | Option | Description |
+/// | - | - |
+/// | ``showIcon`` | Displays the app icon. |
+/// | ``showName`` | Displays the app name. |
+/// | ``showVersion`` | Displays the current app version. |
+/// | ``showRecentDocuments`` | Adds a list with recent documents. |
+/// | ``addMenuItem`` | Adds a menu item to open the launcher. |
+///
+/// - SeeAlso:
+///   - ``Launcher``
 public struct LauncherWindowOptions: OptionSet {
 	public let rawValue: UInt8
 
@@ -19,6 +39,8 @@ public extension LauncherWindowOptions {
 	static let showVersion: Self = Self(rawValue: 1 << 2)
 
 	/// Adds a list with recent documents.
+	/// - SeeAlso:
+	///   - ``RecentItemsOptions``
 	static let showRecentDocuments: Self = Self(rawValue: 1 << 3)
 
 	/// Adds a menu item to open the launcher.
@@ -27,7 +49,9 @@ public extension LauncherWindowOptions {
 	/// Only options pertaining to the "welcome" area of the launcher.
 	static let welcome: Self = [.showIcon, .showName, .showVersion]
 
+	/// The default options used.
 	static let `default`: Self = .all
 
+	/// All available options.
 	static let all: Self = [.showIcon, .showName, .showVersion, .showRecentDocuments, .addMenuItem]
 }

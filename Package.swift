@@ -11,13 +11,18 @@ let package = Package(
 	products: [
 		.library(
 			name: "MoreWindows",
-			targets: [
+			targets: ["MoreWindows"]
+		),
+	],
+	targets: [
+		.target(
+			name: "MoreWindows",
+			dependencies: [
 				"MoreWindows_About",
 				"MoreWindows_Launcher",
 			]
 		),
-	],
-	targets: [
+		
 		.target(
 			name: "MoreWindows_About",
 			dependencies: [

@@ -14,6 +14,9 @@ extension EnvironmentValues {
 public extension View {
 	/// Set options pertaining to ``AppIconView``.
 	/// - Parameter options: The options to set in the environment.
+	/// - SeeAlso:
+	///   - ``AppIconOptions``
+	///   - ``AppIconView``
 	func appIconOptions(_ options: AppIconOptions) -> some View {
 		environment(\.appIconOptions, options)
 	}
@@ -22,6 +25,9 @@ public extension View {
 public extension Scene {
 	/// Set options pertaining to ``AppIconView``.
 	/// - Parameter options: The options to set in the environment.
+	/// - SeeAlso:
+	///   - ``AppIconOptions``
+	///   - ``AppIconView``
 	func appIconOptions(_ options: AppIconOptions) -> some Scene {
 		environment(\.appIconOptions, options)
 	}

@@ -1,9 +1,31 @@
 import OSLog
 import SwiftUI
 
-/// A launcher window that can be shown when an app launches.
+/// A "Launcher" window that can be shown when an app launches.
 ///
-/// To make the launcher the initial window, it must be the first item in ``SwiftUI.App.body``.
+/// Primary actions can be provided by using the view builder.
+///
+/// ## Usage
+/// ```swift
+/// struct MyApp: App {
+/// 	var body: some Scene {
+/// 		Launcher { // <-- here!
+/// 			Button("Create New Documnet", systemImage: "doc.badge.plus") { /* ... */ }
+/// 			Button("Open Document", systemImage: "folder") { /* ... */ }
+/// 			Button("Confetti", systemImage: "sparkles") { /* ... */ }
+/// 		}
+/// 	}
+/// }
+/// ```
+///
+/// ## Supported Options
+/// - ``LauncherWindowOptions``
+/// - ``LauncherActionOptions``
+/// - ``RecentItemsOptions``
+/// - `_MoreWindowsCommon.AppIconOptions`
+/// - `_MoreWindowsCommon.AppVersionOptions`
+///
+/// - Remark: For the launcher to be the initial window when opening the app, it must be the first item in `SwiftUI.App.body`.
 public struct Launcher<ActionArea: View>: Scene {
 	@Environment(\.launcherWindowOptions) private var launcherWindowOptions
 	@Environment(\.openWindow) private var openWindow

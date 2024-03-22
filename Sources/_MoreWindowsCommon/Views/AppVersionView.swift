@@ -2,7 +2,9 @@ import SwiftUI
 
 /// A view displaying the app's version number.
 ///
-/// Change the appearance by setting environment values using ``View.appVersionOptions(_:)`` and ``Scene.appVersionOptions(_:)``
+/// Change the appearance by setting environment values using ``appVersionOptions(_:)``.
+/// - SeeAlso: 
+///   - ``AppVersionOptions``
 public struct AppVersionView: View {
 	@Environment(\.appVersionOptions) private var appVersionOptions: AppVersionOptions
 	@State private var isHovering: Bool = false

@@ -1,5 +1,5 @@
 # MoreWindows
-Additional window types for SwiftUI
+Additional `Scene` types for SwiftUI apps on macOS.
 
 ## Requirements
 MoreWindows requires a SwiftUI lifecycle app on macOS 13.0 or later.
@@ -11,7 +11,5 @@ MoreWindows can be added to a project as a Swift package.
 ```
 
 ## Documentation
-In an effort to make this file readable, documentation is broken up into multiple files.
-- [About Window](Sources/MoreWindows_About/DOCUMENTATION.md)
-- [Launcher Window](Sources/MoreWindows_Launcher/DOCUMENTATION.md)
-- [Miscellaneous](Sources/_MoreWindowsCommon/DOCUMENTATION.md)
+Documentation can be viewed by selecting Product > Build Documentation in Xcode.
+

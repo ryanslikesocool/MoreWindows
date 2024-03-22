@@ -1,3 +1,23 @@
+/// Options pertaining to the recent items list on the right side of the launcher.
+///
+/// ## Usage
+/// ```swift
+/// Launcher {
+/// 	/* ... */
+/// }
+/// .recentItemsOptions(/* ... */) // <-- here!
+/// ```
+///
+/// | Option | Description |
+/// | - | - |
+/// | ``searchable`` | Displays a search field for recent items. |
+/// | ``showIcon`` | Shows the item's file icon. |
+/// | ``showURL`` | Shows the item URL. |
+/// | ``draggable`` | Allows items in the list to be dragged. |
+/// | ``closeWindow`` | Closes the launcher upon selecting an item. |
+///
+/// - SeeAlso:
+///   - ``Launcher``
 public struct RecentItemsOptions: OptionSet {
 	public let rawValue: UInt8
 
@@ -21,10 +41,12 @@ public extension RecentItemsOptions {
 	/// Allows items in the list to be dragged.
 	static let draggable: Self = Self(rawValue: 1 << 3)
 
-	/// Closes the launcher when selecting an item.
+	/// Closes the launcher upon selecting an item.
 	static let closeWindow: Self = Self(rawValue: 1 << 4)
 
+	/// The default options used.
 	static let `default`: Self = .all
 
+	/// All available options.
 	static let all: Self = [.searchable, .showIcon, .showURL, .draggable, .closeWindow]
 }

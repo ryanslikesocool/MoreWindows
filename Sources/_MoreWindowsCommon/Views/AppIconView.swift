@@ -3,7 +3,9 @@ import SwiftUI
 
 /// A view displaying the app's icon.
 ///
-/// Change the appearance by setting environment values using ``View.appIconOptions(_:)`` and ``Scene.appIconOptions(_:)``.
+/// Change the appearance by setting environment values using ``appIconOptions(_:)``.
+/// - SeeAlso:
+///   - ``AppIconOptions``
 public struct AppIconView: View {
 	@Environment(\.colorScheme) private var colorScheme
 	@Environment(\.appIconOptions) private var appIconOptions

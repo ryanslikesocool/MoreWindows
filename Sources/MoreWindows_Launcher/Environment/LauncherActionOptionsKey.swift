@@ -12,8 +12,10 @@ extension EnvironmentValues {
 }
 
 public extension View {
-	/// Set options pertaining to the primary launcher actions.
+	/// Set options pertaining to the launcher action area.
 	/// - Parameter options: The options to set in the environment.
+	/// - SeeAlso:
+	///   - ``LauncherActionOptions``
 	func launcherActionOptions(_ options: LauncherActionOptions) -> some View {
 		environment(\.launcherActionOptions, options)
 	}

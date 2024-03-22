@@ -1,3 +1,25 @@
+/// Options pertaining to ``AppIconView``.
+///
+/// Any scenes or views that contain ``AppIconView`` support this environment variable.
+/// ## Usage
+/// ```swift
+/// Launcher {
+/// 	/* ... */
+/// }
+/// .appIconOptions(/* ... */) // <-- here!
+/// ```
+///
+/// | Option | Description |
+/// | - | - |
+/// | ``glowInTheDark`` | Show a faint glow behind the app icon when the app is in dark mode. |
+/// | ``hoverScale`` | Scale the icon with a hover interaction. |
+/// | ``hoverRotation`` | Slightly tilt the icon with a hover interaction. |
+/// | ``hoverShadow`` | Apply a shadow behind the icon with a hover interaction. |
+///
+/// Combine `.hover_____` options to create a sense of depth.
+/// 
+/// - SeeAlso:
+///   - ``AppIconView``
 public struct AppIconOptions: OptionSet {
 	public let rawValue: UInt8
 
@@ -24,8 +46,10 @@ public extension AppIconOptions {
 	/// Options relating to a hover interaction.
 	static let hoverInteraction: Self = [.hoverScale, .hoverRotation, .hoverShadow]
 
+	/// The default options used.
 	static let `default`: Self = [.glowInTheDark]
 
+	/// All available options.
 	static let all: Self = [.glowInTheDark, .hoverScale, .hoverRotation, .hoverShadow]
 }
 

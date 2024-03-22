@@ -5,11 +5,31 @@ import SwiftUI
 /// An "About" window, accessible from the app's main menu.
 ///
 /// By default, the About window includes the app icon, name, version, and copyright.
+/// Additional sections may be provided by using the view builder.
+///
+/// ## Usage
+/// ```swift
+/// struct MyApp: App {
+/// 	var body: some Scene {
+/// 		About { // <-- here!
+/// 			MyCustomViewA()
+/// 			MyCustomViewB()
+/// 		}
+/// 	}
+/// }
+/// ```
+///
+/// ## Supported Options
+/// - ``AboutWindowOptions``
+/// - `_MoreWindowsCommon.AppIconOptions`
+/// - `_MoreWindowsCommon.AppVersionOptions`
 public struct About<Content: View>: Scene {
 	@Environment(\.openWindow) var openWindow
 
 	private let content: () -> Content
-
+	
+	/// Create an About window.
+	/// - Parameter content: Additional sections to include in the window.
 	public init(@ViewBuilder content: @escaping () -> Content) {
 		self.content = content
 	}
