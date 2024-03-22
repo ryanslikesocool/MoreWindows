@@ -11,9 +11,7 @@ struct AppInfoSection: View {
 			Text(AppInformation.appName)
 				.font(.title.bold())
 
-			if aboutWindowOptions.contains(.showVersion) {
-				AppVersionView()
-			}
+			AppVersionView()
 		}
 	}
 }

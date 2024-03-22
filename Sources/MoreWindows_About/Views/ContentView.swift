@@ -9,7 +9,9 @@ struct ContentView<Content: View>: View {
 	var body: some View {
 		VStack(spacing: 32) {
 			Divided {
-				AppInfoSection()
+				if aboutWindowOptions.contains(.showDefaultInformation) {
+					AppInfoSection()
+				}
 
 				content()
 

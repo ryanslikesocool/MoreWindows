@@ -9,16 +9,18 @@ public struct AboutWindowOptions: OptionSet {
 // MARK: - Constants
 
 public extension AboutWindowOptions {
-	/// Show the app version.
-	static let showVersion: Self = Self(rawValue: 1 << 0)
+	/// Show the default app information view.
+	///
+	/// This includes the app icon, name, and optionally the app version.
+	static let showDefaultInformation: Self = Self(rawValue: 1 << 0)
 
 	/// Show the app copyright at the bottom of the window.
 	///
 	/// The string used is the one found in the app's Info.plist.
 	static let showDefaultCopyright: Self = Self(rawValue: 1 << 1)
-
+	
 	static let `default`: Self = .all
 
 	static let none: Self = []
-	static let all: Self = [.showVersion, .showDefaultCopyright]
+	static let all: Self = [.showDefaultInformation, .showDefaultCopyright]
 }
