@@ -1,8 +1,9 @@
+import _MoreWindowsCommon
 import Foundation
 import SwiftUI
 
 struct RecentItem: View {
-	@Environment(\.dismissLauncher) private var dismissLauncher
+	@Environment(\.dismissWindow) private var dismissWindow
 	@Environment(\.recentItemsOptions) private var recentItemsOptions
 	@Environment(\.openDocument) private var openDocument
 
@@ -97,7 +98,7 @@ private extension RecentItem {
 
 				if recentItemsOptions.contains(.closeWindow) {
 					await MainActor.run {
-						dismissLauncher()
+						dismissWindow(id: WindowType.launcher.id)
 					}
 				}
 			} catch {

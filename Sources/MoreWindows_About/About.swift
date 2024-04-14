@@ -27,7 +27,7 @@ public struct About<Content: View>: Scene {
 	@Environment(\.openWindow) var openWindow
 
 	private let content: () -> Content
-	
+
 	/// Create an About window.
 	/// - Parameter content: Additional sections to include in the window.
 	public init(@ViewBuilder content: @escaping () -> Content) {
@@ -39,7 +39,7 @@ public struct About<Content: View>: Scene {
 	}
 
 	public var body: some Scene {
-		SwiftUI.Window("About", id: aboutWindowID) {
+		SwiftUI.Window(WindowType.about.title, id: WindowType.about.id) {
 			ContentView(content: content)
 				.onAppear(perform: applyWindowStyle)
 		}
@@ -49,7 +49,7 @@ public struct About<Content: View>: Scene {
 		.commands {
 			CommandGroup(replacing: .appInfo) {
 				Button("About \(AppInformation.appName)") {
-					openWindow(id: aboutWindowID)
+					openWindow(id: WindowType.about.id)
 				}
 			}
 		}
@@ -59,7 +59,7 @@ public struct About<Content: View>: Scene {
 private extension About {
 	func applyWindowStyle() {
 		DispatchQueue.main.async {
-			guard let aboutWindow else {
+			guard let aboutWindow = WindowType.about.instance else {
 				Logger.aboutWindow.warning("About window was missing.  The window style cannot be applied.")
 				return
 			}

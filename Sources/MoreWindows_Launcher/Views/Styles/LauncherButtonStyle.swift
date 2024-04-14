@@ -1,7 +1,8 @@
+import _MoreWindowsCommon
 import SwiftUI
 
 struct LauncherButtonStyle: PrimitiveButtonStyle {
-	@Environment(\.dismissLauncher) private var dismissLauncher
+	@Environment(\.dismissWindow) private var dismissWindow
 	@Environment(\.launcherActionOptions) private var launcherActionOptions
 
 	public init() { }
@@ -22,7 +23,7 @@ private extension LauncherButtonStyle {
 	func buttonAction(_ configuration: Configuration) {
 		configuration.trigger()
 		if launcherActionOptions.contains(.closeWindow) {
-			dismissLauncher()
+			dismissWindow(id: WindowType.launcher.id)
 		}
 	}
 }

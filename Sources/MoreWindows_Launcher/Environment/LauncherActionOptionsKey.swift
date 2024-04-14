@@ -5,7 +5,7 @@ private struct LauncherActionOptionsKey: EnvironmentKey {
 }
 
 extension EnvironmentValues {
-	var launcherActionOptions: LauncherActionOptions {
+	fileprivate(set) var launcherActionOptions: LauncherActionOptions {
 		get { self[LauncherActionOptionsKey.self] }
 		set { self[LauncherActionOptionsKey.self] = newValue }
 	}

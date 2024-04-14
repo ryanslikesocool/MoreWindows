@@ -5,7 +5,7 @@ private struct LauncherWindowOptionsKey: EnvironmentKey {
 }
 
 extension EnvironmentValues {
-	var launcherWindowOptions: LauncherWindowOptions {
+	fileprivate(set) var launcherWindowOptions: LauncherWindowOptions {
 		get { self[LauncherWindowOptionsKey.self] }
 		set { self[LauncherWindowOptionsKey.self] = newValue }
 	}

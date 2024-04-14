@@ -15,3 +15,5 @@ MoreWindows can be added to a project as a Swift package.
 ## Documentation
 Documentation can be viewed by selecting Product > Build Documentation in Xcode.
 
+## Notice
+macOS 13 is supported *in theory*.  I've done my best to accomodate but I have no way of knowing if it actually works.  Please open an issue or pull request with any potential issues on macOS 13.

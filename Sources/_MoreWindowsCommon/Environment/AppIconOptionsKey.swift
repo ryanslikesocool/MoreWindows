@@ -5,7 +5,7 @@ private struct AppIconOptionsKey: EnvironmentKey {
 }
 
 extension EnvironmentValues {
-	var appIconOptions: AppIconOptions {
+	fileprivate(set) var appIconOptions: AppIconOptions {
 		get { self[AppIconOptionsKey.self] }
 		set { self[AppIconOptionsKey.self] = newValue }
 	}

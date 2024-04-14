@@ -1,7 +1,8 @@
+import _MoreWindowsCommon
 import SwiftUI
 
 struct ContentView<ActionArea: View>: View {
-	@Environment(\.dismissLauncher) private var dismissLauncher
+	@Environment(\.dismissWindow) private var dismissWindow
 	@Environment(\.launcherWindowOptions) private var launcherWindowOptions
 
 	let actionArea: () -> ActionArea
@@ -51,7 +52,9 @@ struct ContentView<ActionArea: View>: View {
 	}
 
 	private var closeButton: some View {
-		Button(action: dismissLauncher.callAsFunction) {
+		Button {
+			dismissWindow(id: WindowType.launcher.id)
+		} label: {
 			Image(systemName: "xmark")
 				.font(.system(size: 6, weight: .bold))
 				.foregroundStyle(.background)

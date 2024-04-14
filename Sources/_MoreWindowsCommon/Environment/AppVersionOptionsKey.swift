@@ -5,7 +5,7 @@ private struct AppVersionOptionsKey: EnvironmentKey {
 }
 
 extension EnvironmentValues {
-	var appVersionOptions: AppVersionOptions {
+	fileprivate(set) var appVersionOptions: AppVersionOptions {
 		get { self[AppVersionOptionsKey.self] }
 		set { self[AppVersionOptionsKey.self] = newValue }
 	}

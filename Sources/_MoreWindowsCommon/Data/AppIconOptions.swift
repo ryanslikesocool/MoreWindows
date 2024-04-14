@@ -49,6 +49,9 @@ public extension AppIconOptions {
 	/// The default options used.
 	static let `default`: Self = [.glowInTheDark]
 
+	/// No options.
+	static let none: Self = []
+
 	/// All available options.
 	static let all: Self = [.glowInTheDark, .hoverScale, .hoverRotation, .hoverShadow]
 }

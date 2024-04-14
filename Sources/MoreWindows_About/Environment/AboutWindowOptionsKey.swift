@@ -5,7 +5,7 @@ private struct AboutWindowOptionsKey: EnvironmentKey {
 }
 
 extension EnvironmentValues {
-	var aboutWindowOptions: AboutWindowOptions {
+	fileprivate(set) var aboutWindowOptions: AboutWindowOptions {
 		get { self[AboutWindowOptionsKey.self] }
 		set { self[AboutWindowOptionsKey.self] = newValue }
 	}

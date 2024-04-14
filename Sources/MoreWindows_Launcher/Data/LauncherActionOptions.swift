@@ -33,6 +33,9 @@ public extension LauncherActionOptions {
 	/// The default options used.
 	static let `default`: Self = .all
 
+	/// No options.
+	static let none: Self = []
+
 	/// All available options.
 	static let all: Self = [.closeWindow]
 }

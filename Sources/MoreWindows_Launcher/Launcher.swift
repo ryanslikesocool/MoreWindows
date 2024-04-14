@@ -1,3 +1,4 @@
+import _MoreWindowsCommon
 import OSLog
 import SwiftUI
 
@@ -39,7 +40,7 @@ public struct Launcher<ActionArea: View>: Scene {
 	}
 
 	public var body: some Scene {
-		SwiftUI.Window(launcherWindowTitle, id: launcherWindowID) {
+		SwiftUI.Window(WindowType.launcher.title, id: WindowType.launcher.id) {
 			ContentView(actionArea: actionArea)
 				.onAppear(perform: applyWindowStyle)
 		}
@@ -50,7 +51,7 @@ public struct Launcher<ActionArea: View>: Scene {
 			if launcherWindowOptions.contains(.addMenuItem) {
 				CommandGroup(before: .windowList) {
 					Button("Show Launcher") {
-						openWindow(id: launcherWindowID)
+						openWindow(id: WindowType.launcher.id)
 					}
 					.keyboardShortcut("l", modifiers: [.command, .shift])
 				}
@@ -62,7 +63,7 @@ public struct Launcher<ActionArea: View>: Scene {
 private extension Launcher {
 	func applyWindowStyle() {
 		DispatchQueue.main.async {
-			guard let launcherWindow else {
+			guard let launcherWindow = WindowType.launcher.instance else {
 				Logger.launcherWindow.warning("Launcher window was missing.  The window style cannot be applied.")
 				return
 			}

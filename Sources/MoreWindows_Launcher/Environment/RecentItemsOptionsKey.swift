@@ -5,7 +5,7 @@ private struct RecentItemsOptionsKey: EnvironmentKey {
 }
 
 extension EnvironmentValues {
-	var recentItemsOptions: RecentItemsOptions {
+	fileprivate(set) var recentItemsOptions: RecentItemsOptions {
 		get { self[RecentItemsOptionsKey.self] }
 		set { self[RecentItemsOptionsKey.self] = newValue }
 	}
