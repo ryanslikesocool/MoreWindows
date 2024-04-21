@@ -9,11 +9,14 @@ struct LauncherButtonStyle: PrimitiveButtonStyle {
 
 	public func makeBody(configuration: Configuration) -> some View {
 		Button(role: configuration.role, action: { buttonAction(configuration) }) {
-			configuration.label
-				.fontWeight(.semibold)
-				.padding(8)
-				.frame(maxWidth: .infinity, maxHeight: .infinity)
-				.background(.quaternary, in: RoundedRectangle(cornerRadius: 8))
+			HStack(spacing: 0) {
+				configuration.label
+					.labelStyle(.launcher)
+				Spacer(minLength: 0)
+			}
+			.padding(8)
+			.frame(maxWidth: .infinity, maxHeight: .infinity)
+			.background(.quaternary, in: RoundedRectangle(cornerRadius: 8))
 		}
 		.buttonStyle(.plain)
 	}
