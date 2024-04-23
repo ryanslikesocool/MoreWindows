@@ -4,20 +4,17 @@ import SwiftUI
 struct ContentView<ActionArea: View>: View {
 	@Environment(\.dismissWindow) private var dismissWindow
 	@Environment(\.launcherWindowOptions) private var launcherWindowOptions
+	@Environment(\.launcherWindowSize) private var launcherWindowSize
 
 	let actionArea: () -> ActionArea
 
-	private let leftSideSize: Double = 460
-	private let rightSideSize: Double = 280
-
 	private var windowSize: SIMD2<Double> {
 		let width: Double = if launcherWindowOptions.contains(.showRecentDocuments) {
-			leftSideSize + rightSideSize
+			launcherWindowSize.welcomeAreaWidth + launcherWindowSize.recentItemsAreaWidth
 		} else {
-			leftSideSize
+			launcherWindowSize.welcomeAreaWidth
 		}
-		let height: Double = 430
-		return [width, height]
+		return [width, launcherWindowSize.height]
 	}
 
 	var body: some View {
@@ -35,7 +32,7 @@ struct ContentView<ActionArea: View>: View {
 
 	@ViewBuilder private var leftSide: some View {
 		VStack(spacing: 32) {
-			Spacer()
+			Spacer(minLength: 0)
 
 			WelcomeView()
 
@@ -45,9 +42,9 @@ struct ContentView<ActionArea: View>: View {
 			.fixedSize()
 			.buttonStyle(.launcher)
 
-			Spacer()
+			Spacer(minLength: 0)
 		}
-		.frame(width: leftSideSize)
+		.frame(width: launcherWindowSize.welcomeAreaWidth)
 		.overlay(alignment: .topLeading) { closeButton }
 	}
 
