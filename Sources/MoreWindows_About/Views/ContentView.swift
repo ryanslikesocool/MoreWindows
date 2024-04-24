@@ -7,5 +7,9 @@ struct ContentView<Content: View>: View {
 	let content: () -> Content
 
 	var body: some View {
+		switch aboutWindowLayout {
+			case .custom: content()
+			case .vertical: VerticalContentView(content: content)
+		}
 	}
 }

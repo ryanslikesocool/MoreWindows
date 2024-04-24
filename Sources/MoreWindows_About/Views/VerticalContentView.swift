@@ -1,7 +1,7 @@
 import _MoreWindowsCommon
 import SwiftUI
 
-struct VerticalListContentView<Content: View>: View {
+struct VerticalContentView<Content: View>: View {
 	@Environment(\.aboutWindowOptions) private var aboutWindowOptions
 
 	let content: () -> Content
@@ -10,7 +10,9 @@ struct VerticalListContentView<Content: View>: View {
 		VStack(spacing: 32) {
 			Divided {
 				if aboutWindowOptions.contains(.showDefaultInformation) {
-					AppInfoSection()
+					VStack {
+						AppInfoSection()
+					}
 				}
 
 				content()

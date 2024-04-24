@@ -1,7 +1,7 @@
 import SwiftUI
 
 private struct AboutWindowLayoutKey: EnvironmentKey {
-	static let defaultValue: AboutWindowLayout = .verticalList
+	static let defaultValue: AboutWindowLayout = .vertical
 }
 
 extension EnvironmentValues {

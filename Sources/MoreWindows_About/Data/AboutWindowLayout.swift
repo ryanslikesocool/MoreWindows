@@ -4,8 +4,6 @@ public enum AboutWindowLayout: UInt8 {
 	///
 	/// Using this layout will ignore any ``AboutWindowOptions``.
 	case custom
-	/// Display the about window as a vertical list, with app information at the top.
-	case verticalList
-	/// Display the about window in a horizontal layout, with app information on the left side and additional information on the right side.
-	case horizontal
+	/// Display the about window as a vertical stack, with app information at the top, copyright at the bottom, and custom content in the middle.
+	case vertical
 }

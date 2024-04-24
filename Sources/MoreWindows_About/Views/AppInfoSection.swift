@@ -1,17 +1,17 @@
 import _MoreWindowsCommon
 import SwiftUI
 
-struct AppInfoSection: View {
+public struct AppInfoSection: View {
 	@Environment(\.aboutWindowOptions) private var aboutWindowOptions
 
-	var body: some View {
-		VStack {
-			AppIconView(size: 128)
+	public init() { }
 
-			Text(AppInformation.appName)
-				.font(.title.bold())
+	public var body: some View {
+		AppIconView(size: 128)
 
-			AppVersionView()
-		}
+		Text(AppInformation.appName)
+			.font(.title.bold())
+
+		AppVersionView()
 	}
 }
