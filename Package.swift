@@ -13,6 +13,16 @@ let package = Package(
 			name: "MoreWindows",
 			targets: ["MoreWindows"]
 		),
+
+		.library(
+			name: "MoreWindows_About",
+			targets: ["MoreWindows_About"]
+		),
+
+		.library(
+			name: "MoreWindows_Launcher",
+			targets: ["MoreWindows_Launcher"]
+		),
 	],
 	targets: [
 		.target(
@@ -22,7 +32,7 @@ let package = Package(
 				"MoreWindows_Launcher",
 			]
 		),
-		
+
 		.target(
 			name: "MoreWindows_About",
 			dependencies: [
