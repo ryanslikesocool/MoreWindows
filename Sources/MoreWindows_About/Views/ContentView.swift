@@ -2,29 +2,14 @@ import _MoreWindowsCommon
 import SwiftUI
 
 struct ContentView<Content: View>: View {
-	@Environment(\.aboutWindowOptions) private var aboutWindowOptions
+	@Environment(\.aboutWindowLayout) private var aboutWindowLayout
 
 	let content: () -> Content
 
 	var body: some View {
-		VStack(spacing: 32) {
-			Divided {
-				if aboutWindowOptions.contains(.showDefaultInformation) {
-					AppInfoSection()
-				}
-
-				content()
-
-				if aboutWindowOptions.contains(.showDefaultCopyright), let copyright = AppInformation.copyright {
-					Text(copyright)
-						.font(.caption)
-				}
-			}
+		switch aboutWindowLayout {
+			case .custom: content()
+			case .vertical: VerticalContentView(content: content)
 		}
-		.fixedSize()
-		.offset(y: 13) // half title bar height
-		.padding(.horizontal, 13) // equal padding for horizontal axis
-		.padding(24) // breathing room
-		.ignoresSafeArea(.container)
 	}
 }
