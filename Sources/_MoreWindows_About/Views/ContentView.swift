@@ -16,6 +16,7 @@ struct ContentView<Content: View>: View {
 			}
 		}
 		.onAppear(perform: applyWindowStyle)
+		.windowButtons(miniaturize: .hidden, zoom: .hidden)
 	}
 }
 
@@ -28,9 +29,6 @@ private extension ContentView {
 			}
 
 			nsWindow.isMovableByWindowBackground = true
-
-			nsWindow.standardWindowButton(.miniaturizeButton)?.isHidden = true
-			nsWindow.standardWindowButton(.zoomButton)?.isHidden = true
 		}
 	}
 }

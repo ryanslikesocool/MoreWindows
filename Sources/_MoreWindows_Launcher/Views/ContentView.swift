@@ -31,6 +31,7 @@ struct ContentView<ActionArea: View>: View {
 		.ignoresSafeArea(.all)
 		.frame(width: windowSize.x, height: windowSize.y)
 		.onAppear(perform: applyWindowStyle)
+		.windowButtons(close: .hidden, miniaturize: .hidden, zoom: .hidden)
 	}
 
 	@ViewBuilder private var leftSide: some View {
@@ -75,10 +76,6 @@ private extension ContentView {
 			}
 
 			nsWindow.isMovableByWindowBackground = true
-
-			nsWindow.standardWindowButton(.closeButton)?.isHidden = true
-			nsWindow.standardWindowButton(.miniaturizeButton)?.isHidden = true
-			nsWindow.standardWindowButton(.zoomButton)?.isHidden = true
 		}
 	}
 }
