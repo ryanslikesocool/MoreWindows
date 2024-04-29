@@ -1,5 +1,6 @@
 import AppKit
 
+/// IDs for `Scene`s defined by `MoreWindows`.
 public enum WindowType {
 	/// Refers to a "Launcher" window that can be shown when an app launches.
 	/// - SeeAlso:
@@ -44,10 +45,5 @@ public extension WindowType {
 			case .launcher: "\(AppInformation.appName) Launcher"
 			case .about: "About \(AppInformation.appName)"
 		}
-	}
-
-	/// The `NSWindow` instance of a window type.
-	var instance: NSWindow? {
-		NSApplication.shared.windows.first(where: { $0.identifier?.rawValue == id })
 	}
 }

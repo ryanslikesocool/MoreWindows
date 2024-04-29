@@ -1,5 +1,4 @@
 import _MoreWindowsCommon
-import OSLog
 import SwiftUI
 
 /// A "Launcher" window that can be shown when an app launches.
@@ -23,8 +22,8 @@ import SwiftUI
 /// - ``LauncherWindowOptions``
 /// - ``LauncherActionOptions``
 /// - ``RecentItemsOptions``
-/// - `_MoreWindowsCommon.AppIconOptions`
-/// - `_MoreWindowsCommon.AppVersionOptions`
+/// - ``AppIconOptions``
+/// - ``AppVersionOptions``
 ///
 /// - Remark: For the launcher to be the initial window when opening the app, it must be the first item in `SwiftUI.App.body`.
 public struct Launcher<ActionArea: View>: Scene {
@@ -42,8 +41,8 @@ public struct Launcher<ActionArea: View>: Scene {
 	public var body: some Scene {
 		SwiftUI.Window(WindowType.launcher.title, id: WindowType.launcher.id) {
 			ContentView(actionArea: actionArea)
-				.onAppear(perform: applyWindowStyle)
 		}
+		.windowID(WindowType.launcher.id)
 		.defaultPosition(.center)
 		.windowResizability(.contentSize)
 		.windowStyle(.hiddenTitleBar)
@@ -56,23 +55,6 @@ public struct Launcher<ActionArea: View>: Scene {
 					.keyboardShortcut("l", modifiers: [.command, .shift])
 				}
 			}
-		}
-	}
-}
-
-private extension Launcher {
-	func applyWindowStyle() {
-		DispatchQueue.main.async {
-			guard let launcherWindow = WindowType.launcher.instance else {
-				Logger.launcherWindow.warning("Launcher window was missing.  The window style cannot be applied.")
-				return
-			}
-
-			launcherWindow.isMovableByWindowBackground = true
-
-			launcherWindow.standardWindowButton(.closeButton)?.isHidden = true
-			launcherWindow.standardWindowButton(.miniaturizeButton)?.isHidden = true
-			launcherWindow.standardWindowButton(.zoomButton)?.isHidden = true
 		}
 	}
 }

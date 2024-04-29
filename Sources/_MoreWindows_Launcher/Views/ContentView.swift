@@ -1,7 +1,9 @@
 import _MoreWindowsCommon
+import OSLog
 import SwiftUI
 
 struct ContentView<ActionArea: View>: View {
+	@Environment(\.windowID) private var windowID
 	@Environment(\.dismissWindow) private var dismissWindow
 	@Environment(\.launcherWindowOptions) private var launcherWindowOptions
 	@Environment(\.launcherWindowSize) private var launcherWindowSize
@@ -28,6 +30,7 @@ struct ContentView<ActionArea: View>: View {
 		}
 		.ignoresSafeArea(.all)
 		.frame(width: windowSize.x, height: windowSize.y)
+		.onAppear(perform: applyWindowStyle)
 	}
 
 	@ViewBuilder private var leftSide: some View {
@@ -60,5 +63,22 @@ struct ContentView<ActionArea: View>: View {
 		}
 		.buttonStyle(.plain)
 		.padding(12)
+	}
+}
+
+private extension ContentView {
+	func applyWindowStyle() {
+		DispatchQueue.main.async {
+			guard let nsWindow = NSApplication.shared.windows.first(where: { $0.identifier?.rawValue == windowID }) else {
+				Logger.launcherWindow.warning("Launcher window was missing.  The window style cannot be applied.")
+				return
+			}
+
+			nsWindow.isMovableByWindowBackground = true
+
+			nsWindow.standardWindowButton(.closeButton)?.isHidden = true
+			nsWindow.standardWindowButton(.miniaturizeButton)?.isHidden = true
+			nsWindow.standardWindowButton(.zoomButton)?.isHidden = true
+		}
 	}
 }

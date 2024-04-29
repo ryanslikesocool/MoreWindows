@@ -1,9 +1,10 @@
 import _MoreWindowsCommon
 import SwiftUI
 
+/// A view displaying the app icon, name, and version.
+///
+/// - Remark: This view does not explicitly define layout and will inherit the layout of its containing view.
 public struct AppInfoSection: View {
-	@Environment(\.aboutWindowOptions) private var aboutWindowOptions
-
 	public init() { }
 
 	public var body: some View {

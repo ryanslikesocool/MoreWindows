@@ -1,5 +1,4 @@
 import _MoreWindowsCommon
-import OSLog
 import SwiftUI
 
 /// An "About" window, accessible from the app's main menu.
@@ -21,8 +20,8 @@ import SwiftUI
 ///
 /// ## Supported Options
 /// - ``AboutWindowOptions``
-/// - `_MoreWindowsCommon.AppIconOptions`
-/// - `_MoreWindowsCommon.AppVersionOptions`
+/// - ``AppIconOptions``
+/// - ``AppVersionOptions``
 public struct About<Content: View>: Scene {
 	@Environment(\.openWindow) var openWindow
 
@@ -41,8 +40,8 @@ public struct About<Content: View>: Scene {
 	public var body: some Scene {
 		SwiftUI.Window(WindowType.about.title, id: WindowType.about.id) {
 			ContentView(content: content)
-				.onAppear(perform: applyWindowStyle)
 		}
+		.windowID(WindowType.about.id)
 		.defaultPosition(.center)
 		.windowStyle(.hiddenTitleBar)
 		.windowResizability(.contentSize)
@@ -52,22 +51,6 @@ public struct About<Content: View>: Scene {
 					openWindow(id: WindowType.about.id)
 				}
 			}
-		}
-	}
-}
-
-private extension About {
-	func applyWindowStyle() {
-		DispatchQueue.main.async {
-			guard let aboutWindow = WindowType.about.instance else {
-				Logger.aboutWindow.warning("About window was missing.  The window style cannot be applied.")
-				return
-			}
-
-			aboutWindow.isMovableByWindowBackground = true
-
-			aboutWindow.standardWindowButton(.miniaturizeButton)?.isHidden = true
-			aboutWindow.standardWindowButton(.zoomButton)?.isHidden = true
 		}
 	}
 }

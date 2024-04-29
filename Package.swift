@@ -13,35 +13,25 @@ let package = Package(
 			name: "MoreWindows",
 			targets: ["MoreWindows"]
 		),
-
-		.library(
-			name: "MoreWindows_About",
-			targets: ["MoreWindows_About"]
-		),
-
-		.library(
-			name: "MoreWindows_Launcher",
-			targets: ["MoreWindows_Launcher"]
-		),
 	],
 	targets: [
 		.target(
 			name: "MoreWindows",
 			dependencies: [
-				"MoreWindows_About",
-				"MoreWindows_Launcher",
+				"_MoreWindows_About",
+				"_MoreWindows_Launcher",
 			]
 		),
 
 		.target(
-			name: "MoreWindows_About",
+			name: "_MoreWindows_About",
 			dependencies: [
 				"_MoreWindowsCommon",
 			]
 		),
 
 		.target(
-			name: "MoreWindows_Launcher",
+			name: "_MoreWindows_Launcher",
 			dependencies: [
 				"_MoreWindowsCommon",
 			]
