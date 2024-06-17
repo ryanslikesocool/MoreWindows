@@ -1,6 +1,6 @@
 import SwiftUI
 
-private struct AppVersionOptionsKey: EnvironmentKey {
+private enum AppVersionOptionsKey: EnvironmentKey {
 	static let defaultValue: AppVersionOptions = .default
 }
 

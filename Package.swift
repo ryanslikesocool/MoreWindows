@@ -18,20 +18,20 @@ let package = Package(
 		.target(
 			name: "MoreWindows",
 			dependencies: [
-				"_MoreWindows_About",
-				"_MoreWindows_Launcher",
+				"_MoreWindowsAbout",
+				"_MoreWindowsLauncher",
 			]
 		),
 
 		.target(
-			name: "_MoreWindows_About",
+			name: "_MoreWindowsAbout",
 			dependencies: [
 				"_MoreWindowsCommon",
 			]
 		),
 
 		.target(
-			name: "_MoreWindows_Launcher",
+			name: "_MoreWindowsLauncher",
 			dependencies: [
 				"_MoreWindowsCommon",
 			]

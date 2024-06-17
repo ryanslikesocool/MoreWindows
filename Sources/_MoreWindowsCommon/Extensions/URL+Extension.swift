@@ -1,6 +1,6 @@
 import Foundation
 
-public extension URL {
+package extension URL {
 	func path(percentEncoded: Bool = false, options: PathReductionOption...) -> String {
 		path(percentEncoded: percentEncoded, options: options)
 	}

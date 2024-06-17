@@ -1,6 +1,6 @@
 import OSLog
 
-public extension Logger {
+package extension Logger {
 	static var moreWindowsSubsystem: String = "MoreWindows"
 }
 

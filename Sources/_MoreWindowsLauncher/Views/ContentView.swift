@@ -3,7 +3,6 @@ import OSLog
 import SwiftUI
 
 struct ContentView<ActionArea: View>: View {
-	@Environment(\.windowID) private var windowID
 	@Environment(\.dismissWindow) private var dismissWindow
 	@Environment(\.launcherWindowOptions) private var launcherWindowOptions
 	@Environment(\.launcherWindowSize) private var launcherWindowSize
@@ -30,7 +29,7 @@ struct ContentView<ActionArea: View>: View {
 		}
 		.ignoresSafeArea(.all)
 		.frame(width: windowSize.x, height: windowSize.y)
-		.onAppear(perform: applyWindowStyle)
+		.onWindowAppear(perform: applyWindowStyle)
 		.windowButtons(close: .hidden, miniaturize: .hidden, zoom: .hidden)
 	}
 
@@ -38,7 +37,8 @@ struct ContentView<ActionArea: View>: View {
 		VStack(spacing: 32) {
 			Spacer(minLength: 0)
 
-			WelcomeView()
+			AppInfoSection()
+				.appInfoSectionStyle(.welcome)
 
 			VStack {
 				actionArea()
@@ -68,14 +68,7 @@ struct ContentView<ActionArea: View>: View {
 }
 
 private extension ContentView {
-	func applyWindowStyle() {
-		DispatchQueue.main.async {
-			guard let nsWindow = NSApplication.shared.windows.first(where: { $0.identifier?.rawValue == windowID }) else {
-				Logger.launcherWindow.warning("Launcher window was missing.  The window style cannot be applied.")
-				return
-			}
-
-			nsWindow.isMovableByWindowBackground = true
-		}
+	func applyWindowStyle(nsWindow: NSWindow) {
+		nsWindow.isMovableByWindowBackground = true
 	}
 }

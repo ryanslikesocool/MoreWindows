@@ -20,6 +20,10 @@ MoreWindows provides additional `Scene` types and utilities for macOS.
 - ``AppInfoSection``
 - ``Divided``
 
+### Styles
+
+- ``AppInfoSectionStyle``
+
 ### Options
 
 - ``AppIconOptions``

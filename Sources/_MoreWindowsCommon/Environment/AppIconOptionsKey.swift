@@ -1,6 +1,6 @@
 import SwiftUI
 
-private struct AppIconOptionsKey: EnvironmentKey {
+private enum AppIconOptionsKey: EnvironmentKey {
 	static let defaultValue: AppIconOptions = .default
 }
 

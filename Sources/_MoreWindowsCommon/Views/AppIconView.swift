@@ -13,22 +13,18 @@ public struct AppIconView: View {
 	@State private var rotationAngle: Double = .zero
 	@State private var rotationAxis: SIMD2<Double> = .zero
 	@State private var shadowRadius: Double = Self.shadowRadiusRange.lowerBound
-	private let size: CGFloat
 
 	/// Initialize the view.
-	/// - Parameter size: The app icon size, in points.
-	public init(size: CGFloat) {
-		self.size = size
-	}
+	public init() { }
 
 	public var body: some View {
-		Group {
+		GeometryReader { geometry in
 			if appIconOptions.hasHoverInteraction {
 				icon
 					.onContinuousHover(coordinateSpace: .local) { hoverPhase in
 						switch hoverPhase {
 							case let .active(location):
-								updateInteractive(location)
+								updateInteractive(location, size: geometry.size)
 							case .ended:
 								resetInteractive()
 						}
@@ -54,6 +50,7 @@ public struct AppIconView: View {
 					.blendMode(.softLight)
 			}
 		}
+		.aspectRatio(contentMode: .fit)
 	}
 }
 
@@ -69,15 +66,14 @@ private extension AppIconView {
 	var icon: some View {
 		Image(nsImage: AppInformation.appIcon)
 			.resizable()
-			.frame(width: size, height: size)
 	}
 }
 
 private extension AppIconView {
-	func updateInteractive(_ location: CGPoint) {
+	func updateInteractive(_ location: CGPoint, size: CGSize) {
 		let centeredLocation: SIMD2<Double> = SIMD2<Double>(
-			x: location.x - size * 0.5,
-			y: location.y - size * 0.5
+			x: location.x - size.width * 0.5,
+			y: location.y - size.height * 0.5
 		)
 
 		withAnimation(Self.animation) {

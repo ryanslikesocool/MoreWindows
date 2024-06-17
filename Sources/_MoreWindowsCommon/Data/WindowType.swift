@@ -1,7 +1,7 @@
 import AppKit
 
 /// IDs for `Scene`s defined by `MoreWindows`.
-public enum WindowType {
+package enum WindowType {
 	/// Refers to a "Launcher" window that can be shown when an app launches.
 	/// - SeeAlso:
 	///   - ``Launcher``
@@ -38,7 +38,7 @@ extension WindowType: Identifiable {
 
 // MARK: -
 
-public extension WindowType {
+package extension WindowType {
 	/// The window's title.  This is automatically populated with the app's name.
 	var title: String {
 		switch self {

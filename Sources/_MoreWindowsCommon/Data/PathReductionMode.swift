@@ -1,4 +1,4 @@
-public enum PathReductionMode {
+package enum PathReductionMode {
 	/// Abbreviate the pattern
 	case abbreviate
 	/// Remove the pattern.
