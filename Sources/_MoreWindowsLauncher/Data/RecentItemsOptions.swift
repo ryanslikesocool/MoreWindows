@@ -18,6 +18,7 @@
 ///
 /// - SeeAlso:
 ///   - ``Launcher``
+///   - ``SwiftUI/Scene/recentItemsSearchFilter(_:)
 ///   - ``SwiftUI/Scene/recentItemsOptions(_:)``
 public struct RecentItemsOptions: OptionSet {
 	public let rawValue: UInt8

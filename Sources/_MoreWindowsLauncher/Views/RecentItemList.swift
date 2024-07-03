@@ -2,17 +2,13 @@ import SwiftUI
 
 struct RecentItemList: View {
 	@Environment(\.recentItemsOptions) private var recentItemsOptions
+	@Environment(\.recentItemsSearchFilter) private var recentItemsSearchFilter
 	@State private var searchQuery: String = ""
 
 	private var recentDocumentURLs: [URL] { NSDocumentController.shared.recentDocumentURLs }
 	private var filteredURLs: [URL] {
-		guard !searchQuery.isEmpty else {
-			return recentDocumentURLs
-		}
-		return recentDocumentURLs.filter { url in
-			url.lastPathComponent.localizedStandardContains(searchQuery)
-		}
 		// TODO: add extension filtering, tokens
+		recentItemsSearchFilter(query: searchQuery, items: recentDocumentURLs)
 	}
 
 	var body: some View {
