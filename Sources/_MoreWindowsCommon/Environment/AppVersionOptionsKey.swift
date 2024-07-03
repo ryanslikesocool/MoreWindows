@@ -1,13 +1,16 @@
 import SwiftUI
 
-private enum AppVersionOptionsKey: EnvironmentKey {
-	static let defaultValue: AppVersionOptions = .default
-}
-
 extension EnvironmentValues {
+	/// - SeeAlso:
+	///   - ``SwiftUI/View/appVersionOptions(_:)``
+	///   - ``SwiftUI/Scene/appVersionOptions(_:)``
 	fileprivate(set) var appVersionOptions: AppVersionOptions {
-		get { self[AppVersionOptionsKey.self] }
-		set { self[AppVersionOptionsKey.self] = newValue }
+		get { self[__Key_appVersionOptions.self] }
+		set { self[__Key_appVersionOptions.self] = newValue }
+	}
+
+	private enum __Key_appVersionOptions: EnvironmentKey {
+		static let defaultValue: AppVersionOptions = .default
 	}
 }
 

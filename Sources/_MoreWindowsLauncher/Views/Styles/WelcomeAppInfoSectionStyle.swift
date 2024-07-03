@@ -26,6 +26,8 @@ struct WelcomeAppInfoSectionStyle: AppInfoSectionStyle {
 	}
 }
 
+// MARK: - 
+
 extension AppInfoSectionStyle where Self == WelcomeAppInfoSectionStyle {
 	static var welcome: Self { Self() }
 }

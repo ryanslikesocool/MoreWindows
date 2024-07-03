@@ -1,13 +1,16 @@
 import SwiftUI
 
-private struct RecentItemsOptionsKey: EnvironmentKey {
-	static let defaultValue: RecentItemsOptions = .default
-}
-
 extension EnvironmentValues {
+	/// - SeeAlso:
+	///   - ``RecentItemsOptions``
+	///   - ``SwiftUI/Scene/recentItemsOptions(_:)``
 	fileprivate(set) var recentItemsOptions: RecentItemsOptions {
-		get { self[RecentItemsOptionsKey.self] }
-		set { self[RecentItemsOptionsKey.self] = newValue }
+		get { self[__Key_recentItemsOptions.self] }
+		set { self[__Key_recentItemsOptions.self] = newValue }
+	}
+
+	private struct __Key_recentItemsOptions: EnvironmentKey {
+		static let defaultValue: RecentItemsOptions = .default
 	}
 }
 

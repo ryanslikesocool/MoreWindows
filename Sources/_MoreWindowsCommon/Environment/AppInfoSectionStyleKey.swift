@@ -1,13 +1,15 @@
 import SwiftUI
 
-private enum AppInfoSectionStyleKey: EnvironmentKey {
-	static let defaultValue: _AnyAppInfoSectionStyle = _AnyAppInfoSectionStyle(style: .default)
-}
-
 extension EnvironmentValues {
+	/// - SeeAlso:
+	///   - ``SwiftUI/View/appInfoSectionStyle(_:)``
 	fileprivate(set) var appInfoSectionStyle: _AnyAppInfoSectionStyle {
-		get { self[AppInfoSectionStyleKey.self] }
-		set { self[AppInfoSectionStyleKey.self] = newValue }
+		get { self[__Key_appInfoSectionStyle.self] }
+		set { self[__Key_appInfoSectionStyle.self] = newValue }
+	}
+
+	private enum __Key_appInfoSectionStyle: EnvironmentKey {
+		static let defaultValue: _AnyAppInfoSectionStyle = _AnyAppInfoSectionStyle(style: .default)
 	}
 }
 

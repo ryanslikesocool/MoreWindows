@@ -2,9 +2,11 @@ import SwiftUI
 
 /// A view displaying the app's version number.
 ///
-/// Change the appearance by setting environment values using ``appVersionOptions(_:)``.
-/// - SeeAlso: 
+/// Change the appearance by setting environment values using ``SwiftUI/View/appVersionOptions(_:)``.
+/// - SeeAlso:
 ///   - ``AppVersionOptions``
+///   - ``SwiftUI/View/appVersionOptions(_:)``
+///   - ``SwiftUI/Scene/appVersionOptions(_:)``
 public struct AppVersionView: View {
 	@Environment(\.appVersionOptions) private var appVersionOptions: AppVersionOptions
 	@State private var isHovering: Bool = false
@@ -31,6 +33,8 @@ public struct AppVersionView: View {
 	}
 }
 
+// MARK: - Supporting Views
+
 private extension AppVersionView {
 	private func label(_ appVersion: String) -> some View {
 		Text(appVersion)
@@ -45,6 +49,8 @@ private extension AppVersionView {
 			.offset(x: 20)
 	}
 }
+
+// MARK: - Functions
 
 private extension AppVersionView {
 	func copyVersionToPasteboard(version: String) {

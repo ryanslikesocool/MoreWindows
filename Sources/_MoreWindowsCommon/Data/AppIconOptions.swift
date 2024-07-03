@@ -4,7 +4,7 @@
 /// ## Usage
 /// ```swift
 /// Launcher {
-/// 	/* ... */
+///     /* ... */
 /// }
 /// .appIconOptions(/* ... */) // <-- here!
 /// ```
@@ -17,7 +17,7 @@
 /// | ``hoverShadow`` | Apply a shadow behind the icon with a hover interaction. |
 ///
 /// Combine `.hover_____` options to create a sense of depth.
-/// 
+///
 /// - SeeAlso:
 ///   - ``AppIconView``
 public struct AppIconOptions: OptionSet {
@@ -27,6 +27,18 @@ public struct AppIconOptions: OptionSet {
 		self.rawValue = rawValue
 	}
 }
+
+// MARK: - Sendable
+
+extension AppIconOptions: Sendable { }
+
+// MARK: - Equatable
+
+extension AppIconOptions: Equatable { }
+
+// MARK: - Hashable
+
+extension AppIconOptions: Hashable { }
 
 // MARK: - Constants
 

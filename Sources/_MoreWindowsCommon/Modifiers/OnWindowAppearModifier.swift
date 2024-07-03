@@ -5,7 +5,7 @@ import SwiftUI
 struct OnWindowAppearModifier: ViewModifier {
 	typealias Action = (NSWindow) -> Void
 
-	@Environment(\.windowReference) private var windowReference
+	@Environment(\.windowID) private var windowID
 
 	private let action: Action
 
@@ -20,12 +20,12 @@ struct OnWindowAppearModifier: ViewModifier {
 
 	private func onViewAppear() {
 		DispatchQueue.main.async {
-			guard let windowReference else {
+			guard let windowID else {
 				Logger.module.warning("The environment value `windowReference` was not defined.  The action provided by cannot be \(Self.self) cannot be executed.")
 				return
 			}
-			guard let nsWindow = windowReference.value else {
-				Logger.module.warning("Cannot find \(NSWindow.self) with ID \(windowReference.id).  The window button modes cannot be applied.")
+			guard let nsWindow = windowID.window else {
+				Logger.module.warning("Cannot find \(NSWindow.self) with ID \(windowID.id).  The window button modes cannot be applied.")
 				return
 			}
 
@@ -37,9 +37,13 @@ struct OnWindowAppearModifier: ViewModifier {
 // MARK: - View+
 
 public extension View {
-	/// Adds an action to perform after this view is added to an `NSWindow`.
+	/// Adds an action to perform after this view is added to an ``AppKit/NSWindow``.
+	/// - Remark: This view modifier requires that one of the `windowID(_:)` modifiers was used on the containing scene.
+	/// - SeeAlso:
+	///   - ``SwiftUI/Scene/windowID(_:)-7gcxi``
+	///   - ``SwiftUI/Scene/windowID(_:)-2v85t``
 	/// - Parameter action: The action to perform. If action is `nil`, the call has no effect.
-	/// - Returns: A view that triggers `action` after it is added to an `NSWindow`.
+	/// - Returns: A view that triggers `action` after it is added to an ``AppKit/NSWindow``.
 	@ViewBuilder func onWindowAppear(perform action: ((NSWindow) -> Void)?) -> some View {
 		if let action {
 			modifier(OnWindowAppearModifier(perform: action))

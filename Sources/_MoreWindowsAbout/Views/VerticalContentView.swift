@@ -24,9 +24,9 @@ struct VerticalContentView<Content: View>: View {
 			}
 		}
 		.fixedSize()
-		.offset(y: 13) // half title bar height
-		.padding(.horizontal, 13) // equal padding for horizontal axis
-		.padding(24) // breathing room
-		.ignoresSafeArea(.container)
+//		.ignoresSafeArea(.all)  // this just... doesn't work sometimes?
+		.offset(y: -12) // half title bar height
+		.padding(.horizontal, 12) // equal padding for horizontal axis
+		.scenePadding() // breathing room
 	}
 }

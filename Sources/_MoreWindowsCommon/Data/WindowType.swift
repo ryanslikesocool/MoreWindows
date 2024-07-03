@@ -1,7 +1,7 @@
 import AppKit
 
 /// IDs for `Scene`s defined by `MoreWindows`.
-package enum WindowType {
+public enum WindowType {
 	/// Refers to a "Launcher" window that can be shown when an app launches.
 	/// - SeeAlso:
 	///   - ``Launcher``
@@ -28,7 +28,7 @@ extension WindowType: Hashable { }
 // MARK: - Identifiable
 
 extension WindowType: Identifiable {
-	public var id: String {
+	public var id: WindowID {
 		switch self {
 			case .launcher: "MoreWindows.Launcher"
 			case .about: "MoreWindows.About"

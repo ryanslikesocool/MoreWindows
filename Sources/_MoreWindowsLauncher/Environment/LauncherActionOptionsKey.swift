@@ -1,13 +1,16 @@
 import SwiftUI
 
-private struct LauncherActionOptionsKey: EnvironmentKey {
-	static let defaultValue: LauncherActionOptions = .default
-}
-
 extension EnvironmentValues {
+	/// - SeeAlso:
+	///   - ``LauncherActionOptions``
+	///   - ``SwiftUI/View/launcherActionOptions(_:)``
 	fileprivate(set) var launcherActionOptions: LauncherActionOptions {
-		get { self[LauncherActionOptionsKey.self] }
-		set { self[LauncherActionOptionsKey.self] = newValue }
+		get { self[__Key_launcherActionOptions.self] }
+		set { self[__Key_launcherActionOptions.self] = newValue }
+	}
+
+	private struct __Key_launcherActionOptions: EnvironmentKey {
+		static let defaultValue: LauncherActionOptions = .default
 	}
 }
 

@@ -1,10 +1,10 @@
 /// Options pertaining to ``AppVersionView``.
 ///
-///Any scenes or views that contain ``AppVersionView`` support this environment value.
+/// Any scenes or views that contain ``AppVersionView`` support this environment value.
 /// ## Usage
 /// ```swift
 /// About {
-/// 	/* ... */
+///     /* ... */
 /// }
 /// .appVersionOptions(/* ... */) // <-- here!
 /// ```
@@ -23,6 +23,18 @@ public struct AppVersionOptions: OptionSet {
 		self.rawValue = rawValue
 	}
 }
+
+// MARK: - Sendable
+
+extension AppVersionOptions: Sendable { }
+
+// MARK: - Equatable
+
+extension AppVersionOptions: Equatable { }
+
+// MARK: - Hashable
+
+extension AppVersionOptions: Hashable { }
 
 // MARK: - Constants
 

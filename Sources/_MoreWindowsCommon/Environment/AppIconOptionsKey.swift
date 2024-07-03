@@ -1,13 +1,16 @@
 import SwiftUI
 
-private enum AppIconOptionsKey: EnvironmentKey {
-	static let defaultValue: AppIconOptions = .default
-}
-
 extension EnvironmentValues {
+	/// - SeeAlso:
+	///   - ``SwiftUI/View/appIconOptions(_:)``
+	///   - ``SwiftUI/Scene/appIconOptions(_:)``
 	fileprivate(set) var appIconOptions: AppIconOptions {
-		get { self[AppIconOptionsKey.self] }
-		set { self[AppIconOptionsKey.self] = newValue }
+		get { self[__Key_appIconOptions.self] }
+		set { self[__Key_appIconOptions.self] = newValue }
+	}
+
+	private enum __Key_appIconOptions: EnvironmentKey {
+		static let defaultValue: AppIconOptions = .default
 	}
 }
 

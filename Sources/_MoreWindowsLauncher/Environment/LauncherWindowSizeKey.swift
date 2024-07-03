@@ -1,13 +1,15 @@
 import SwiftUI
 
-private struct LauncherWindowSizeKey: EnvironmentKey {
-	static let defaultValue: LauncherWindowSize = .default
-}
-
 extension EnvironmentValues {
+	/// - SeeAlso:
+	///   - ``SwiftUI/Scene/launcherWindowSize(welcomeAreaWidth:recentItemsAreaWidth:height:)``
 	fileprivate(set) var launcherWindowSize: LauncherWindowSize {
-		get { self[LauncherWindowSizeKey.self] }
-		set { self[LauncherWindowSizeKey.self] = newValue }
+		get { self[__Key_launcherWindowSize.self] }
+		set { self[__Key_launcherWindowSize.self] = newValue }
+	}
+
+	private struct __Key_launcherWindowSize: EnvironmentKey {
+		static let defaultValue: LauncherWindowSize = .default
 	}
 }
 

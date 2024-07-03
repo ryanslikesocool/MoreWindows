@@ -2,7 +2,7 @@ import AppKit
 import Foundation
 
 /// Information about the app.
-public enum AppInformation {
+package enum AppInformation {
 	static var info: [String: Any]? { Bundle.main.infoDictionary }
 
 	/// The app's version number, optionally including the build number.

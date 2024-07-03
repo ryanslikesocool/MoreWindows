@@ -8,13 +8,13 @@ import SwiftUI
 /// ## Usage
 /// ```swift
 /// struct MyApp: App {
-/// 	var body: some Scene {
-/// 		Launcher { // <-- here!
-/// 			Button("Create New Documnet", systemImage: "doc.badge.plus") { /* ... */ }
-/// 			Button("Open Document", systemImage: "folder") { /* ... */ }
-/// 			Button("Confetti", systemImage: "sparkles") { /* ... */ }
-/// 		}
-/// 	}
+///     var body: some Scene {
+///         Launcher {
+///             Button("Create New Documnet", systemImage: "doc.badge.plus") { /* ... */ }
+///             Button("Open Document", systemImage: "folder") { /* ... */ }
+///             Button("Confetti", systemImage: "sparkles") { /* ... */ }
+///         }
+///     }
 /// }
 /// ```
 ///
@@ -25,7 +25,7 @@ import SwiftUI
 /// - ``AppIconOptions``
 /// - ``AppVersionOptions``
 ///
-/// - Remark: For the launcher to be the initial window when opening the app, it must be the first item in `SwiftUI.App.body`.
+/// - Remark: For the launcher to be the initial window when opening the app, it must be the first item in ``SwiftUI/App/body``.
 public struct Launcher<ActionArea: View>: Scene {
 	@Environment(\.launcherWindowOptions) private var launcherWindowOptions
 	@Environment(\.openWindow) private var openWindow
@@ -39,7 +39,7 @@ public struct Launcher<ActionArea: View>: Scene {
 	}
 
 	public var body: some Scene {
-		SwiftUI.Window(WindowType.launcher.title, id: WindowType.launcher.id) {
+		SwiftUI.Window(WindowType.launcher.title, id: WindowType.launcher.id.rawValue) {
 			ContentView(actionArea: actionArea)
 		}
 		.windowID(WindowType.launcher.id)

@@ -3,9 +3,9 @@
 /// ## Usage
 /// ```swift
 /// About {
-/// 	/* ... */
+///     /* ... */
 /// }
-/// .aboutWindowOptions(/* ... */) // <-- here!
+/// .aboutWindowOptions(/* ... */)
 /// ```
 ///
 /// | Option | Description |
@@ -20,6 +20,18 @@ public struct AboutWindowOptions: OptionSet {
 	}
 }
 
+// MARK: - Sendable
+
+extension AboutWindowOptions: Sendable { }
+
+// MARK: - Equatable
+
+extension AboutWindowOptions: Equatable { }
+
+// MARK: - Hashable
+
+extension AboutWindowOptions: Hashable { }
+
 // MARK: - Constants
 
 public extension AboutWindowOptions {
@@ -32,7 +44,7 @@ public extension AboutWindowOptions {
 	///
 	/// The string used is the one found in the app's Info.plist.
 	static let showDefaultCopyright: Self = Self(rawValue: 1 << 1)
-	
+
 	/// The default options used.
 	static let `default`: Self = .all
 

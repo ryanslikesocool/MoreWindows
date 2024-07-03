@@ -1,5 +1,6 @@
 import _MoreWindowsCommon
 import Foundation
+import OSLog
 import SwiftUI
 
 struct RecentItem: View {
@@ -37,9 +38,13 @@ struct RecentItem: View {
 	}
 }
 
+// MARK: - Constants
+
 private extension RecentItem {
 	static let documentIconSize: CGFloat = 32
 }
+
+// MARK: - Supporting Views
 
 private extension RecentItem {
 	var label: some View {
@@ -90,6 +95,8 @@ private extension RecentItem {
 	}
 }
 
+// MARK: - Functions
+
 private extension RecentItem {
 	func openFile() {
 		Task {
@@ -102,7 +109,10 @@ private extension RecentItem {
 					}
 				}
 			} catch {
-				print("Failed to open document at \(url): ", error)
+				Logger.module.error("""
+				Failed to open document at \(url.path(percentEncoded: false)):
+				\(error.localizedDescription)
+				""")
 			}
 		}
 	}

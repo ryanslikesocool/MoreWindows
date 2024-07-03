@@ -10,6 +10,18 @@ struct LauncherWindowSize {
 	}
 }
 
+// MARK: - Sendable
+
+extension LauncherWindowSize: Sendable { }
+
+// MARK: - Equatable
+
+extension LauncherWindowSize: Equatable { }
+
+// MARK: - Hashable
+
+extension LauncherWindowSize: Hashable { }
+
 // MARK: - Constants
 
 extension LauncherWindowSize {

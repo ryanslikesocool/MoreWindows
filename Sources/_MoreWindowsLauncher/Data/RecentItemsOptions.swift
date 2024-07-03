@@ -18,6 +18,7 @@
 ///
 /// - SeeAlso:
 ///   - ``Launcher``
+///   - ``SwiftUI/Scene/recentItemsOptions(_:)``
 public struct RecentItemsOptions: OptionSet {
 	public let rawValue: UInt8
 
@@ -25,6 +26,18 @@ public struct RecentItemsOptions: OptionSet {
 		self.rawValue = rawValue
 	}
 }
+
+// MARK: - Sendable
+
+extension RecentItemsOptions: Sendable { }
+
+// MARK: - Equatable
+
+extension RecentItemsOptions: Equatable { }
+
+// MARK: - Hashable
+
+extension RecentItemsOptions: Hashable { }
 
 // MARK: - Constants
 

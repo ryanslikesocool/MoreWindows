@@ -1,8 +1,8 @@
 import SwiftUI
 
-// From https://movingparts.io/variadic-views-in-swiftui#writing-our-own-container-view
-
 /// A wrapper that inserts dividers between elements in a view builder.
+///
+/// Read more about ``SwiftUI/_VariadicView`` at [movingparts.io](https://movingparts.io/variadic-views-in-swiftui#writing-our-own-container-view).
 public struct Divided<Content: View>: View {
 	public let content: () -> Content
 

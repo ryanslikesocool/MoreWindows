@@ -1,5 +1,5 @@
 /// Options pertaining to ``Launcher``.
-/// 
+///
 /// ## Usage
 /// ```swift
 /// Launcher {
@@ -18,6 +18,7 @@
 ///
 /// - SeeAlso:
 ///   - ``Launcher``
+///   - ``SwiftUI/Scene/launcherWindowOptions(_:)``
 public struct LauncherWindowOptions: OptionSet {
 	public let rawValue: UInt8
 
@@ -25,6 +26,18 @@ public struct LauncherWindowOptions: OptionSet {
 		self.rawValue = rawValue
 	}
 }
+
+// MARK: - Sendable
+
+extension LauncherWindowOptions: Sendable { }
+
+// MARK: - Equatable
+
+extension LauncherWindowOptions: Equatable { }
+
+// MARK: - Hashable
+
+extension LauncherWindowOptions: Hashable { }
 
 // MARK: - Constants
 

@@ -3,9 +3,11 @@ import SwiftUI
 
 /// A view displaying the app's icon.
 ///
-/// Change the appearance by setting environment values using ``appIconOptions(_:)``.
+/// Change the appearance by setting environment values using ``SwiftUI/View/appIconOptions(_:)``.
 /// - SeeAlso:
 ///   - ``AppIconOptions``
+///   - ``SwiftUI/View/appIconOptions(_:)``
+///   - ``SwiftUI/Scene/appIconOptions(_:)``
 public struct AppIconView: View {
 	@Environment(\.colorScheme) private var colorScheme
 	@Environment(\.appIconOptions) private var appIconOptions
@@ -54,6 +56,8 @@ public struct AppIconView: View {
 	}
 }
 
+// MARK: - Constants
+
 private extension AppIconView {
 	static let glowRadius: Double = 32
 	static let scaleRange: ClosedRange<CGFloat> = 1.0 ... 1.05
@@ -62,12 +66,16 @@ private extension AppIconView {
 	static let animation: Animation = .interactiveSpring(duration: 0.2, extraBounce: 0.1, blendDuration: 1)
 }
 
+// MARK: - Supporting Views
+
 private extension AppIconView {
 	var icon: some View {
 		Image(nsImage: AppInformation.appIcon)
 			.resizable()
 	}
 }
+
+// MARK: - Functions
 
 private extension AppIconView {
 	func updateInteractive(_ location: CGPoint, size: CGSize) {

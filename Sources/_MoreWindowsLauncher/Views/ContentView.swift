@@ -32,7 +32,11 @@ struct ContentView<ActionArea: View>: View {
 		.onWindowAppear(perform: applyWindowStyle)
 		.windowButtons(close: .hidden, miniaturize: .hidden, zoom: .hidden)
 	}
+}
 
+// MARK: - Supporting Views
+
+private extension ContentView {
 	@ViewBuilder private var leftSide: some View {
 		VStack(spacing: 32) {
 			Spacer(minLength: 0)
@@ -66,6 +70,8 @@ struct ContentView<ActionArea: View>: View {
 		.padding(12)
 	}
 }
+
+// MARK: - Functions
 
 private extension ContentView {
 	func applyWindowStyle(nsWindow: NSWindow) {

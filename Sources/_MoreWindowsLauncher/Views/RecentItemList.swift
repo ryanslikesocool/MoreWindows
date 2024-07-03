@@ -25,12 +25,12 @@ struct RecentItemList: View {
 	}
 }
 
+// MARK: - Supporting Views
+
 private extension RecentItemList {
 	var list: some View {
-		List(filteredURLs, id: \.self) { url in
-			RecentItem(url: url)
-		}
-		.listStyle(.sidebar)
-		.ignoresSafeArea(.all)
+		List(filteredURLs, id: \.self, rowContent: RecentItem.init)
+			.listStyle(.sidebar)
+			.ignoresSafeArea(.all)
 	}
 }

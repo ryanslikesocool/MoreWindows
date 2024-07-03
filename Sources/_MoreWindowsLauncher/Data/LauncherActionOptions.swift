@@ -3,10 +3,10 @@
 /// ## Usage
 /// ```swift
 /// Launcher {
-/// 	Button("Confetti", systemImage: "sparkles") {
-/// 		/* ... */
-/// 	}
-/// 	.launcherActionOptions(/* ... */) // <-- here!
+///     Button("Confetti", systemImage: "sparkles") {
+///         /* ... */
+///     }
+///     .launcherActionOptions(/* ... */)
 /// }
 /// ```
 ///
@@ -16,6 +16,7 @@
 ///
 /// - SeeAlso:
 ///   - ``Launcher``
+///   - ``SwiftUI/View/launcherActionOptions(_:)``
 public struct LauncherActionOptions: OptionSet {
 	public let rawValue: UInt8
 
@@ -23,6 +24,18 @@ public struct LauncherActionOptions: OptionSet {
 		self.rawValue = rawValue
 	}
 }
+
+// MARK: - Sendable
+
+extension LauncherActionOptions: Sendable { }
+
+// MARK: - Equatable
+
+extension LauncherActionOptions: Equatable { }
+
+// MARK: - Hashable
+
+extension LauncherActionOptions: Hashable { }
 
 // MARK: - Constants
 

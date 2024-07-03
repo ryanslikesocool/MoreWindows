@@ -2,14 +2,14 @@ import OSLog
 import SwiftUI
 
 struct WindowButtonsModifier: ViewModifier {
-	private let close: WindowButtonMode
-	private let miniaturize: WindowButtonMode
-	private let zoom: WindowButtonMode
+	private let close: WindowButtonMode?
+	private let miniaturize: WindowButtonMode?
+	private let zoom: WindowButtonMode?
 
 	fileprivate init(
-		close: WindowButtonMode,
-		miniaturize: WindowButtonMode,
-		zoom: WindowButtonMode
+		close: WindowButtonMode?,
+		miniaturize: WindowButtonMode?,
+		zoom: WindowButtonMode?
 	) {
 		self.close = close
 		self.miniaturize = miniaturize
@@ -26,13 +26,16 @@ struct WindowButtonsModifier: ViewModifier {
 		applyMode(miniaturize, to: .miniaturizeButton, in: nsWindow)
 		applyMode(zoom, to: .zoomButton, in: nsWindow)
 
-		func applyMode(_ mode: WindowButtonMode, to button: NSWindow.ButtonType, in window: NSWindow) {
-			guard let button = window.standardWindowButton(button) else {
+		func applyMode(_ mode: WindowButtonMode?, to button: NSWindow.ButtonType, in window: NSWindow) {
+			guard
+				let mode,
+				let button = window.standardWindowButton(button)
+			else {
 				return
 			}
 
-			button.isEnabled = mode.isEnabled
-			button.isHidden = mode.isHidden
+			button.isEnabled = mode == .enabled
+			button.isHidden = mode == .hidden
 		}
 	}
 }
@@ -41,7 +44,7 @@ struct WindowButtonsModifier: ViewModifier {
 
 public extension View {
 	/// Set the window button (traffic light) display modes.
-	/// - Remark: If all values are set to ``WindowButtonMode/hidden``, the developer is responsible for handling actions like closing the window.
+	/// - Important: If all values are set to ``WindowButtonMode/hidden``, the developer is responsible for handling actions like closing the window.
 	/// - Parameters:
 	///   - close: The display mode for the close (red x) button.
 	///   - miniaturize: The display mode for the miniaturize (yellow minus) button.
@@ -49,9 +52,9 @@ public extension View {
 	/// - SeeAlso:
 	///   - ``WindowButtonMode``
 	func windowButtons(
-		close: WindowButtonMode = .enabled,
-		miniaturize: WindowButtonMode = .enabled,
-		zoom: WindowButtonMode = .enabled
+		close: WindowButtonMode? = nil,
+		miniaturize: WindowButtonMode? = nil,
+		zoom: WindowButtonMode? = nil
 	) -> some View {
 		modifier(WindowButtonsModifier(close: close, miniaturize: miniaturize, zoom: zoom))
 	}

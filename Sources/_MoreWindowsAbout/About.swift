@@ -9,12 +9,12 @@ import SwiftUI
 /// ## Usage
 /// ```swift
 /// struct MyApp: App {
-/// 	var body: some Scene {
-/// 		About { // <-- here!
-/// 			MyCustomViewA()
-/// 			MyCustomViewB()
-/// 		}
-/// 	}
+///     var body: some Scene {
+///         About {
+///             MyCustomViewA()
+///             MyCustomViewB()
+///         }
+///     }
 /// }
 /// ```
 ///
