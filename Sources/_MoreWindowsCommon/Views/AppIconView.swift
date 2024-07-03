@@ -70,7 +70,7 @@ private extension AppIconView {
 
 private extension AppIconView {
 	var icon: some View {
-		Image(nsImage: AppInformation.appIcon)
+		Image(nsImage: NSApplication.shared.applicationIconImage)
 			.resizable()
 	}
 }

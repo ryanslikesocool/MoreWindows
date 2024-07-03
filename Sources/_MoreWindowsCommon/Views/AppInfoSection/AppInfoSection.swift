@@ -12,7 +12,7 @@ public struct AppInfoSection: View {
 		style.makeBody(
 			configuration: AppInfoSectionStyleConfiguration(
 				icon: AppInfoSectionStyleConfiguration.Icon(content: AppIconView()),
-				name: AppInfoSectionStyleConfiguration.Name(content: Text(AppInformation.appName)),
+				name: AppInfoSectionStyleConfiguration.Name(content: Text(NSApplication.shared.bundleName)),
 				version: AppInfoSectionStyleConfiguration.Version(content: AppVersionView()),
 				environmentValues: environmentValues
 			)

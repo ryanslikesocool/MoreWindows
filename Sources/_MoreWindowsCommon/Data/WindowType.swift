@@ -42,8 +42,8 @@ package extension WindowType {
 	/// The window's title.  This is automatically populated with the app's name.
 	var title: String {
 		switch self {
-			case .launcher: "\(AppInformation.appName) Launcher"
-			case .about: "About \(AppInformation.appName)"
+			case .launcher: "\(NSApplication.shared.bundleName) Launcher"
+			case .about: "About \(NSApplication.shared.bundleName)"
 		}
 	}
 }

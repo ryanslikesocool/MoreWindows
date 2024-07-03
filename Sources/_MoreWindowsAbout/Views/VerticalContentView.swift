@@ -17,7 +17,7 @@ struct VerticalContentView<Content: View>: View {
 
 				content()
 
-				if aboutWindowOptions.contains(.showDefaultCopyright), let copyright = AppInformation.copyright {
+				if aboutWindowOptions.contains(.showDefaultCopyright), let copyright = NSApplication.shared.copyright {
 					Text(copyright)
 						.font(.caption)
 				}

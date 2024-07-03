@@ -15,7 +15,7 @@ struct WelcomeAppInfoSectionStyle: AppInfoSectionStyle {
 			}
 
 			if launcherWindowOptions.contains(.showName) {
-				Text(AppInformation.appName)
+				Text(NSApplication.shared.bundleName)
 					.font(.largeTitle.bold())
 			}
 
@@ -26,7 +26,7 @@ struct WelcomeAppInfoSectionStyle: AppInfoSectionStyle {
 	}
 }
 
-// MARK: - 
+// MARK: -
 
 extension AppInfoSectionStyle where Self == WelcomeAppInfoSectionStyle {
 	static var welcome: Self { Self() }

@@ -14,7 +14,7 @@ public struct AppVersionView: View {
 	public init() { }
 
 	public var body: some View {
-		if let appVersion = AppInformation.appVersion(includeBuild: appVersionOptions.contains(.showBuildNumber)) {
+		if let appVersion = NSApplication.shared.appVersion(includeBundleVersion: appVersionOptions.contains(.showBuildNumber)) {
 			if appVersionOptions.contains(.copyable) {
 				Button(action: { copyVersionToPasteboard(version: appVersion) }) {
 					label(appVersion)
@@ -54,7 +54,7 @@ private extension AppVersionView {
 
 private extension AppVersionView {
 	func copyVersionToPasteboard(version: String) {
-		let copyString: String = "\(AppInformation.appName) \(version)"
+		let copyString: String = "\(NSApplication.shared.bundleName) \(version)"
 
 		NSPasteboard.general.clearContents()
 		NSPasteboard.general.setString(copyString, forType: .string)

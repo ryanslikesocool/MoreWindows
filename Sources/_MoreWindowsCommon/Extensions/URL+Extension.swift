@@ -1,3 +1,4 @@
+import AppKit
 import Foundation
 
 package extension URL {
@@ -19,7 +20,7 @@ package extension URL {
 					result.replace(pattern, with: insert)
 				case let .cloud(mode, removeAppName):
 					let pattern: String = if removeAppName {
-						"\(URL.cloudPath)/\(AppInformation.appName)/"
+						"\(URL.cloudPath)/\(NSApplication.shared.bundleName)/"
 					} else {
 						URL.cloudPath
 					}

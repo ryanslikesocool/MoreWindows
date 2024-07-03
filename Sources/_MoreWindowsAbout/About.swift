@@ -47,7 +47,7 @@ public struct About<Content: View>: Scene {
 		.windowResizability(.contentSize)
 		.commands {
 			CommandGroup(replacing: .appInfo) {
-				Button("About \(AppInformation.appName)") {
+				Button("About \(NSApplication.shared.bundleName)") {
 					openWindow(id: WindowType.about.id)
 				}
 			}
