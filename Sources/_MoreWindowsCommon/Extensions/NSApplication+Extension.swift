@@ -1,6 +1,6 @@
 import AppKit
 
-package extension NSApplication {
+public extension NSApplication {
 	/// The app's bundle identifier.
 	var bundleIdentifier: String! {
 		Bundle.main.bundleIdentifier
