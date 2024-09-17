@@ -1,22 +1,11 @@
 import _MW_Common
-import OSLog
 import SwiftUI
 
 struct ContentView<ActionArea: View>: View {
-	@Environment(\.dismissWindow) private var dismissWindow
 	@Environment(\.launcherWindowOptions) private var launcherWindowOptions
 	@Environment(\.launcherWindowSize) private var launcherWindowSize
 
 	let actionArea: () -> ActionArea
-
-	private var windowSize: SIMD2<Double> {
-		let width: Double = if launcherWindowOptions.contains(.showRecentDocuments) {
-			launcherWindowSize.welcomeAreaWidth + launcherWindowSize.recentItemsAreaWidth
-		} else {
-			launcherWindowSize.welcomeAreaWidth
-		}
-		return [width, launcherWindowSize.height]
-	}
 
 	var body: some View {
 		HStack(spacing: 0) {
@@ -28,7 +17,7 @@ struct ContentView<ActionArea: View>: View {
 			}
 		}
 		.ignoresSafeArea(.all)
-		.frame(width: windowSize.x, height: windowSize.y)
+		.frame(width: windowSize.width, height: windowSize.height)
 		.onWindowAppear(perform: applyWindowStyle)
 		.windowButtons(close: .hidden, miniaturize: .hidden, zoom: .hidden)
 	}
@@ -37,7 +26,8 @@ struct ContentView<ActionArea: View>: View {
 // MARK: - Supporting Views
 
 private extension ContentView {
-	@ViewBuilder private var leftSide: some View {
+	@ViewBuilder
+	private var leftSide: some View {
 		VStack(spacing: 32) {
 			Spacer(minLength: 0)
 
@@ -53,21 +43,12 @@ private extension ContentView {
 			Spacer(minLength: 0)
 		}
 		.frame(width: launcherWindowSize.welcomeAreaWidth)
-		.overlay(alignment: .topLeading) { closeButton }
+		.overlay(alignment: .topLeading, content: makeCloseButton)
 	}
 
-	private var closeButton: some View {
-		Button {
-			dismissWindow(id: WindowType.launcher.id)
-		} label: {
-			Image(systemName: "xmark")
-				.font(.system(size: 6, weight: .bold))
-				.foregroundStyle(.background)
-				.frame(width: 12, height: 12)
-				.background(.tertiary, in: Circle())
-		}
-		.buttonStyle(.plain)
-		.padding(12)
+	private func makeCloseButton() -> some View {
+		CloseLauncherButton()
+			.padding(12)
 	}
 }
 
@@ -76,5 +57,24 @@ private extension ContentView {
 private extension ContentView {
 	func applyWindowStyle(nsWindow: NSWindow) {
 		nsWindow.isMovableByWindowBackground = true
+	}
+}
+
+// MARK: - Properties
+
+private extension ContentView {
+	var windowSize: CGSize {
+		let recentDocumentsWidth: CGFloat = if launcherWindowOptions.contains(.showRecentDocuments) {
+			launcherWindowSize.recentItemsAreaWidth
+		} else {
+			0
+		}
+
+		let windowWidth: CGFloat = launcherWindowSize.welcomeAreaWidth + recentDocumentsWidth
+
+		return CGSize(
+			width: windowWidth,
+			height: launcherWindowSize.height
+		)
 	}
 }

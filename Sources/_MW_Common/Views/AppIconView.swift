@@ -1,4 +1,3 @@
-import simd
 import SwiftUI
 
 /// A view displaying the app's icon.
@@ -24,12 +23,7 @@ public struct AppIconView: View {
 			if appIconOptions.hasHoverInteraction {
 				icon
 					.onContinuousHover(coordinateSpace: .local) { hoverPhase in
-						switch hoverPhase {
-							case let .active(location):
-								updateInteractive(location, size: geometry.size)
-							case .ended:
-								resetInteractive()
-						}
+						updateHover(phase: hoverPhase, in: geometry.size)
 					}
 					.scaleEffect(scale)
 					.rotation3DEffect(.radians(rotationAngle), axis: (-rotationAxis.dy, rotationAxis.dx, 0), perspective: 0.5)
@@ -44,17 +38,7 @@ public struct AppIconView: View {
 				icon
 			}
 		}
-		.background {
-			if
-				appIconOptions.contains(.glowInTheDark),
-				colorScheme == .dark
-			{
-				icon
-					.offset(y: Self.glowRadius * 0.666)
-					.blur(radius: Self.glowRadius)
-					.blendMode(.softLight)
-			}
-		}
+		.background(content: makeBackground)
 		.aspectRatio(contentMode: .fit)
 	}
 }
@@ -76,11 +60,33 @@ private extension AppIconView {
 		Image(nsImage: NSApplication.shared.applicationIconImage)
 			.resizable()
 	}
+
+	@ViewBuilder
+	func makeBackground() -> some View {
+		if
+			appIconOptions.contains(.glowInTheDark),
+			colorScheme == .dark
+		{
+			icon
+				.offset(y: Self.glowRadius * 0.666)
+				.blur(radius: Self.glowRadius)
+				.blendMode(.softLight)
+		}
+	}
 }
 
 // MARK: - Functions
 
 private extension AppIconView {
+	func updateHover(phase hoverPhase: HoverPhase, in viewSize: CGSize) {
+		switch hoverPhase {
+			case let .active(location):
+				updateInteractive(location, size: viewSize)
+			case .ended:
+				resetInteractive()
+		}
+	}
+
 	func updateInteractive(_ location: CGPoint, size: CGSize) {
 		let centeredLocation: CGPoint = CGPoint(
 			x: location.x - size.width * 0.5,

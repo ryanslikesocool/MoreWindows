@@ -7,11 +7,9 @@ struct RecentItem: View {
 	@Environment(\.dismissWindow) private var dismissWindow
 	@Environment(\.recentItemsOptions) private var recentItemsOptions
 	@Environment(\.openDocument) private var openDocument
+	@Environment(\.windowID) private var windowID
 
 	private let url: URL
-
-	private var title: String { url.deletingPathExtension().lastPathComponent }
-	private var image: NSImage? { NSWorkspace.shared.icon(forFile: url.path(percentEncoded: false)) }
 
 	init(url: URL) {
 		self.url = url
@@ -31,9 +29,7 @@ struct RecentItem: View {
 		.buttonStyle(.plain)
 		.frame(height: 44)
 		.contextMenu {
-			Button("Show in Finder") {
-				NSWorkspace.shared.activateFileViewerSelecting([url])
-			}
+			ShowInFinderButton(url)
 		}
 	}
 }
@@ -75,7 +71,7 @@ private extension RecentItem {
 				.cloud(mode: .remove, removeAppName: true),
 				.home(mode: .remove),
 			])
-			Text("\(Image(systemName: "icloud"))\(path)")
+			Text(verbatim: "\(Image(systemName: "icloud"))\(path)")
 		} else {
 			let path: String = url.path(options: [
 				.home(mode: .abbreviate),
@@ -105,15 +101,42 @@ private extension RecentItem {
 
 				if recentItemsOptions.contains(.closeWindow) {
 					await MainActor.run {
-						dismissWindow(id: WindowType.launcher.id)
+						closeWindow()
 					}
 				}
 			} catch {
 				Logger.module.error("""
-				Failed to open document at \(url.path(percentEncoded: false)):
-				\(error.localizedDescription)
+				Failed to open document:
+				- Path  \(url.path(percentEncoded: false))
+				- Error \(error.localizedDescription)
 				""")
 			}
 		}
+	}
+
+	func closeWindow() {
+		guard let windowID else {
+			preconditionFailure("""
+			The window ID environment value was missing.
+			This should not happen.  Please file a bug report.	
+			""")
+		}
+
+		dismissWindow(id: windowID)
+	}
+}
+
+// MARK: - Properties
+
+private extension RecentItem {
+	var title: String {
+		url
+			.deletingPathExtension()
+			.lastPathComponent
+	}
+
+	var image: NSImage? {
+		NSWorkspace.shared
+			.icon(forFile: url.path(percentEncoded: false))
 	}
 }
