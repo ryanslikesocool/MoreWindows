@@ -9,34 +9,22 @@ let package = Package(
 		.macOS(.v13),
 	],
 	products: [
-		.library(
-			name: "MoreWindows",
-			targets: ["MoreWindows"]
-		),
+		.library(name: "MoreWindows", targets: ["MoreWindows"]),
 	],
 	targets: [
-		.target(
-			name: "MoreWindows",
-			dependencies: [
-				"_MoreWindowsAbout",
-				"_MoreWindowsLauncher",
-			]
-		),
+		.target(name: "MoreWindows", dependencies: [
+			"_MW_About",
+			"_MW_Launcher",
+		]),
 
-		.target(
-			name: "_MoreWindowsAbout",
-			dependencies: [
-				"_MoreWindowsCommon",
-			]
-		),
+		.target(name: "_MW_About", dependencies: [
+			"_MW_Common",
+		]),
 
-		.target(
-			name: "_MoreWindowsLauncher",
-			dependencies: [
-				"_MoreWindowsCommon",
-			]
-		),
+		.target(name: "_MW_Launcher", dependencies: [
+			"_MW_Common",
+		]),
 
-		.target(name: "_MoreWindowsCommon"),
+		.target(name: "_MW_Common"),
 	]
 )
