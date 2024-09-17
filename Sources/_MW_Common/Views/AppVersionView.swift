@@ -11,23 +11,23 @@ public struct AppVersionView: View {
 	@Environment(\.appVersionOptions) private var appVersionOptions: AppVersionOptions
 	@State private var isHovering: Bool = false
 
-	public init() { }
+	private let iconEdge: HorizontalEdge
+	private let hoverAnimation: Animation
+
+	public init(
+		iconEdge: HorizontalEdge = .trailing,
+		hoverAnimation: Animation = .easeOut(duration: 0.15)
+	) {
+		self.iconEdge = iconEdge
+		self.hoverAnimation = hoverAnimation
+	}
 
 	public var body: some View {
 		if let appVersion = NSApplication.shared.appVersion(includeBundleVersion: appVersionOptions.contains(.showBuildNumber)) {
 			if appVersionOptions.contains(.copyable) {
-				Button(action: { copyVersionToPasteboard(version: appVersion) }) {
-					label(appVersion)
-				}
-				.buttonStyle(.plain)
-				.onHover { state in
-					withAnimation(.easeOut(duration: 0.15)) {
-						isHovering = state
-					}
-				}
-
+				makeButton(appVersion)
 			} else {
-				label(appVersion)
+				makeLabel(appVersion)
 			}
 		}
 	}
@@ -36,23 +36,47 @@ public struct AppVersionView: View {
 // MARK: - Supporting Views
 
 private extension AppVersionView {
-	private func label(_ appVersion: String) -> some View {
-		Text(appVersion)
-			.overlay(alignment: .trailing) { clipboardIcon }
-			.foregroundStyle(isHovering ? .secondary : .tertiary)
-			.monospaced()
+	func makeButton(_ appVersion: String) -> some View {
+		Button(action: { copyVersionToPasteboard(version: appVersion) }) {
+			makeLabel(appVersion)
+		}
+		.buttonStyle(.plain)
+		.onHover(perform: onHoverAction)
 	}
 
-	private var clipboardIcon: some View {
-		Image(systemName: "doc.on.clipboard")
-			.opacity(isHovering ? 1 : 0)
-			.offset(x: 20)
+	func makeLabel(_ appVersion: String) -> some View {
+		let iconHorizontalAlignment: HorizontalAlignment = switch iconEdge {
+			case .leading: .leading
+			case .trailing: .trailing
+		}
+		let oppositeIconHorizontalAlignment: HorizontalAlignment = switch iconEdge {
+			case .leading: .trailing
+			case .trailing: .leading
+		}
+		let iconAlignment: Alignment = Alignment(horizontal: iconHorizontalAlignment, vertical: .center)
+
+		return Text(appVersion)
+			.overlay(alignment: iconAlignment) {
+				Image(systemName: "doc.on.clipboard")
+					.opacity(isHovering ? 1 : 0)
+					.alignmentGuide(iconHorizontalAlignment) { d in
+						d[oppositeIconHorizontalAlignment]
+					}
+			}
+			.foregroundStyle(isHovering ? .secondary : .tertiary)
+			.monospaced()
 	}
 }
 
 // MARK: - Functions
 
 private extension AppVersionView {
+	func onHoverAction(newValue: Bool) {
+		withAnimation(hoverAnimation) {
+			isHovering = newValue
+		}
+	}
+
 	func copyVersionToPasteboard(version: String) {
 		let copyString: String = "\(NSApplication.shared.bundleName) \(version)"
 

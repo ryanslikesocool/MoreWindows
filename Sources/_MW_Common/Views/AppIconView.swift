@@ -13,7 +13,7 @@ public struct AppIconView: View {
 	@Environment(\.appIconOptions) private var appIconOptions
 	@State private var scale: CGFloat = Self.scaleRange.lowerBound
 	@State private var rotationAngle: Double = .zero
-	@State private var rotationAxis: SIMD2<Double> = .zero
+	@State private var rotationAxis: CGVector = .zero
 	@State private var shadowRadius: Double = Self.shadowRadiusRange.lowerBound
 
 	/// Initialize the view.
@@ -32,7 +32,7 @@ public struct AppIconView: View {
 						}
 					}
 					.scaleEffect(scale)
-					.rotation3DEffect(.radians(rotationAngle), axis: (-rotationAxis.y, rotationAxis.x, 0), perspective: 0.5)
+					.rotation3DEffect(.radians(rotationAngle), axis: (-rotationAxis.dy, rotationAxis.dx, 0), perspective: 0.5)
 					.shadow(
 						color: appIconOptions.contains(.hoverShadow) && (colorScheme == .light || !appIconOptions.contains(.glowInTheDark))
 							? .black.opacity(colorScheme == .light ? 0.333 : 0.5)
@@ -82,7 +82,7 @@ private extension AppIconView {
 
 private extension AppIconView {
 	func updateInteractive(_ location: CGPoint, size: CGSize) {
-		let centeredLocation: SIMD2<Double> = SIMD2<Double>(
+		let centeredLocation: CGPoint = CGPoint(
 			x: location.x - size.width * 0.5,
 			y: location.y - size.height * 0.5
 		)
@@ -92,8 +92,16 @@ private extension AppIconView {
 				scale = Self.scaleRange.upperBound
 			}
 			if appIconOptions.contains(.hoverRotation) {
-				rotationAngle = simd.length(centeredLocation) * Self.rotationStrength
-				rotationAxis = simd.normalize(centeredLocation)
+				let centeredLocationLength = sqrt(
+					(centeredLocation.x * centeredLocation.x)
+						+ (centeredLocation.y * centeredLocation.y)
+				)
+
+				rotationAngle = centeredLocationLength * Self.rotationStrength
+				rotationAxis = CGVector(
+					dx: centeredLocation.x / centeredLocationLength,
+					dy: centeredLocation.y / centeredLocationLength
+				)
 			}
 			if appIconOptions.contains(.hoverShadow) {
 				shadowRadius = Self.shadowRadiusRange.upperBound
