@@ -21,7 +21,7 @@ public struct AppIconView: View {
 	public var body: some View {
 		GeometryReader { geometry in
 			if appIconOptions.hasHoverInteraction {
-				icon
+				makeIcon()
 					.onContinuousHover(coordinateSpace: .local) { hoverPhase in
 						updateHover(phase: hoverPhase, in: geometry.size)
 					}
@@ -35,7 +35,7 @@ public struct AppIconView: View {
 						y: shadowRadius * 0.333
 					)
 			} else {
-				icon
+				makeIcon()
 			}
 		}
 		.background(content: makeBackground)
@@ -56,7 +56,7 @@ private extension AppIconView {
 // MARK: - Supporting Views
 
 private extension AppIconView {
-	var icon: some View {
+	func makeIcon() -> some View {
 		Image(nsImage: NSApplication.shared.applicationIconImage)
 			.resizable()
 	}
@@ -67,7 +67,7 @@ private extension AppIconView {
 			appIconOptions.contains(.glowInTheDark),
 			colorScheme == .dark
 		{
-			icon
+			makeIcon()
 				.offset(y: Self.glowRadius * 0.666)
 				.blur(radius: Self.glowRadius)
 				.blendMode(.softLight)

@@ -93,7 +93,9 @@ public extension Launcher {
 		_ title: S,
 		id: WindowID = WindowID.launcher,
 		@ViewBuilder actionArea: @escaping () -> ActionArea
-	) where S: StringProtocol {
+	) where
+		S: StringProtocol
+	{
 		self.init(Text(title), id: id, actionArea: actionArea)
 	}
 

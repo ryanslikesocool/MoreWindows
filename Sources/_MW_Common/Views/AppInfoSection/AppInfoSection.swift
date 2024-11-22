@@ -11,7 +11,7 @@ public struct AppInfoSection: View {
 	public var body: some View {
 		let configuration = AppInfoSectionStyleConfiguration(
 			icon: AppIconView(),
-			name: Text(NSApplication.shared.bundleName),
+			name: Text(Bundle.main.bundleName),
 			version: AppVersionView(),
 			environmentValues: environmentValues
 		)

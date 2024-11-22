@@ -95,7 +95,9 @@ public extension About {
 		_ title: S,
 		id: WindowID = WindowID.about,
 		@ViewBuilder content: @escaping ContentProvider
-	) where S: StringProtocol {
+	) where
+		S: StringProtocol
+	{
 		self.init(Text(title), id: id, content: content)
 	}
 

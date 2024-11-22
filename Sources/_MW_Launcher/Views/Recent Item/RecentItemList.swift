@@ -11,12 +11,14 @@ struct RecentItemList: View {
 		recentItemsSearchFilter(query: searchQuery, items: recentDocumentURLs)
 	}
 
-	var body: some View {
+	public init() { }
+
+	public var body: some View {
 		if recentItemsOptions.contains(.searchable) {
-			list
+			makeList()
 				.searchable(text: $searchQuery, placement: .sidebar)
 		} else {
-			list
+			makeList()
 		}
 	}
 }
@@ -24,7 +26,7 @@ struct RecentItemList: View {
 // MARK: - Supporting Views
 
 private extension RecentItemList {
-	var list: some View {
+	func makeList() -> some View {
 		List(filteredURLs, id: \.self, rowContent: RecentItem.init)
 			.listStyle(.sidebar)
 			.ignoresSafeArea(.all)

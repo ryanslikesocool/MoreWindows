@@ -2,12 +2,17 @@ import OSLog
 
 package extension Logger {
 	init(category: String)  {
-		self.init(subsystem: Self.subsystem, category: category)
+		self.init(subsystem: Self.moreWindowsSubsystem, category: category)
+	}
+
+	init(category: Any.Type) {
+		self.init(category: String(describing: category))
 	}
 }
 
 // MARK: - Constants
 
 private extension Logger {
-	static let subsystem: String = "MoreWindows"
+	/// The subsystem for the [MoreWindows](https://github.com/ryanslikesocool/MoreWindows) package.  This value should not be used outside of MoreWindows.
+	static let moreWindowsSubsystem: String = "MoreWindows"
 }

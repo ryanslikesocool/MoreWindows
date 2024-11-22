@@ -1,7 +1,9 @@
 import _MW_Common
 import SwiftUI
 
-struct ContentView<ActionArea: View>: View {
+struct ContentView<ActionArea>: View where
+	ActionArea: View
+{
 	@Environment(\.launcherWindowOptions) private var launcherWindowOptions
 	@Environment(\.launcherWindowSize) private var launcherWindowSize
 

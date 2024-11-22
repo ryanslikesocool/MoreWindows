@@ -33,6 +33,7 @@ import SwiftUI
 /// ```
 /// - Remark: An official implementation is provided by Apple starting with macOS 14.
 @available(macOS, introduced: 13, obsoleted: 14, message: "An official implementation is provided by Apple starting with macOS 14.")
+@MainActor
 public struct DismissWindowAction {
 	init() { }
 

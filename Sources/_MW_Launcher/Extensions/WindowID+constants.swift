@@ -6,5 +6,5 @@ public extension WindowID {
 	/// This value may be overriden to match the app's naming scheme.
 	/// - SeeAlso:
 	///   - ``Launcher``
-	static var launcher: Self = "MoreWindows.Launcher"
+	nonisolated(unsafe) static var launcher: Self = "MoreWindows.Launcher"
 }

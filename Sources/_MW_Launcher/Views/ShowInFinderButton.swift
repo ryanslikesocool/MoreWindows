@@ -4,7 +4,7 @@ import SwiftUI
 struct ShowInFinderButton: View {
 	private let url: URL
 
-	public init(_ url: URL) {
+	nonisolated public init(_ url: URL) {
 		self.url = url
 	}
 
@@ -16,7 +16,7 @@ struct ShowInFinderButton: View {
 // MARK: - Supporting Views
 
 private extension ShowInFinderButton {
-	func makeLabel() -> some View {
+	nonisolated func makeLabel() -> some View {
 		Text("ACTION.SHOW_IN_FINDER", bundle: .module)
 	}
 }

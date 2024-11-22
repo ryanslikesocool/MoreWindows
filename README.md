@@ -9,7 +9,7 @@ MoreWindows requires a SwiftUI lifecycle app on macOS 13.0 or later.
 ## Installation (Swift Package Manager)
 Add the following line to your package dependencies.
 ```swift
-.package(url: "https://github.com/ryanslikesocool/MoreWindows", from: "0.1.0"),
+.package(url: "https://github.com/ryanslikesocool/MoreWindows.git", from: "0.1.0"),
 ```
 
 ## Documentation

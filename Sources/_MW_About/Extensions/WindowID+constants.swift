@@ -6,5 +6,5 @@ public extension WindowID {
 	/// This value may be overriden to match the app's naming scheme.
 	/// - SeeAlso:
 	///   - ``About``
-	static var about: Self = "MoreWindows.About"
+	nonisolated(unsafe) static var about: Self = "MoreWindows.About"
 }

@@ -14,9 +14,9 @@
 /// | ``showDefaultCopyright`` | Show the default app copyright view at the bottom of the window..  The string used is the one found in the app's Info.plist. |
 @frozen
 public struct AboutWindowOptions: OptionSet {
-	public let rawValue: UInt8
+	public let rawValue: UInt64
 
-	public init(rawValue: UInt8) {
+	public init(rawValue: RawValue) {
 		self.rawValue = rawValue
 	}
 }

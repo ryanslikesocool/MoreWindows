@@ -6,7 +6,7 @@ struct LauncherWindowLink: View {
 
 	private let id: WindowID
 
-	public init(id: WindowID = .launcher) {
+	nonisolated public init(id: WindowID = .launcher) {
 		self.id = id
 	}
 
@@ -19,7 +19,7 @@ struct LauncherWindowLink: View {
 // MARK: - Supporting Views
 
 private extension LauncherWindowLink {
-	func makeLabel() -> some View {
+	nonisolated func makeLabel() -> some View {
 		Text("ACTION.SHOW_LAUNCHER", bundle: .module)
 	}
 }

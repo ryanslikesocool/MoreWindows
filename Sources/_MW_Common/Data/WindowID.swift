@@ -5,6 +5,7 @@ public struct WindowID: RawRepresentable {
 	public let rawValue: String
 
 	/// The ``NSWindow`` with this ID, if one could be found.
+	@MainActor
 	public var window: NSWindow? {
 		NSApplication.shared.windows.first { (window: NSWindow) -> Bool in
 			window.identifier?.rawValue == rawValue

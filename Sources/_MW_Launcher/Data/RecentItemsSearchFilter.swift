@@ -1,7 +1,7 @@
 import Foundation
 
 struct RecentItemsSearchFilter {
-	public typealias Predicate = (String, URL) -> Bool
+	public typealias Predicate = @Sendable (String, URL) -> Bool
 
 	private let predicate: Predicate
 
@@ -11,10 +11,10 @@ struct RecentItemsSearchFilter {
 
 	public func callAsFunction(
 		query searchQuery: borrowing String,
-		items: [URL]
+		items: some Sequence<URL>
 	) -> [URL] {
 		guard !searchQuery.isEmpty else {
-			return items
+			return Array(items)
 		}
 		return items
 			.filter { item in predicate(searchQuery, item) }

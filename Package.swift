@@ -1,4 +1,4 @@
-// swift-tools-version: 5.10
+// swift-tools-version: 6.0
 
 import PackageDescription
 
@@ -9,22 +9,36 @@ let package = Package(
 		.macOS(.v13),
 	],
 	products: [
-		.library(name: "MoreWindows", targets: ["MoreWindows"]),
+		.library(
+			name: "MoreWindows",
+			targets: ["MoreWindows"]
+		),
 	],
 	targets: [
-		.target(name: "MoreWindows", dependencies: [
-			"_MW_About",
-			"_MW_Launcher",
-		]),
+		.target(
+			name: "MoreWindows",
+			dependencies: [
+				"_MW_About",
+				"_MW_Launcher",
+			]
+		),
 
-		.target(name: "_MW_About", dependencies: [
-			"_MW_Common",
-		]),
+		.target(
+			name: "_MW_About",
+			dependencies: [
+				"_MW_Common",
+			]
+		),
 
-		.target(name: "_MW_Launcher", dependencies: [
-			"_MW_Common",
-		]),
+		.target(
+			name: "_MW_Launcher",
+			dependencies: [
+				"_MW_Common",
+			]
+		),
 
-		.target(name: "_MW_Common"),
+		.target(
+			name: "_MW_Common"
+		),
 	]
 )

@@ -22,9 +22,9 @@
 ///   - ``AppIconView``
 @frozen
 public struct AppIconOptions: OptionSet {
-	public let rawValue: UInt8
+	public let rawValue: UInt64
 
-	public init(rawValue: UInt8) {
+	public init(rawValue: RawValue) {
 		self.rawValue = rawValue
 	}
 }

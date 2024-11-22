@@ -5,13 +5,12 @@ struct LauncherLabelStyle: LabelStyle {
 	public init() { }
 
 	public func makeBody(configuration: Configuration) -> some View {
-		Label(
-			title: { configuration.title },
-			icon: {
-				configuration.icon
-					.foregroundStyle(.secondary)
-			}
-		)
+		Label {
+			configuration.title
+		} icon: {
+			configuration.icon
+				.foregroundStyle(.secondary)
+		}
 		.fontWeight(.semibold)
 	}
 }

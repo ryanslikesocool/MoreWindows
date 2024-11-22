@@ -6,7 +6,7 @@ private struct WindowButtonsModifier: ViewModifier {
 	private let miniaturize: WindowButtonMode?
 	private let zoom: WindowButtonMode?
 
-	public init(
+	nonisolated public init(
 		close: WindowButtonMode?,
 		miniaturize: WindowButtonMode?,
 		zoom: WindowButtonMode?
@@ -55,7 +55,7 @@ public extension View {
 	///   - zoom: The display mode for the zoom (green arrows) button.
 	/// - SeeAlso:
 	///   - ``WindowButtonMode``
-	func windowButtons(
+	nonisolated func windowButtons(
 		close: WindowButtonMode? = nil,
 		miniaturize: WindowButtonMode? = nil,
 		zoom: WindowButtonMode? = nil

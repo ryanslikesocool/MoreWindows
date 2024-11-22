@@ -1,13 +1,18 @@
 import _MW_Common
 import SwiftUI
 
-struct VerticalContentView<Content: View>: View {
+struct VerticalContentView<Content>: View where
+	Content: View
+{
 	@Environment(\.aboutWindowOptions) private var aboutWindowOptions
 
 	private let spacing: CGFloat?
 	private let content: () -> Content
 
-	public init(spacing: CGFloat?, @ViewBuilder content: @escaping () -> Content) {
+	public init(
+		spacing: CGFloat?,
+		@ViewBuilder content: @escaping () -> Content
+	) {
 		self.spacing = spacing
 		self.content = content
 	}
@@ -15,18 +20,11 @@ struct VerticalContentView<Content: View>: View {
 	public var body: some View {
 		VStack(spacing: spacing) {
 			Divided {
-				if aboutWindowOptions.contains(.showDefaultInformation) {
-					VStack {
-						AppInfoSection()
-					}
-				}
+				makeAppInfoSection()
 
 				content()
 
-				if aboutWindowOptions.contains(.showDefaultCopyright), let copyright = NSApplication.shared.copyright {
-					Text(copyright)
-						.font(.caption)
-				}
+				makeDefaultCopyrightLabel()
 			}
 		}
 		.fixedSize()
@@ -34,5 +32,26 @@ struct VerticalContentView<Content: View>: View {
 		.offset(y: -12) // half title bar height
 		.padding(.horizontal, 12) // equal padding for horizontal axis
 		.scenePadding() // breathing room
+	}
+}
+
+// MARK: - Supporting Views
+
+private extension VerticalContentView {
+	@ViewBuilder
+	func makeAppInfoSection() -> some View {
+		if aboutWindowOptions.contains(.showDefaultInformation) {
+			VStack {
+				AppInfoSection()
+			}
+		}
+	}
+
+	@ViewBuilder
+	func makeDefaultCopyrightLabel() -> some View {
+		if aboutWindowOptions.contains(.showDefaultCopyright) {
+			CopyrightLabel()
+				.font(.caption)
+		}
 	}
 }

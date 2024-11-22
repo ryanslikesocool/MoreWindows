@@ -14,7 +14,7 @@ public struct AppVersionView: View {
 	private let iconEdge: HorizontalEdge
 	private let hoverAnimation: Animation
 
-	public init(
+	nonisolated public init(
 		iconEdge: HorizontalEdge = .trailing,
 		hoverAnimation: Animation = .easeOut(duration: 0.15)
 	) {
@@ -23,7 +23,7 @@ public struct AppVersionView: View {
 	}
 
 	public var body: some View {
-		if let appVersion = NSApplication.shared.appVersion(includeBundleVersion: appVersionOptions.contains(.showBuildNumber)) {
+		if let appVersion = Bundle.main.appVersion(includeBundleVersion: appVersionOptions.contains(.showBuildNumber)) {
 			if appVersionOptions.contains(.copyable) {
 				makeButton(appVersion)
 			} else {
@@ -37,7 +37,9 @@ public struct AppVersionView: View {
 
 private extension AppVersionView {
 	func makeButton(_ appVersion: String) -> some View {
-		Button(action: { copyVersionToPasteboard(version: appVersion) }) {
+		Button {
+			copyVersionToPasteboard(version: appVersion)
+		} label: {
 			makeLabel(appVersion)
 		}
 		.buttonStyle(.plain)
@@ -78,7 +80,7 @@ private extension AppVersionView {
 	}
 
 	func copyVersionToPasteboard(version: String) {
-		let copyString: String = "\(NSApplication.shared.bundleName) \(version)"
+		let copyString: String = "\(Bundle.main.bundleName) \(version)"
 
 		NSPasteboard.general.clearContents()
 		NSPasteboard.general.setString(copyString, forType: .string)

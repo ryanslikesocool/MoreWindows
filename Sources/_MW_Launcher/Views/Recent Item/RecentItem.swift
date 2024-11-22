@@ -18,12 +18,12 @@ struct RecentItem: View {
 	public var body: some View {
 		Button(action: openFile) {
 			if recentItemsOptions.contains(.draggable) {
-				label
+				makeButtonLabel()
 					.draggable(url) {
-						documentIcon
+						makeDocumentItem()
 					}
 			} else {
-				label
+				makeButtonLabel()
 			}
 		}
 		.buttonStyle(.plain)
@@ -36,25 +36,25 @@ struct RecentItem: View {
 
 // MARK: - Constants
 
-private extension RecentItem {
+extension RecentItem {
 	static let documentIconSize: CGFloat = 32
 }
 
 // MARK: - Supporting Views
 
 private extension RecentItem {
-	var label: some View {
+	func makeButtonLabel() -> some View {
 		HStack(spacing: 0) {
 			if recentItemsOptions.contains(.showIcon) {
-				documentIcon
+				makeDocumentItem()
 			}
 
 			VStack(alignment: .leading) {
-				Text(title)
+				FileNameLabel(for: url)
 					.font(.headline)
 
 				if recentItemsOptions.contains(.showURL) {
-					documentURL
+					FileURLLabel(for: url)
 						.font(.subheadline)
 						.foregroundStyle(.tertiary)
 						.help(url.path(percentEncoded: false))
@@ -65,29 +65,9 @@ private extension RecentItem {
 		.contentShape(Rectangle())
 	}
 
-	@ViewBuilder var documentURL: some View {
-		if url.isInCloud {
-			let path: String = url.path(options: [
-				.cloud(mode: .remove, removeAppName: true),
-				.home(mode: .remove),
-			])
-			Text(verbatim: "\(Image(systemName: "icloud"))\(path)")
-		} else {
-			let path: String = url.path(options: [
-				.home(mode: .abbreviate),
-			])
-			Text(path)
-		}
-	}
-
-	@ViewBuilder var documentIcon: some View {
-		if let image {
-			Image(nsImage: image)
-				.resizable()
-				.frame(width: Self.documentIconSize, height: Self.documentIconSize)
-		} else {
-			Image(systemName: "doc")
-		}
+	func makeDocumentItem() -> some View {
+		DocumentIcon(for: url)
+			.frame(width: Self.documentIconSize, height: Self.documentIconSize)
 	}
 }
 
@@ -123,20 +103,5 @@ private extension RecentItem {
 		}
 
 		dismissWindow(id: windowID)
-	}
-}
-
-// MARK: - Properties
-
-private extension RecentItem {
-	var title: String {
-		url
-			.deletingPathExtension()
-			.lastPathComponent
-	}
-
-	var image: NSImage? {
-		NSWorkspace.shared
-			.icon(forFile: url.path(percentEncoded: false))
 	}
 }

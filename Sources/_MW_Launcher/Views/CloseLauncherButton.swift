@@ -16,7 +16,7 @@ struct CloseLauncherButton: View {
 // MARK: - Supporting Views
 
 private extension CloseLauncherButton {
-	func makeLabel() -> some View {
+	nonisolated func makeLabel() -> some View {
 		Image(systemName: "xmark")
 			.font(.system(size: 6, weight: .bold))
 			.foregroundStyle(.background)

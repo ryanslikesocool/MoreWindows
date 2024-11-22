@@ -20,7 +20,7 @@ package extension URL {
 					result.replace(pattern, with: insert)
 				case let .cloud(mode, removeAppName):
 					let pattern: String = if removeAppName {
-						"\(URL.cloudPath)/\(NSApplication.shared.bundleName)/"
+						"\(URL.cloudPath)/\(Bundle.main.bundleName)/"
 					} else {
 						URL.cloudPath
 					}

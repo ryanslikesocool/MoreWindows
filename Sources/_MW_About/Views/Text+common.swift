@@ -1,7 +1,7 @@
 import SwiftUI
 
 extension Text {
-	static func defaultAboutWindowText() -> Self {
-		Self("WINDOW_TITLE_\(NSApplication.shared.bundleName)", bundle: .module)
+	nonisolated static func defaultAboutWindowText() -> Self {
+		Self("WINDOW_TITLE_\(Bundle.main.bundleName)", bundle: .module)
 	}
 }

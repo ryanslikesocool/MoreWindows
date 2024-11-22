@@ -6,14 +6,8 @@ public extension EnvironmentValues {
 	/// - SeeAlso:
 	///   - ``SwiftUI/Scene/windowID(_:)-7gcxi``
 	///   - ``SwiftUI/Scene/windowID(_:)-2v85t``
-	fileprivate(set) var windowID: WindowID? {
-		get { self[__Key_windowID.self] }
-		set { self[__Key_windowID.self] = newValue }
-	}
-
-	private enum __Key_windowID: EnvironmentKey {
-		static let defaultValue: WindowID? = nil
-	}
+	@Entry
+	fileprivate(set) var windowID: WindowID? = nil
 }
 
 // MARK: - Convenience
@@ -23,7 +17,7 @@ public extension Scene {
 	/// - SeeAlso:
 	///   - ``SwiftUI/Scene/windowID(_:)-2v85t``
 	/// - Parameter id: The window's ID.
-	func windowID(_ id: WindowID) -> some Scene {
+	nonisolated func windowID(_ id: WindowID) -> some Scene {
 		environment(\.windowID, id)
 	}
 
@@ -31,7 +25,9 @@ public extension Scene {
 	/// - SeeAlso:
 	///   - ``SwiftUI/Scene/windowID(_:)-7gcxi``
 	/// - Parameter id: The window's ID.
-	func windowID(_ id: some StringProtocol) -> some Scene {
+	nonisolated func windowID<S>(_ id: S) -> some Scene where
+		S: StringProtocol
+	{
 		windowID(WindowID(rawValue: id))
 	}
 }

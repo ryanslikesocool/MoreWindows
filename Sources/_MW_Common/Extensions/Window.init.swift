@@ -27,11 +27,13 @@ public extension Window {
 	///   - title: A string to use for the window’s title in system menus and in the window’s title bar. Provide a title that describes the purpose of the window.
 	///   - id: A unique ``WindowID`` that you can use to open the window.
 	///   - content: The view content to display in the window.
-	init(
-		_ title: some StringProtocol,
+	init<S>(
+		_ title: S,
 		id: borrowing WindowID,
 		@ViewBuilder content: @escaping () -> Content
-	) {
+	) where
+		S: StringProtocol
+	{
 		self.init(title, id: id.rawValue, content: content)
 	}
 

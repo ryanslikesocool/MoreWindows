@@ -1,5 +1,6 @@
 import SwiftUI
 
+/// The properties of an app info section.
 public struct AppInfoSectionStyleConfiguration {
 	public let icon: Icon
 	public let name: Name
@@ -24,7 +25,8 @@ public struct AppInfoSectionStyleConfiguration {
 // MARK: - Supporting Data
 
 public extension AppInfoSectionStyleConfiguration {
-	/// The type-erased icon of an ``AppInfoSection``.
+	/// The type-erased icon of an app info section.
+	@MainActor @preconcurrency
 	struct Icon: View {
 		fileprivate init(_ content: some View) {
 			body = AnyView(content)
@@ -33,7 +35,8 @@ public extension AppInfoSectionStyleConfiguration {
 		public let body: AnyView
 	}
 
-	/// The type-erased name of an ``AppInfoSection``.
+	/// The type-erased name of an app info section.
+	@MainActor @preconcurrency
 	struct Name: View {
 		fileprivate init(_ content: some View) {
 			body = AnyView(content)
@@ -42,7 +45,8 @@ public extension AppInfoSectionStyleConfiguration {
 		public let body: AnyView
 	}
 
-	/// The type-erased version of an ``AppInfoSection``.
+	/// The type-erased version of an app info section.
+	@MainActor @preconcurrency
 	struct Version: View {
 		fileprivate init(_ content: some View) {
 			body = AnyView(content)

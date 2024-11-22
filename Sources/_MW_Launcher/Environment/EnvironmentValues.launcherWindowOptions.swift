@@ -4,14 +4,8 @@ extension EnvironmentValues {
 	/// - SeeAlso:
 	///   - ``LauncherWindowOptions``
 	///   - ``SwiftUI/Scene/launcherWindowOptions(_:)``
-	fileprivate(set) var launcherWindowOptions: LauncherWindowOptions {
-		get { self[__Key_launcherWindowOptions.self] }
-		set { self[__Key_launcherWindowOptions.self] = newValue }
-	}
-
-	private struct __Key_launcherWindowOptions: EnvironmentKey {
-		static let defaultValue: LauncherWindowOptions = .default
-	}
+	@Entry
+	fileprivate(set) var launcherWindowOptions: LauncherWindowOptions = .default
 }
 
 // MARK: - Convenience
@@ -21,7 +15,7 @@ public extension Scene {
 	/// - Parameter options: The options to set in the environment.
 	/// - SeeAlso:
 	///   - ``LauncherWindowOptions``
-	func launcherWindowOptions(_ options: LauncherWindowOptions) -> some Scene {
+	nonisolated func launcherWindowOptions(_ options: LauncherWindowOptions) -> some Scene {
 		environment(\.launcherWindowOptions, options)
 	}
 }
