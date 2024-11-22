@@ -4,10 +4,16 @@ import SwiftUI
 struct VerticalContentView<Content: View>: View {
 	@Environment(\.aboutWindowOptions) private var aboutWindowOptions
 
-	let content: () -> Content
+	private let spacing: CGFloat?
+	private let content: () -> Content
 
-	var body: some View {
-		VStack(spacing: 32) {
+	public init(spacing: CGFloat?, @ViewBuilder content: @escaping () -> Content) {
+		self.spacing = spacing
+		self.content = content
+	}
+
+	public var body: some View {
+		VStack(spacing: spacing) {
 			Divided {
 				if aboutWindowOptions.contains(.showDefaultInformation) {
 					VStack {
