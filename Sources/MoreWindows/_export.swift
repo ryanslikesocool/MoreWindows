@@ -1,3 +1,3 @@
-@_exported import _MoreWindowsCommon
-@_exported import MoreWindows_About
-@_exported import MoreWindows_Launcher
+@_exported import _MW_About
+@_exported import _MW_Launcher
+@_exported import _MW_Common

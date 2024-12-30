@@ -1,4 +1,4 @@
-// swift-tools-version: 5.9
+// swift-tools-version: 6.0
 
 import PackageDescription
 
@@ -13,40 +13,32 @@ let package = Package(
 			name: "MoreWindows",
 			targets: ["MoreWindows"]
 		),
-
-		.library(
-			name: "MoreWindows_About",
-			targets: ["MoreWindows_About"]
-		),
-
-		.library(
-			name: "MoreWindows_Launcher",
-			targets: ["MoreWindows_Launcher"]
-		),
 	],
 	targets: [
 		.target(
 			name: "MoreWindows",
 			dependencies: [
-				"MoreWindows_About",
-				"MoreWindows_Launcher",
+				"_MW_About",
+				"_MW_Launcher",
 			]
 		),
 
 		.target(
-			name: "MoreWindows_About",
+			name: "_MW_About",
 			dependencies: [
-				"_MoreWindowsCommon",
+				"_MW_Common",
 			]
 		),
 
 		.target(
-			name: "MoreWindows_Launcher",
+			name: "_MW_Launcher",
 			dependencies: [
-				"_MoreWindowsCommon",
+				"_MW_Common",
 			]
 		),
 
-		.target(name: "_MoreWindowsCommon"),
+		.target(
+			name: "_MW_Common"
+		),
 	]
 )
