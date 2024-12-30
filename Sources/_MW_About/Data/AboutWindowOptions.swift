@@ -1,6 +1,7 @@
 /// Options pertaining to ``About``.
 ///
 /// ## Usage
+/// 
 /// ```swift
 /// About {
 ///     /* ... */

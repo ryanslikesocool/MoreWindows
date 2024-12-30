@@ -11,9 +11,11 @@ extension EnvironmentValues {
 
 public extension Scene {
 	/// Set the layout style of an ``About`` window.
-	/// - Parameter layout: The layout to set in the environment.
+	///
 	/// - SeeAlso:
 	///   - ``AboutWindowLayout``
+	///
+	/// - Parameter layout: The layout to set in the environment.
 	nonisolated func aboutWindowLayout(_ layout: AboutWindowLayout) -> some Scene {
 		environment(\.aboutWindowLayout, layout)
 	}

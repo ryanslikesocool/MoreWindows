@@ -3,6 +3,7 @@ import SwiftUI
 /// A view displaying the app's icon.
 ///
 /// Change the appearance by setting environment values using ``SwiftUI/View/appIconOptions(_:)``.
+/// 
 /// - SeeAlso:
 ///   - ``AppIconOptions``
 ///   - ``SwiftUI/View/appIconOptions(_:)``

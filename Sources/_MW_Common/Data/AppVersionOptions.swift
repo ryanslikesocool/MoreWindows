@@ -1,6 +1,7 @@
 /// Options pertaining to ``AppVersionView``.
 ///
 /// Any scenes or views that contain ``AppVersionView`` support this environment value.
+/// 
 /// ## Usage
 /// ```swift
 /// About {

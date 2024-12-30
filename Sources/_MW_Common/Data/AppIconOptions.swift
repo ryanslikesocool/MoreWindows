@@ -1,6 +1,7 @@
 /// Options pertaining to ``AppIconView``.
 ///
 /// Any scenes or views that contain ``AppIconView`` support this environment variable.
+///
 /// ## Usage
 /// ```swift
 /// Launcher {

@@ -48,13 +48,16 @@ private extension WindowButtonsModifier {
 
 public extension View {
 	/// Set the window button (traffic light) display modes.
+	///
 	/// - Important: If all values are set to ``WindowButtonMode/hidden``, the developer is responsible for handling actions like closing the window.
+	///
+	/// - SeeAlso:
+	///   - ``WindowButtonMode``
+	///   
 	/// - Parameters:
 	///   - close: The display mode for the close (red x) button.
 	///   - miniaturize: The display mode for the miniaturize (yellow minus) button.
 	///   - zoom: The display mode for the zoom (green arrows) button.
-	/// - SeeAlso:
-	///   - ``WindowButtonMode``
 	nonisolated func windowButtons(
 		close: WindowButtonMode? = nil,
 		miniaturize: WindowButtonMode? = nil,

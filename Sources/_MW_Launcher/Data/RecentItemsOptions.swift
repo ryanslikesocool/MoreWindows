@@ -1,6 +1,7 @@
 /// Options pertaining to the recent items list on the right side of the launcher.
 ///
 /// ## Usage
+/// 
 /// ```swift
 /// Launcher {
 /// 	/* ... */

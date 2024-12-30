@@ -11,6 +11,7 @@ extension EnvironmentValues {
 
 public extension Scene {
 	/// Set the size of the launcher window.
+	/// 
 	/// - Parameters:
 	///   - welcomeAreaWidth: The total width of the "welcome" area, containing app information and launcher actions.
 	///   - recentItemsAreaWidth: The total width of the "recent items" area, containing items associated with the app that have been recently opened.

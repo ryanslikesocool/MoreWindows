@@ -1,6 +1,7 @@
 /// Options pertaining to ``Launcher``.
 ///
 /// ## Usage
+/// 
 /// ```swift
 /// Launcher {
 /// 	/* ... */

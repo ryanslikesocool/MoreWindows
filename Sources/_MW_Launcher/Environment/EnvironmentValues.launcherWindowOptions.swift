@@ -12,9 +12,11 @@ extension EnvironmentValues {
 
 public extension Scene {
 	/// Set options pertaining to ``Launcher``.
-	/// - Parameter options: The options to set in the environment.
+	///
 	/// - SeeAlso:
 	///   - ``LauncherWindowOptions``
+	///
+	/// - Parameter options: The options to set in the environment.
 	nonisolated func launcherWindowOptions(_ options: LauncherWindowOptions) -> some Scene {
 		environment(\.launcherWindowOptions, options)
 	}

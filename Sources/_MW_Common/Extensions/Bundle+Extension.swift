@@ -3,7 +3,7 @@ import Foundation
 public extension Bundle {
 	/// The app's name.
 	///
-	/// This property reads the value for the key `CFBundleName` in `Info.plist`.  If the key cannot be found, the process name will be used instead.
+	/// This property reads the value for the key `CFBundleName` in `Info.plist`.  If the key cannot be found, the process name is used instead.
 	var bundleName: String {
 		object(forInfoDictionaryKey: kCFBundleNameKey as String) as? String
 			?? ProcessInfo.processInfo.processName

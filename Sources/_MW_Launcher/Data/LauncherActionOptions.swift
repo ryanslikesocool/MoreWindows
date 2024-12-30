@@ -1,6 +1,7 @@
 /// Options pertaining to the launcher action area.
 ///
 /// ## Usage
+/// 
 /// ```swift
 /// Launcher {
 ///     Button("Confetti", systemImage: "sparkles") {

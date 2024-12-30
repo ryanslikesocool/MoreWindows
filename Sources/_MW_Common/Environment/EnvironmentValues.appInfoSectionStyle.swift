@@ -11,6 +11,7 @@ extension EnvironmentValues {
 
 public extension View {
 	/// Set the style used by ``AppInfoSection``.
+	/// 
 	/// - SeeAlso:
 	///   - ``AppInfoSectionStyle``
 	nonisolated func appInfoSectionStyle<S>(_ style: S) -> some View where

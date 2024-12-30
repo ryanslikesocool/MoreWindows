@@ -13,6 +13,10 @@ package extension Logger {
 // MARK: - Constants
 
 private extension Logger {
-	/// The subsystem for the [MoreWindows](https://github.com/ryanslikesocool/MoreWindows) package.  This value should not be used outside of MoreWindows.
+	/// The subsystem for the
+	/// [MoreWindows](https://github.com/ryanslikesocool/MoreWindows)
+	/// package.
+	///
+	/// This value should not be used outside of MoreWindows.
 	static let moreWindowsSubsystem: String = "MoreWindows"
 }

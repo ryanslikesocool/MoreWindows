@@ -3,6 +3,7 @@ import SwiftUI
 /// A view displaying the app's version number.
 ///
 /// Change the appearance by setting environment values using ``SwiftUI/View/appVersionOptions(_:)``.
+/// 
 /// - SeeAlso:
 ///   - ``AppVersionOptions``
 ///   - ``SwiftUI/View/appVersionOptions(_:)``

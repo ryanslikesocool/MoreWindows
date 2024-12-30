@@ -6,6 +6,7 @@ import SwiftUI
 /// Primary actions can be provided by using the view builder.
 ///
 /// ## Usage
+///
 /// ```swift
 /// struct MyApp: App {
 ///     var body: some Scene {
@@ -37,7 +38,9 @@ public struct Launcher<ActionArea>: Scene where
 	private let actionArea: () -> ActionArea
 
 	/// Create a launcher window.
+	///
 	/// - Important: The system ignores any text styling that you apply to the ``SwiftUI/Text`` view `title`, like bold or italics. However, you can use the formatting controls that the view offers, like for localization, dates, and numerical representations.
+	/// 
 	/// - Parameters:
 	///   - title: The ``SwiftUI/Text`` view to use for the window’s title in system menus and in the window’s title bar. Provide a title that describes the purpose of the window.
 	///   - id: A unique ``WindowID`` that you can use to open the window.
@@ -74,6 +77,7 @@ public struct Launcher<ActionArea>: Scene where
 
 public extension Launcher {
 	/// Create a launcher window.
+	///
 	/// - Parameters:
 	///   - id: A unique ``WindowID`` that you can use to open the window.
 	///   - actionArea: The primary action area.
@@ -85,6 +89,7 @@ public extension Launcher {
 	}
 
 	/// Create a launcher window.
+	///
 	/// - Parameters:
 	///   - title: A string to use for the window’s title in system menus and in the window’s title bar. Provide a title that describes the purpose of the window.
 	///   - id: A unique ``WindowID`` that you can use to open the window.
@@ -100,6 +105,7 @@ public extension Launcher {
 	}
 
 	/// Create a launcher window.
+	///
 	/// - Parameters:
 	///   - titleKey: A localized string key to use for the window’s title in system menus and in the window’s title bar. Provide a title that describes the purpose of the window.
 	///   - id: A unique ``WindowID`` that you can use to open the window.

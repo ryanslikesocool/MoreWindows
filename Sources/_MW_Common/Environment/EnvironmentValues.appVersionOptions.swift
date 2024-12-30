@@ -12,10 +12,12 @@ extension EnvironmentValues {
 
 public extension View {
 	/// Set options pertaining to ``AppVersionView``.
-	/// - Parameter options: The options to set in the environment.
+	///
 	/// - SeeAlso:
 	///   - ``AppVersionOptions``
 	///   - ``AppVersionView``
+	///
+	/// - Parameter options: The options to set in the environment.
 	nonisolated func appVersionOptions(_ options: AppVersionOptions) -> some View {
 		environment(\.appVersionOptions, options)
 	}
@@ -23,10 +25,12 @@ public extension View {
 
 public extension Scene {
 	/// Set options pertaining to ``AppVersionView``.
-	/// - Parameter options: The options to set in the environment.
+	///
 	/// - SeeAlso:
 	///   - ``AppVersionOptions``
 	///   - ``AppVersionView``
+	///
+	/// - Parameter options: The options to set in the environment.
 	nonisolated func appVersionOptions(_ options: AppVersionOptions) -> some Scene {
 		environment(\.appVersionOptions, options)
 	}
