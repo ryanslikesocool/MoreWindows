@@ -1,9 +1,9 @@
 import SwiftUI
 
 extension EnvironmentValues {
-	/// - SeeAlso:
-	///   - ``LauncherActionOptions``
-	///   - ``SwiftUI/View/launcherActionOptions(_:)``
+	/// ## See Also
+	/// - ``LauncherActionOptions``
+	/// - ``SwiftUICore/View/launcherActionOptions(_:)``
 	@Entry
 	fileprivate(set) var launcherActionOptions: LauncherActionOptions = .default
 }
@@ -13,9 +13,10 @@ extension EnvironmentValues {
 public extension View {
 	/// Set options pertaining to the launcher action area.
 	///
-	/// - SeeAlso:
-	///   - ``LauncherActionOptions``
-	///   
+	/// ## See Also
+	/// - ``LauncherActionOptions``
+	// - ``SwiftUICore/EnvironmentValues/launcherActionOptions``
+	///
 	/// - Parameter options: The options to set in the environment.
 	nonisolated func launcherActionOptions(_ options: LauncherActionOptions) -> some View {
 		environment(\.launcherActionOptions, options)

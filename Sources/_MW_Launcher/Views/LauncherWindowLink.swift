@@ -6,21 +6,15 @@ struct LauncherWindowLink: View {
 
 	private let id: WindowID
 
-	nonisolated public init(id: WindowID = .launcher) {
+	public nonisolated init(id: WindowID = .launcher) {
 		self.id = id
 	}
 
 	public var body: some View {
-		Button(action: buttonAction, label: makeLabel)
-			.keyboardShortcut("l", modifiers: [.command, .shift])
-	}
-}
-
-// MARK: - Supporting Views
-
-private extension LauncherWindowLink {
-	nonisolated func makeLabel() -> some View {
-		Text("ACTION.SHOW_LAUNCHER", bundle: .module)
+		Button(action: buttonAction) {
+			Text(.module.action.showLauncher)
+		}
+		.keyboardShortcut("l", modifiers: [.command, .shift])
 	}
 }
 

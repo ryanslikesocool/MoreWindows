@@ -9,19 +9,33 @@ struct CloseLauncherButton: View {
 
 	public var body: some View {
 		Button(action: buttonAction, label: makeLabel)
-			.buttonStyle(.plain)
+			.buttonStyle(Self.buttonStyle)
 	}
+}
+
+// MARK: - Constants
+
+private extension CloseLauncherButton {
+	static var buttonStyle: some PrimitiveButtonStyle { .plain }
+
+	nonisolated static let systemImageName: String = "xmark"
+	nonisolated static let font: Font = .system(size: 6, weight: .bold)
+	nonisolated static var foregroundStyle: some ShapeStyle { .background }
+	nonisolated static let width: CGFloat? = 12
+	nonisolated static var height: CGFloat? { width }
+	nonisolated static var backgroundStyle: some ShapeStyle { .tertiary }
+	nonisolated static let backgroundShape: some InsettableShape = .circle
 }
 
 // MARK: - Supporting Views
 
 private extension CloseLauncherButton {
 	nonisolated func makeLabel() -> some View {
-		Image(systemName: "xmark")
-			.font(.system(size: 6, weight: .bold))
-			.foregroundStyle(.background)
-			.frame(width: 12, height: 12)
-			.background(.tertiary, in: Circle())
+		Image(systemName: Self.systemImageName)
+			.font(Self.font)
+			.foregroundStyle(Self.foregroundStyle)
+			.frame(width: Self.width, height: Self.height)
+			.background(Self.backgroundStyle, in: Self.backgroundShape)
 	}
 }
 
@@ -35,7 +49,7 @@ private extension CloseLauncherButton {
 			This should not happen.  Please file a bug report.
 			""")
 		}
-		
+
 		dismissWindow(id: windowID)
 	}
 }

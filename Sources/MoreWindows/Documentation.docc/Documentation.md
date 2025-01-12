@@ -2,9 +2,11 @@
 
 Additional SwiftUI `Scene`s for macOS.
 
+
 ## Overview
 
 MoreWindows provides additional `Scene` types and utilities for macOS.
+
 
 ## Topics
 
@@ -13,22 +15,19 @@ MoreWindows provides additional `Scene` types and utilities for macOS.
 - ``About``
 - ``Launcher``
 
+
 ### Views
 
-- ``AppIconView``
-- ``AppVersionView``
+- ``AboutWindowLink``
 - ``AppInfoSection``
-- ``Divided``
+- ``AppIconView``
+- ``AppNameLabel``
+- ``AppVersionLabel``
+- ``AppVersionView``
+- ``CopyrightLabel``
+- ``RecentItemList``
+
 
 ### Styles
 
 - ``AppInfoSectionStyle``
-
-### Options
-
-- ``AppIconOptions``
-- ``AppVersionOptions``
-- ``AboutWindowOptions``
-- ``LauncherWindowOptions``
-- ``LauncherActionOptions``
-- ``RecentItemsOptions``

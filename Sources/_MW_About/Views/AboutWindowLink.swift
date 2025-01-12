@@ -4,20 +4,20 @@ import SwiftUI
 public struct AboutWindowLink<Label>: View where
 	Label: View
 {
-	public typealias LabelProvider = () -> Label
-
 	@Environment(\.openWindow) var openWindow
 
-	private let labelProvider: LabelProvider
+	private let label: Label
 
 	public init(
-		@ViewBuilder label labelProvider: @escaping LabelProvider
+		@ViewBuilder label: () -> Label
 	) {
-		self.labelProvider = labelProvider
+		self.label = label()
 	}
 
 	public var body: some View {
-		Button(action: buttonAction, label: labelProvider)
+		Button(action: buttonAction) {
+			label
+		}
 	}
 }
 
@@ -38,13 +38,17 @@ public extension AboutWindowLink where
 		self.init(label: Text.defaultAboutWindowText)
 	}
 
-	init<S>(_ title: S) where
+	init<S>(
+		_ title: S
+	) where
 		S: StringProtocol
 	{
 		self.init(label: { Text(title) })
 	}
 
-	init(_ titleKey: LocalizedStringKey) {
+	init(
+		_ titleKey: LocalizedStringKey
+	) {
 		self.init(label: { Text(titleKey) })
 	}
 }

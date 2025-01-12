@@ -1,5 +1,11 @@
 import Foundation
 
+/// ## See Also
+/// - ``RecentItemList``
+/// 
+/// ## Topics
+/// ### Modifiers
+/// - ``SwiftUI/Scene/recentItemsSearchFilter(_:)``
 struct RecentItemsSearchFilter {
 	public typealias Predicate = @Sendable (String, URL) -> Bool
 

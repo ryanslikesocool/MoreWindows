@@ -2,8 +2,17 @@ import SwiftUI
 
 /// A type that applies a custom appearance to all app info sections within a view.
 ///
-/// To configure the current app info section style for a view hierarchy, use the
-/// ``SwiftUICore/View/appInfoSectionStyle(_:)`` modifier.
+/// To configure the current app info section style for a view hierarchy, use the ``SwiftUICore/View/appInfoSectionStyle(_:)`` modifier.
+///
+/// ## Topics
+/// - ``AppInfoSectionStyleConfiguration``
+///
+/// ### Styles
+// - ``AnyAppInfoSectionStyle``
+/// - ``DefaultAppInfoSectionStyle``
+///
+/// ### Modifiers
+/// - ``SwiftUICore/View/appInfoSectionStyle(_:)``
 public protocol AppInfoSectionStyle: Sendable {
 	/// A view that represents the body of an app info section.
 	associatedtype Body: View
@@ -13,10 +22,10 @@ public protocol AppInfoSectionStyle: Sendable {
 
 	/// Creates a view that represents the body of an app info section.
 	///
-	/// The system calls this method for each ``AppInfoSection`` instance in a view
-	/// hierarchy where this style is the current app info section style.
+	/// The system calls this method for each ``AppInfoSection`` instance in a view hierarchy where this style is the current app info section style.
 	///
 	/// - Parameter configuration: The properties of the app info section.
-	@ViewBuilder @MainActor
+	@ViewBuilder
+	@MainActor
 	func makeBody(configuration: Self.Configuration) -> Self.Body
 }

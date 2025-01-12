@@ -15,8 +15,13 @@
 /// | ``copyable`` | Allow the user to copy the version number to the clipboard by clicking on it. |
 /// | ``showBuildNumber`` | Show the app build number alongside the semantic version.  This option also applies to the string produced by ``copyable``. |
 ///
-/// - SeeAlso:
-///   - ``AppVersionView``
+/// ## Topics
+/// ### Modifiers
+/// - ``SwiftUICore/View/appVersionOptions(_:)``
+/// - ``SwiftUI/Scene/appVersionOptions(_:)``
+///
+/// ## See Also
+/// - ``AppVersionView``
 @frozen
 public struct AppVersionOptions: OptionSet {
 	public let rawValue: UInt64

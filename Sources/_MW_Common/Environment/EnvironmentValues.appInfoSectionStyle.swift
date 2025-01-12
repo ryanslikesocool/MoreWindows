@@ -1,8 +1,9 @@
 import SwiftUI
 
 extension EnvironmentValues {
-	/// - SeeAlso:
-	///   - ``SwiftUI/View/appInfoSectionStyle(_:)``
+	/// ## See Also
+	/// - ``AppInfoSectionStyle``
+	/// - ``SwiftUI/View/appInfoSectionStyle(_:)``
 	@Entry
 	fileprivate(set) var appInfoSectionStyle: AnyAppInfoSectionStyle = AnyAppInfoSectionStyle(.default)
 }
@@ -12,8 +13,9 @@ extension EnvironmentValues {
 public extension View {
 	/// Set the style used by ``AppInfoSection``.
 	/// 
-	/// - SeeAlso:
-	///   - ``AppInfoSectionStyle``
+	/// ## See Also
+	/// - ``AppInfoSectionStyle``
+	// - ``SwiftUICore/EnvironmentValues/appInfoSectionStyle``
 	nonisolated func appInfoSectionStyle<S>(_ style: S) -> some View where
 		S: AppInfoSectionStyle
 	{

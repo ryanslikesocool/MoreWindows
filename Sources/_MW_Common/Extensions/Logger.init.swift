@@ -14,7 +14,7 @@ package extension Logger {
 
 private extension Logger {
 	/// The subsystem for the
-	/// [MoreWindows](https://github.com/ryanslikesocool/MoreWindows)
+	/// [MoreWindows]( https://github.com/ryanslikesocool/MoreWindows )
 	/// package.
 	///
 	/// This value should not be used outside of MoreWindows.

@@ -9,7 +9,9 @@ struct ContentView<Content>: View where
 
 	private let content: () -> Content
 
-	public init(@ViewBuilder content: @escaping () -> Content) {
+	public init(
+		@ViewBuilder content: @escaping () -> Content
+	) {
 		self.content = content
 	}
 

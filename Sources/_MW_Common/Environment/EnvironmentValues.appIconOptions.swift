@@ -1,9 +1,9 @@
 import SwiftUI
 
 extension EnvironmentValues {
-	/// - SeeAlso:
-	///   - ``SwiftUI/View/appIconOptions(_:)``
-	///   - ``SwiftUI/Scene/appIconOptions(_:)``
+	/// ## See Also
+	/// - ``SwiftUICore/View/appIconOptions(_:)``
+	/// - ``SwiftUI/Scene/appIconOptions(_:)``
 	@Entry
 	fileprivate(set) var appIconOptions: AppIconOptions = .default
 }
@@ -13,9 +13,9 @@ extension EnvironmentValues {
 public extension View {
 	/// Set options pertaining to ``AppIconView``.
 	///
-	/// - SeeAlso:
-	///   - ``AppIconOptions``
-	///   - ``AppIconView``
+	/// ## See Also
+	/// - ``AppIconOptions``
+	/// - ``AppIconView``
 	///
 	/// - Parameter options: The options to set in the environment.
 	nonisolated func appIconOptions(_ options: AppIconOptions) -> some View {
@@ -26,9 +26,9 @@ public extension View {
 public extension Scene {
 	/// Set options pertaining to ``AppIconView``.
 	///
-	/// - SeeAlso:
-	///   - ``AppIconOptions``
-	///   - ``AppIconView``
+	/// ## See Also
+	/// - ``AppIconOptions``
+	/// - ``AppIconView``
 	///
 	/// - Parameter options: The options to set in the environment.
 	nonisolated func appIconOptions(_ options: AppIconOptions) -> some Scene {

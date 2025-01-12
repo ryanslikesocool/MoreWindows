@@ -4,7 +4,9 @@ import AppKit
 
 @frozen
 public struct WindowID: RawRepresentable {
-	public let rawValue: String
+	public typealias RawValue = String
+
+	public let rawValue: RawValue
 
 	public init(rawValue: RawValue) {
 		self.rawValue = rawValue
@@ -54,16 +56,41 @@ extension WindowID: ExpressibleByStringLiteral {
 // MARK: - Convenience
 
 public extension WindowID {
-	init(rawValue: some StringProtocol) {
-		self.init(rawValue: String(rawValue))
+	/// - Parameter rawValue:
+	init(_ rawValue: RawValue) {
+		self.init(rawValue: rawValue)
 	}
+
+	/// - Parameter rawValue:
+	init<S>(rawValue: S) where
+		S: StringProtocol
+	{
+		self.init(rawValue: RawValue(rawValue))
+	}
+
+	/// - Parameter rawValue:
+	init<S>(_ rawValue: S) where
+		S: StringProtocol
+	{
+		self.init(rawValue: rawValue)
+	}
+}
+
+// MARK: - Constants
+
+public extension WindowID {
+	/// - Remark: Using this property may result in SwiftUI printing a warning to the console.
+	@available(macOS 11, *)
+	static let settings: Self = Self("com_apple_SwiftUI_Settings_window")
 }
 
 // MARK: -
 
 public extension WindowID {
 #if canImport(AppKit)
-	/// The first ``NSWindow`` with this ID, if one could be found.
+	/// The first
+	/// [`NSWindow`]( https://developer.apple.com/documentation/appkit/nswindow )
+	/// with this ID, if one could be found.
 	@MainActor
 	var window: NSWindow? {
 		NSApplication.shared.windows.first { (window: NSWindow) -> Bool in
@@ -71,7 +98,9 @@ public extension WindowID {
 		}
 	}
 
-	/// All ``NSWindow``s with this ID.
+	/// All
+	/// [`NSWindow`]( https://developer.apple.com/documentation/appkit/nswindow )s
+	/// with this ID.
 	@MainActor
 	var windows: some Sequence<NSWindow> {
 		NSApplication.shared.windows.filter { (window: NSWindow) -> Bool in

@@ -4,20 +4,14 @@ import SwiftUI
 struct ShowInFinderButton: View {
 	private let url: URL
 
-	nonisolated public init(_ url: URL) {
+	public nonisolated init(_ url: URL) {
 		self.url = url
 	}
 
 	public var body: some View {
-		Button(action: buttonAction, label: makeLabel)
-	}
-}
-
-// MARK: - Supporting Views
-
-private extension ShowInFinderButton {
-	nonisolated func makeLabel() -> some View {
-		Text("ACTION.SHOW_IN_FINDER", bundle: .module)
+		Button(action: buttonAction) {
+			Text(.module.action.showInFinder)
+		}
 	}
 }
 

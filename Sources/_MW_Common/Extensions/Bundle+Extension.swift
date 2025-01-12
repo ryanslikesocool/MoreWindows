@@ -13,7 +13,7 @@ public extension Bundle {
 	///
 	/// This property reads the value for the key `NSHumanReadableCopyright` in `Info.plist`.
 	var copyright: String? {
-		object(forInfoDictionaryKey: "NSHumanReadableCopyright") as? String
+		object(forInfoDictionaryKey: kNSHumanReadableCopyrightKey) as? String
 	}
 
 	/// The app's bundle version.
@@ -26,9 +26,10 @@ public extension Bundle {
 	/// The app's version number, optionally including the build number.
 	///
 	/// The primary app version is retrieved from the value for the key `CFBundleShortVersionString` in `Info.plist`.
-	/// - Parameter includeBundleVersion: If `true`, append the app's build number, retrieved from ``includeBundleVersion``, surrounded by parentheses.
+	/// 
+	/// - Parameter includeBundleVersion: If `true`, append the app's build number, retrieved from ``bundleVersion``, surrounded by parentheses.
 	func appVersion(includeBundleVersion: Bool = true) -> String? {
-		guard let version = object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String else {
+		guard let version = object(forInfoDictionaryKey: kCFBundleShortVersionStringKey) as? String else {
 			return nil
 		}
 

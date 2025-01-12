@@ -1,5 +1,9 @@
 import SwiftUI
 
+/// A label that displays the app's version number.
+///
+/// ## See Also
+/// - ``AppVersionView``
 public struct AppVersionLabel: View {
 	private let text: String
 

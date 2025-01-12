@@ -51,8 +51,8 @@ public extension View {
 	///
 	/// - Important: If all values are set to ``WindowButtonMode/hidden``, the developer is responsible for handling actions like closing the window.
 	///
-	/// - SeeAlso:
-	///   - ``WindowButtonMode``
+	/// ## See Also
+	/// - ``WindowButtonMode``
 	///   
 	/// - Parameters:
 	///   - close: The display mode for the close (red x) button.

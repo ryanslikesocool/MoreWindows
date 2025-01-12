@@ -3,7 +3,9 @@ import SwiftUI
 public struct CopyrightLabel: View {
 	private let text: String
 
-	public nonisolated init(text: String) {
+	public nonisolated init(
+		text: String
+	) {
 		self.text = text
 	}
 

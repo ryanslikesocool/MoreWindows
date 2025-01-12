@@ -11,15 +11,18 @@
 ///
 /// | Option | Description |
 /// | - | - |
-/// | ``showIcon`` | Displays the app icon. |
-/// | ``showName`` | Displays the app name. |
-/// | ``showVersion`` | Displays the current app version. |
-/// | ``showRecentDocuments`` | Adds a list with recent documents. |
-/// | ``addMenuItem`` | Adds a menu item to open the launcher. |
+/// | ``LauncherWindowOptions/showIcon`` | Displays the app icon. |
+/// | ``LauncherWindowOptions/showName`` | Displays the app name. |
+/// | ``LauncherWindowOptions/showVersion`` | Displays the current app version. |
+/// | ``LauncherWindowOptions/showRecentDocuments`` | Adds a list with recent documents. |
+/// | ``LauncherWindowOptions/addMenuItem`` | Adds a menu item to open the launcher. |
 ///
-/// - SeeAlso:
-///   - ``Launcher``
-///   - ``SwiftUI/Scene/launcherWindowOptions(_:)``
+/// ## See Also
+/// - ``Launcher``
+///
+/// ## Topics
+/// ### Modifiers
+/// - ``SwiftUI/Scene/launcherWindowOptions(_:)``
 @frozen
 public struct LauncherWindowOptions: OptionSet {
 	public let rawValue: UInt64

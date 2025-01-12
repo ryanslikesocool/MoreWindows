@@ -1,11 +1,17 @@
 import SwiftUI
 
-struct RecentItemList: View {
+/// ## Topics
+/// - ``RecentItemsOptions``
+// - ``RecentItemsSearchFilter``
+public struct RecentItemList: View {
 	@Environment(\.recentItemsOptions) private var recentItemsOptions
 	@Environment(\.recentItemsSearchFilter) private var recentItemsSearchFilter
 	@State private var searchQuery: String = ""
 
-	private var recentDocumentURLs: [URL] { NSDocumentController.shared.recentDocumentURLs }
+	private var recentDocumentURLs: [URL] {
+		NSDocumentController.shared.recentDocumentURLs
+	}
+
 	private var filteredURLs: [URL] {
 		// TODO: add extension filtering, tokens
 		recentItemsSearchFilter(query: searchQuery, items: recentDocumentURLs)

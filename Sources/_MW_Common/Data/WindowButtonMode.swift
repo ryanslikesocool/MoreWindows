@@ -1,4 +1,8 @@
 /// Modes for standard window buttons (traffic lights).
+///
+/// ## Topics
+/// ### Modifiers
+/// - ``SwiftUICore/View/windowButtons(close:miniaturize:zoom:)``
 public enum WindowButtonMode {
 	/// Indicates that a window button is visible and interactive.
 	case enabled

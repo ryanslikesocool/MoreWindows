@@ -11,8 +11,12 @@
 ///
 /// | Option | Description |
 /// | - | - |
-/// | ``showDefaultInformation`` | Show the default app information view at the top of the window.  This contains the app icon, name, and version. |
-/// | ``showDefaultCopyright`` | Show the default app copyright view at the bottom of the window..  The string used is the one found in the app's Info.plist. |
+/// | ``AboutWindowOptions/showDefaultInformation`` | Show the default app information view at the top of the window.  This contains the app icon, name, and version. |
+/// | ``AboutWindowOptions/showDefaultCopyright`` | Show the default app copyright view at the bottom of the window..  The string used is the one found in the app's Info.plist. |
+///
+/// ## Topics
+/// ### Modifiers
+/// - ``SwiftUI/Scene/aboutWindowOptions(_:)``
 @frozen
 public struct AboutWindowOptions: OptionSet {
 	public let rawValue: UInt64

@@ -1,6 +1,10 @@
 import CoreGraphics
 
 /// The layout style of an ``About`` window.
+///
+/// ## Topics
+/// ### Modifiers
+/// - ``SwiftUI/Scene/aboutWindowLayout(_:)``
 public enum AboutWindowLayout {
 	/// Provide custom content for the about window.
 	/// 

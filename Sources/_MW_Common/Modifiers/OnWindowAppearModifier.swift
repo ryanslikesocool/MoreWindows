@@ -47,16 +47,14 @@ private extension OnWindowAppearModifier {
 // MARK: - Convenience
 
 public extension View {
-	/// Adds an action to perform after this view is added to an ``AppKit/NSWindow``.
-	/// 
-	/// - Remark: This view modifier requires that one of the `windowID(_:)` modifiers was used on the containing scene.
+	/// Adds an action to perform after this view is added to an
+	/// [`NSWindow`]( https://developer.apple.com/documentation/appkit/nswindow ).
 	///
-	/// - SeeAlso:
-	///   - ``SwiftUI/Scene/windowID(_:)-7gcxi``
-	///   - ``SwiftUI/Scene/windowID(_:)-2v85t``
+	/// - Remark: This view modifier requires that a ``SwiftUI/Scene/windowID(_:)-5gt9k`` modifier was used on the containing scene.
 	///
 	/// - Parameter action: The action to perform. If action is `nil`, the call has no effect.
-	/// - Returns: A view that triggers `action` after it is added to an ``AppKit/NSWindow``.
+	/// - Returns: A view that triggers `action` after it is added to an
+	/// [`NSWindow`]( https://developer.apple.com/documentation/appkit/nswindow ).
 	@ViewBuilder
 	func onWindowAppear(perform action: ((NSWindow) -> Void)?) -> some View {
 		if let action {

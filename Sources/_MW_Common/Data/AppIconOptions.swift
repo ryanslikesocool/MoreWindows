@@ -19,8 +19,13 @@
 ///
 /// Combine `.hover_____` options to create a sense of depth.
 ///
-/// - SeeAlso:
-///   - ``AppIconView``
+/// ## Topics
+/// ### Modifiers
+/// - ``SwiftUICore/View/appIconOptions(_:)``
+/// - ``SwiftUI/Scene/appIconOptions(_:)``
+///
+/// ## See Also
+/// - ``AppIconView``
 @frozen
 public struct AppIconOptions: OptionSet {
 	public let rawValue: UInt64

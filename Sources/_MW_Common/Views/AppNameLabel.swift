@@ -1,9 +1,10 @@
 import SwiftUI
 
+/// A label that displays the app's name.
 public struct AppNameLabel: View {
 	private let text: String
 
-	nonisolated public init(text: String) {
+	public nonisolated init(text: String) {
 		self.text = text
 	}
 

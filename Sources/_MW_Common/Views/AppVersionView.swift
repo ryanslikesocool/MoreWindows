@@ -2,12 +2,13 @@ import SwiftUI
 
 /// A view displaying the app's version number.
 ///
-/// Change the appearance by setting environment values using ``SwiftUI/View/appVersionOptions(_:)``.
-/// 
-/// - SeeAlso:
-///   - ``AppVersionOptions``
-///   - ``SwiftUI/View/appVersionOptions(_:)``
-///   - ``SwiftUI/Scene/appVersionOptions(_:)``
+/// Change the appearance by setting environment values using ``SwiftUICore/View/appVersionOptions(_:)``.
+///
+/// ## Topics
+/// - ``AppVersionOptions``
+///
+/// ## See Also
+/// - ``AppVersionLabel``
 public struct AppVersionView: View {
 	@Environment(\.appVersionOptions) private var appVersionOptions: AppVersionOptions
 	@State private var isHovering: Bool = false
@@ -15,7 +16,7 @@ public struct AppVersionView: View {
 	private let iconEdge: HorizontalEdge
 	private let hoverAnimation: Animation
 
-	nonisolated public init(
+	public nonisolated init(
 		iconEdge: HorizontalEdge = .trailing,
 		hoverAnimation: Animation = .easeOut(duration: 0.15)
 	) {
@@ -24,7 +25,9 @@ public struct AppVersionView: View {
 	}
 
 	public var body: some View {
-		if let appVersion = Bundle.main.appVersion(includeBundleVersion: appVersionOptions.contains(.showBuildNumber)) {
+		if let appVersion = Bundle.main.appVersion(
+			includeBundleVersion: appVersionOptions.contains(.showBuildNumber)
+		) {
 			if appVersionOptions.contains(.copyable) {
 				makeButton(appVersion)
 			} else {
@@ -32,6 +35,15 @@ public struct AppVersionView: View {
 			}
 		}
 	}
+}
+
+// MARK: - Constants
+
+private extension AppVersionView {
+	static let systemImageName: String = "doc.on.clipboard"
+
+	static var unfocusedForegroundStyle: HierarchicalShapeStyle { .tertiary }
+	static var focusedForegroundStyle: HierarchicalShapeStyle { .secondary }
 }
 
 // MARK: - Supporting Views
@@ -48,25 +60,22 @@ private extension AppVersionView {
 	}
 
 	func makeLabel(_ appVersion: String) -> some View {
-		let iconHorizontalAlignment: HorizontalAlignment = switch iconEdge {
-			case .leading: .leading
-			case .trailing: .trailing
-		}
-		let oppositeIconHorizontalAlignment: HorizontalAlignment = switch iconEdge {
-			case .leading: .trailing
-			case .trailing: .leading
-		}
+		let iconHorizontalAlignment: HorizontalAlignment = iconEdge.horizontalAlignment
+		let oppositeIconHorizontalAlignment: HorizontalAlignment = iconEdge.inverseHorizontalAlignment
 		let iconAlignment: Alignment = Alignment(horizontal: iconHorizontalAlignment, vertical: .center)
 
-		return Text(appVersion)
+		return Text(verbatim: appVersion)
 			.overlay(alignment: iconAlignment) {
-				Image(systemName: "doc.on.clipboard")
+//				if isHovering {
+				Image(systemName: Self.systemImageName)
 					.opacity(isHovering ? 1 : 0)
 					.alignmentGuide(iconHorizontalAlignment) { d in
 						d[oppositeIconHorizontalAlignment]
 					}
+//						.transition(.opacity.animation(.interactiveSpring))
+//				}
 			}
-			.foregroundStyle(isHovering ? .secondary : .tertiary)
+			.foregroundStyle(isHovering ? Self.focusedForegroundStyle : Self.unfocusedForegroundStyle)
 			.monospaced()
 	}
 }
@@ -81,7 +90,8 @@ private extension AppVersionView {
 	}
 
 	func copyVersionToPasteboard(version: String) {
-		let copyString: String = "\(Bundle.main.bundleName) \(version)"
+		let applicationName = Bundle.main.bundleName
+		let copyString: String = "\(applicationName) \(version)"
 
 		NSPasteboard.general.clearContents()
 		NSPasteboard.general.setString(copyString, forType: .string)

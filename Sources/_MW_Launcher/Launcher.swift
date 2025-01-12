@@ -3,6 +3,17 @@ import SwiftUI
 
 /// A "Launcher" window that can be shown when an app launches.
 ///
+/// ## Overview
+///
+/// Launcher windows can be found across many creativity, productivity, and developer apps, such as
+/// [Xcode]( https://developer.apple.com/xcode ),
+/// [Sketch]( https://www.sketch.com ),
+/// [Obsidian]( https://obsidian.md ), and
+/// [Unity]( https://unity.com ).
+/// They provide an easy way to perform actions such as opening and creating files, and can help provide guidance for new users unfamiliar with the app.
+///
+/// ## Discussion
+/// 
 /// Primary actions can be provided by using the view builder.
 ///
 /// ## Usage
@@ -19,14 +30,16 @@ import SwiftUI
 /// }
 /// ```
 ///
-/// ## Supported Options
+/// - Remark: For the launcher to be the initial window when opening the app, it must be the first item in
+/// [`App.body`]( https://developer.apple.com/documentation/swiftui/app/body-swift.property ).
+///
+/// ## Topics
+// ### Supported Options
 /// - ``LauncherWindowOptions``
 /// - ``LauncherActionOptions``
 /// - ``RecentItemsOptions``
-/// - ``AppIconOptions``
-/// - ``AppVersionOptions``
-///
-/// - Remark: For the launcher to be the initial window when opening the app, it must be the first item in ``SwiftUI/App/body``.
+// - ``AppIconOptions``
+// - ``AppVersionOptions``
 public struct Launcher<ActionArea>: Scene where
 	ActionArea: View
 {
@@ -39,10 +52,15 @@ public struct Launcher<ActionArea>: Scene where
 
 	/// Create a launcher window.
 	///
-	/// - Important: The system ignores any text styling that you apply to the ``SwiftUI/Text`` view `title`, like bold or italics. However, you can use the formatting controls that the view offers, like for localization, dates, and numerical representations.
-	/// 
+	/// - Important: The system ignores any text styling that you apply to the
+	/// [`Text`]( https://developer.apple.com/documentation/swiftui/text )
+	/// view `title`, like bold or italics.
+	/// However, you can use the formatting controls that the view offers, like for localization, dates, and numerical representations.
+	///
 	/// - Parameters:
-	///   - title: The ``SwiftUI/Text`` view to use for the window’s title in system menus and in the window’s title bar. Provide a title that describes the purpose of the window.
+	///   - title: The
+	///   [`Text`]( https://developer.apple.com/documentation/swiftui/text )
+	///   view to use for the window’s title in system menus and in the window’s title bar. Provide a title that describes the purpose of the window.
 	///   - id: A unique ``WindowID`` that you can use to open the window.
 	///   - actionArea: The primary action area.
 	public init(
@@ -59,7 +77,6 @@ public struct Launcher<ActionArea>: Scene where
 		SwiftUI.Window(title, id: id) {
 			ContentView(actionArea: actionArea)
 		}
-		.windowID(id)
 		.defaultPosition(.center)
 		.windowResizability(.contentSize)
 		.windowStyle(.hiddenTitleBar)

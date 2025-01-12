@@ -17,10 +17,12 @@
 /// | ``draggable`` | Allows items in the list to be dragged. |
 /// | ``closeWindow`` | Closes the launcher upon selecting an item. |
 ///
-/// - SeeAlso:
-///   - ``Launcher``
-///   - ``SwiftUI/Scene/recentItemsSearchFilter(_:)
-///   - ``SwiftUI/Scene/recentItemsOptions(_:)``
+/// ## See Also
+/// - ``RecentItemList``
+///
+/// ## Topics
+/// ### Modifiers
+/// - ``SwiftUI/Scene/recentItemsOptions(_:)``
 @frozen
 public struct RecentItemsOptions: OptionSet {
 	public let rawValue: UInt64

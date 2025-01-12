@@ -15,11 +15,17 @@ struct FileURLLabel: View {
 
 	public var body: some View {
 		if isInCloud {
-			Text(verbatim: "\(Image(systemName: "icloud"))\(filePath)")
+			Text(verbatim: "\(Image(systemName: Self.icloudSystemImageName))\(filePath)")
 		} else {
 			Text(verbatim: filePath)
 		}
 	}
+}
+
+// MARK: - Constants
+
+private extension FileURLLabel {
+	static let icloudSystemImageName: String = "icloud"
 }
 
 // MARK: - Functions

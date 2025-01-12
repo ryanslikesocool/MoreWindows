@@ -15,9 +15,12 @@
 /// | - | - |
 /// | ``closeWindow`` | Close the launcher window once the button action is executed. |
 ///
-/// - SeeAlso:
-///   - ``Launcher``
-///   - ``SwiftUI/View/launcherActionOptions(_:)``
+/// ## See Also
+/// - ``Launcher``
+///
+/// ## Topics
+/// ### Modifiers
+/// - ``SwiftUICore/View/launcherActionOptions(_:)``
 @frozen
 public struct LauncherActionOptions: OptionSet {
 	public let rawValue: UInt64

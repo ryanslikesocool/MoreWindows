@@ -13,9 +13,15 @@ struct DocumentIcon: View {
 			Image(nsImage: nsImage)
 				.resizable()
 		} else {
-			Image(systemName: "doc")
+			Image(systemName: Self.systemImageName)
 		}
 	}
+}
+
+// MARK: - Constants
+
+private extension DocumentIcon {
+	static let systemImageName: String = "doc"
 }
 
 // MARK: - Properties

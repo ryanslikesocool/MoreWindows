@@ -1,13 +1,17 @@
 import SwiftUI
 
 struct AnyAppInfoSectionStyle: AppInfoSectionStyle {
-	private var _makeBody: @MainActor (Configuration) -> AnyView
+	private let _makeBody: @MainActor (Configuration) -> AnyView
 
-	init<S>(_ style: S) where
+	public init<S>(_ style: S) where
 		S: AppInfoSectionStyle
 	{
-		_makeBody = { @MainActor configuration in
-			AnyView(style.makeBody(configuration: configuration))
+		_makeBody = if let style = style as? Self {
+			style._makeBody
+		} else {
+			{ @MainActor configuration in
+				AnyView(style.makeBody(configuration: configuration))
+			}
 		}
 	}
 
