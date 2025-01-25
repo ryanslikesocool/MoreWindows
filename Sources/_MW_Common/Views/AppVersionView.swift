@@ -64,7 +64,7 @@ private extension AppVersionView {
 		let oppositeIconHorizontalAlignment: HorizontalAlignment = iconEdge.inverseHorizontalAlignment
 		let iconAlignment: Alignment = Alignment(horizontal: iconHorizontalAlignment, vertical: .center)
 
-		return Text(verbatim: appVersion)
+		return AppVersionLabel(text: appVersion)
 			.overlay(alignment: iconAlignment) {
 //				if isHovering {
 				Image(systemName: Self.systemImageName)

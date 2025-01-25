@@ -17,7 +17,7 @@ struct ContentView<Content>: View where
 
 	public var body: some View {
 		makePrimaryContent()
-			.onWindowAppear(perform: applyWindowStyle)
+			.windowIsMovableByBackground()
 			.windowButtons(miniaturize: .hidden, zoom: .hidden)
 	}
 }
@@ -31,13 +31,5 @@ private extension ContentView {
 			case .custom: content()
 			case let .vertical(spacing): VerticalContentView(spacing: spacing, content: content)
 		}
-	}
-}
-
-// MARK: - Functions
-
-private extension ContentView {
-	func applyWindowStyle(nsWindow: NSWindow) {
-		nsWindow.isMovableByWindowBackground = true
 	}
 }

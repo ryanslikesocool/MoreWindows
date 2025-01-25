@@ -20,7 +20,7 @@ struct ContentView<ActionArea>: View where
 		}
 		.ignoresSafeArea(.all)
 		.frame(width: windowSize.width, height: windowSize.height)
-		.onWindowAppear(perform: applyWindowStyle)
+		.windowIsMovableByBackground()
 		.windowButtons(close: .hidden, miniaturize: .hidden, zoom: .hidden)
 	}
 }
@@ -51,14 +51,6 @@ private extension ContentView {
 	private func makeCloseButton() -> some View {
 		CloseLauncherButton()
 			.padding(12)
-	}
-}
-
-// MARK: - Functions
-
-private extension ContentView {
-	func applyWindowStyle(nsWindow: NSWindow) {
-		nsWindow.isMovableByWindowBackground = true
 	}
 }
 
