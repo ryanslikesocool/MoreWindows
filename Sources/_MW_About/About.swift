@@ -39,7 +39,7 @@ public struct About<Content>: Scene where
 
 	private let title: Text
 	private let id: WindowID
-	private let content: Content
+	private let content: () -> Content
 
 	/// Create an About window.
 	///
@@ -58,17 +58,17 @@ public struct About<Content>: Scene where
 	public init(
 		_ title: Text,
 		id: WindowID = WindowID.about,
-		@ViewBuilder content: () -> Content
+		@ViewBuilder content: @escaping () -> Content
 	) {
 		self.title = title
 		self.id = id
-		self.content = content()
+		self.content = content
 	}
 
 	public var body: some Scene {
 		SwiftUI.Window(title, id: id) {
 			ContentView {
-				content
+				content()
 			}
 		}
 		.defaultPosition(.center)
@@ -99,9 +99,13 @@ public extension About {
 	///   - content: Additional sections to include in the window.
 	init(
 		id: WindowID = WindowID.about,
-		@ViewBuilder content: () -> Content
+		@ViewBuilder content: @escaping () -> Content
 	) {
-		self.init(Text.defaultAboutWindowText(), id: id, content: content)
+		self.init(
+			Text.defaultAboutWindowText(),
+			id: id,
+			content: content
+		)
 	}
 
 	/// Create an About window.
@@ -113,11 +117,15 @@ public extension About {
 	init<S>(
 		_ title: S,
 		id: WindowID = WindowID.about,
-		@ViewBuilder content: () -> Content
+		@ViewBuilder content: @escaping () -> Content
 	) where
 		S: StringProtocol
 	{
-		self.init(Text(title), id: id, content: content)
+		self.init(
+			Text(title),
+			id: id,
+			content: content
+		)
 	}
 
 	/// Create an About window.
@@ -129,8 +137,12 @@ public extension About {
 	init(
 		_ titleKey: LocalizedStringKey,
 		id: WindowID = WindowID.about,
-		@ViewBuilder content: () -> Content
+		@ViewBuilder content: @escaping () -> Content
 	) {
-		self.init(Text(titleKey), id: id, content: content)
+		self.init(
+			Text(titleKey),
+			id: id,
+			content: content
+		)
 	}
 }

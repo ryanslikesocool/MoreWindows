@@ -9,14 +9,6 @@
 /// .launcherWindowOptions(/* ... */)  // <-- here!
 /// ```
 ///
-/// | Option | Description |
-/// | - | - |
-/// | ``LauncherWindowOptions/showIcon`` | Displays the app icon. |
-/// | ``LauncherWindowOptions/showName`` | Displays the app name. |
-/// | ``LauncherWindowOptions/showVersion`` | Displays the current app version. |
-/// | ``LauncherWindowOptions/showRecentDocuments`` | Adds a list with recent documents. |
-/// | ``LauncherWindowOptions/addMenuItem`` | Adds a menu item to open the launcher. |
-///
 /// ## See Also
 /// - ``Launcher``
 ///
@@ -57,12 +49,10 @@ public extension LauncherWindowOptions {
 	static let showVersion: Self = Self(rawValue: 1 << 2)
 
 	/// Adds a list with recent documents.
+	/// 
 	/// - SeeAlso:
 	///   - ``RecentItemsOptions``
 	static let showRecentDocuments: Self = Self(rawValue: 1 << 3)
-
-	/// Adds a menu item to open the launcher.
-	static let addMenuItem: Self = Self(rawValue: 1 << 4)
 
 	/// Only options pertaining to the "welcome" area of the launcher.
 	static let welcome: Self = [.showIcon, .showName, .showVersion]
@@ -74,5 +64,5 @@ public extension LauncherWindowOptions {
 	static let none: Self = []
 
 	/// All available options.
-	static let all: Self = [.showIcon, .showName, .showVersion, .showRecentDocuments, .addMenuItem]
+	static let all: Self = [.showIcon, .showName, .showVersion, .showRecentDocuments]
 }

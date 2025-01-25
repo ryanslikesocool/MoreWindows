@@ -1,7 +1,7 @@
 import SwiftUI
 
 public extension EnvironmentValues {
-	/// The current `Window` ID.
+	/// The current window ID.
 	///
 	/// - Remark: This value is only available if ``SwiftUI/Scene/windowID(_:)-5gt9k`` was used on the containing scene, or if a scene initializer that receives a ``WindowID`` was used.
 	///
@@ -15,7 +15,7 @@ public extension EnvironmentValues {
 // MARK: - Convenience
 
 public extension Scene {
-	/// Expose a `Window`'s ID to the environment.
+	/// Expose a window's ID to the environment.
 	///
 	/// ## See Also
 	/// - ``SwiftUICore/EnvironmentValues/windowID``
@@ -28,7 +28,7 @@ public extension Scene {
 		environment(\.windowID, id)
 	}
 
-	/// Expose a `Window`'s ID to the environment.
+	/// Expose a window's ID to the environment.
 	///
 	/// ## See Also
 	/// - ``SwiftUICore/EnvironmentValues/windowID``
@@ -45,7 +45,7 @@ public extension Scene {
 }
 
 extension View {
-	/// Expose a `Window`'s ID to the environment.
+	/// Expose a window's ID to the environment.
 	///
 	/// ## See Also
 	/// - ``SwiftUICore/EnvironmentValues/windowID``

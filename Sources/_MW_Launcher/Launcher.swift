@@ -80,13 +80,6 @@ public struct Launcher<ActionArea>: Scene where
 		.defaultPosition(.center)
 		.windowResizability(.contentSize)
 		.windowStyle(.hiddenTitleBar)
-		.commands {
-			if launcherWindowOptions.contains(.addMenuItem) {
-				CommandGroup(before: .windowList) {
-					LauncherWindowLink()
-				}
-			}
-		}
 	}
 }
 

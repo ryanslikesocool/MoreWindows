@@ -104,7 +104,9 @@ public extension WindowID {
 	@MainActor
 	var windows: some Sequence<NSWindow> {
 		NSApplication.shared.windows.filter { (window: NSWindow) -> Bool in
-			window.identifier?.rawValue == rawValue
+			// NOTE: For `WindowGroup`, SwiftUI appends a suffix for each instance,
+			// so exact matches will not work.
+			window.identifier?.rawValue.starts(with: rawValue) == true
 		}
 	}
 #endif

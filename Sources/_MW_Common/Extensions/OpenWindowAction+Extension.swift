@@ -17,7 +17,7 @@ public extension OpenWindowAction {
 	/// - Parameter id: The identifier of the scene to present.
 	@available(iOS 16, macCatalyst 16, macOS 13, visionOS 1, *)
 	@MainActor @preconcurrency
-	func callAsFunction(id: borrowing WindowID) {
+	func callAsFunction(id: WindowID) {
 		callAsFunction(id: id.rawValue)
 	}
 
@@ -39,7 +39,7 @@ public extension OpenWindowAction {
 	///   - value: The value to present.
 	@available(iOS 16, macCatalyst 16, macOS 13, visionOS 1, *)
 	@MainActor @preconcurrency
-	func callAsFunction<D>(id: borrowing WindowID, value: D) where
+	func callAsFunction<D>(id: WindowID, value: D) where
 		D: Decodable,
 		D: Encodable,
 		D: Hashable
@@ -70,7 +70,7 @@ public extension OpenWindowAction {
 	///   - sharingBehavior: The sharing behavior for the opened window.
 	@available(macOS 15, *)
 	@MainActor
-	func callAsFunction(id: borrowing WindowID, sharingBehavior: SharingBehavior) async throws {
+	func callAsFunction(id: WindowID, sharingBehavior: SharingBehavior) async throws {
 		try await callAsFunction(id: id.rawValue, sharingBehavior: sharingBehavior)
 	}
 
@@ -98,7 +98,7 @@ public extension OpenWindowAction {
 	///   - sharingBehavior: The sharing behavior for the opened window.
 	@available(macOS 15, *)
 	@MainActor
-	func callAsFunction<D>(id: borrowing WindowID, value: D, sharingBehavior: SharingBehavior) async throws where
+	func callAsFunction<D>(id: WindowID, value: D, sharingBehavior: SharingBehavior) async throws where
 		D: Decodable,
 		D: Encodable,
 		D: Hashable
