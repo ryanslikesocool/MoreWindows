@@ -80,6 +80,9 @@ public struct Launcher<ActionArea>: Scene where
 		.defaultPosition(.center)
 		.windowResizability(.contentSize)
 		.windowStyle(.hiddenTitleBar)
+		.handlesExternalEvents(matching: [
+			id.rawValue,
+		])
 	}
 }
 

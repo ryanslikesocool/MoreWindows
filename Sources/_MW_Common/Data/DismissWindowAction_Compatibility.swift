@@ -38,8 +38,44 @@ import SwiftUI
 @available(iOS, introduced: 16, obsoleted: 17, message: "An official implementation is provided by Apple starting with iOS 17.")
 @available(macCatalyst, introduced: 16, obsoleted: 17, message: "An official implementation is provided by Apple starting with macCatalyst 17.")
 @available(macOS, introduced: 13, obsoleted: 14, message: "An official implementation is provided by Apple starting with macOS 14.")
+public typealias DismissWindowAction = DismissWindowAction_Compatibility
+
+/// An action that dismisses a window associated to a particular scene.
+///
+/// Use the ``SwiftUICore/EnvironmentValues/dismissWindow`` environment value to get the instance of this structure for a given environment.
+/// Then call the instance to dismiss a window.
+/// You call the instance directly because it defines a ``DismissWindowAction/callAsFunction(id:)-99yt`` method that Swift calls when you call the instance.
+///
+/// For example, you can define a button that closes an auxiliary window:
+/// ```swift
+/// @main
+/// struct MyApp: App {
+///     var body: some Scene {
+///         WindowGroup {
+///             ContentView()
+///         }
+///         #if os(macOS)
+///         Window("Auxiliary", id: "auxiliary") {
+///             AuxiliaryContentView()
+///         }
+///         #endif
+///     }
+/// }
+///
+/// struct DismissWindowButton: View {
+///     @Environment(\.dismissWindow) private var dismissWindow
+///
+///     var body: some View {
+///         Button("Close Auxiliary Window") {
+///             dismissWindow(id: "auxiliary")
+///         }
+///     }
+/// }
+/// ```
+///
+/// - Remark: An official implementation is provided by Apple starting with macOS 14.
 @MainActor
-public struct DismissWindowAction {
+public struct DismissWindowAction_Compatibility {
 	init() { }
 
 	/// Dismisses the window that’s associated with the specified identifier.
@@ -57,7 +93,8 @@ public struct DismissWindowAction {
 	/// in *The Swift Programming Language*.
 	///
 	/// - Parameter id: The identifier of the scene to dismiss.
-	public func callAsFunction(id: borrowing WindowID) {
+	@preconcurrency
+	public func callAsFunction(id: WindowID) {
 		callAsFunction(id: id.rawValue)
 	}
 
@@ -76,6 +113,7 @@ public struct DismissWindowAction {
 	/// in *The Swift Programming Language*.
 	///
 	/// - Parameter id: The identifier of the scene to dismiss.
+	@preconcurrency
 	public func callAsFunction(id: String) {
 		NSApplication.shared.windows
 			.filter { $0.identifier?.rawValue == id }

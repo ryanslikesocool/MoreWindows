@@ -2,7 +2,7 @@ import _MW_Common
 import SwiftUI
 
 struct LauncherButtonStyle: PrimitiveButtonStyle {
-	@Environment(\.dismissWindow) private var dismissWindow
+	@Environment(\.dismissWindow_compatibility) private var dismissWindow
 	@Environment(\.windowID) private var windowID
 	@Environment(\.launcherActionOptions) private var launcherActionOptions
 
